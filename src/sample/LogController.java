@@ -15,23 +15,31 @@ public class LogController {
         this.model = model;
     }
 
-
-    public void loginAction(ActionEvent actionEvent){
-        if (fldUsername.getText().equals("") || fldPassword.getText().equals("")){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning Dialog");
-            alert.setHeaderText("The username or password you’ve entered doesn’t match any account.");
-            alert.setContentText("Sign up for an account.");
-            alert.showAndWait();
+    public void loginAction(ActionEvent actionEvent) {
+        if (fldUsername.getText().equals("") || fldPassword.getText().equals("")) {
+            warningAlert();
+            return;
         }
 
-
+        if (model.getUsers().containsKey(fldUsername)){
+            if (model.getUsers().get(fldUsername).getPassword().equals(fldPassword.getText())) {}
+            else warningAlert();
+        } else warningAlert();
     }
 
+    private void warningAlert() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning Dialog");
+        alert.setHeaderText("The username or password you’ve entered doesn’t match any account.");
+        alert.setContentText("Sign up for an account.");
+        alert.showAndWait();
+    }
 
     public void cancelAction(ActionEvent actionEvent){
         Platform.exit();
     }
 
-    public void addUserAction(ActionEvent actionEvent){}
+    public void addUserAction(ActionEvent actionEvent){
+
+    }
 }

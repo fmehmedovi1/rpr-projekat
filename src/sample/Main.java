@@ -10,7 +10,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
         UserModel model = new UserModel();
         LogController controller = new LogController(model);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));

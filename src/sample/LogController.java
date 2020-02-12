@@ -2,9 +2,16 @@ package sample;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LogController {
     private UserModel model;
@@ -39,7 +46,16 @@ public class LogController {
         Platform.exit();
     }
 
-    public void addUserAction(ActionEvent actionEvent){
+    public void addUserAction(MouseEvent mouseEvent) throws IOException {
 
+        RegisterController controller = new RegisterController(model);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/register.fxml"));
+        loader.setController(controller);
+
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Register Form");
+        stage.setScene(new Scene(root, 350, 400));
+        stage.show();
     }
 }

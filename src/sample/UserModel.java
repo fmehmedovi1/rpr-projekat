@@ -15,5 +15,11 @@ public class UserModel {
         this.users = users;
     }
 
-    
+    public void addUser(User user){
+        this.users.put(user.getUsername(), user);
+    }
+
+    public void deleteUser(User user){
+        this.users.remove(user.getUsername());
+    }
 }

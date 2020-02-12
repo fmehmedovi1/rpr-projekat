@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="550.0" prefWidth="212.0" style="-fx-background-color: #22313f;">
+         <children>
+            <Line endX="-46.0" layoutX="101.0" layoutY="198.0" startX="-100.0" stroke="WHITE" />
+            <Label layoutX="60.0" layoutY="137.0" text="MyWH" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="222.0" text="Welcome to MyWH" textFill="#fffefe">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="241.0" text="Here, you will find  " textFill="#f8f8f8">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="260.0" text="storage information" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="297.0" text="Dashboard" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="84.0" layoutY="334.0" text="HOME" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="59.0" layoutY="373.0" text="MY PRODUCTS" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="84.0" layoutY="414.0" text="ABOUT" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Line endX="100.0" layoutX="93.0" layoutY="468.0" startX="-74.0" stroke="#eeeeee" />
+            <Label layoutX="61.0" layoutY="486.0" text="CONTACT US" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TextField layoutX="353.0" layoutY="362.0" prefHeight="25.0" prefWidth="140.0" />
+      <Label layoutX="275.0" layoutY="365.0" prefHeight="20.0" prefWidth="48.0" text="Prize">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

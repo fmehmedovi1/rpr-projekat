@@ -47,7 +47,6 @@ public class LogController {
     }
 
     public void addUserAction(MouseEvent mouseEvent) throws IOException {
-
         RegisterController controller = new RegisterController(model);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/register.fxml"));
         loader.setController(controller);

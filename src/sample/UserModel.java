@@ -7,6 +7,8 @@ public class UserModel {
 
     private ObservableMap<String, User> users = FXCollections.observableHashMap();
 
+    public UserModel() {}
+
     public ObservableMap<String, User> getUsers() {
         return users;
     }

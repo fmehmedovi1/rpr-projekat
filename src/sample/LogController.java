@@ -30,8 +30,15 @@ public class LogController {
 
         if (model.getUsers().containsKey(fldUsername)){
             if (model.getUsers().get(fldUsername).getPassword().equals(fldPassword.getText())) {}
-            else warningAlert();
-        } else warningAlert();
+            else {
+                warningAlert();
+                return;
+            }
+        } else {
+            warningAlert();
+            return;
+        }
+        openNewWindow("/fxml/main.fxml", "Home Page", 550, 550);
     }
 
     private void warningAlert() {
@@ -47,14 +54,22 @@ public class LogController {
     }
 
     public void addUserAction(MouseEvent mouseEvent) throws IOException {
-        RegisterController controller = new RegisterController(model);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/register.fxml"));
-        loader.setController(controller);
+        openNewWindow("/fxml/register.fxml", "Register Form", 350, 400);
+    }
 
-        Parent root = loader.load();
+    private void openNewWindow(String nameOfFXML, String stageTitle, int stageWidth, int stageHeight){
+        RegisterController controller = new RegisterController(model);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(nameOfFXML));
+        loader.setController(controller);
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Stage stage = new Stage();
-        stage.setTitle("Register Form");
-        stage.setScene(new Scene(root, 350, 400));
+        stage.setTitle(stageTitle);
+        stage.setScene(new Scene(root, stageWidth, stageHeight));
         stage.show();
     }
 }

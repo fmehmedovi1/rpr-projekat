@@ -6,13 +6,12 @@ import javafx.beans.property.SimpleStringProperty;
 public class Storage {
 
     private SimpleStringProperty name, address;
-    private SimpleIntegerProperty id, quantity, responsiblePerson;
+    private SimpleIntegerProperty id, responsiblePerson;
 
-    public Storage(int id, String name, String address, int quantity, int responsiblePerson) {
+    public Storage(int id, String name, String address, int responsiblePerson) {
         this.id.set(id);
         this.name.setValue(name);
         this.address.setValue(address);
-        this.quantity.set(quantity);
         this.responsiblePerson.set(responsiblePerson);
     }
 
@@ -38,18 +37,6 @@ public class Storage {
 
     public void setAddress(String address) {
         this.address.set(address);
-    }
-
-    public int getQuantity() {
-        return quantity.get();
-    }
-
-    public SimpleIntegerProperty quantityProperty() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity.set(quantity);
     }
 
     public int getId() {

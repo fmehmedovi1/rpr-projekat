@@ -56,7 +56,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <ImageView fitHeight="99.0" fitWidth="146.0" layoutX="35.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="99.0" fitWidth="146.0" layoutX="35.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../Desktop/warehouse.png" />
                </image>
@@ -87,18 +87,18 @@
             </Label>
          </children>
       </Pane>
-      <ListView layoutX="238.0" layoutY="178.0" prefHeight="290.0" prefWidth="289.0" />
-      <Label layoutX="238.0" layoutY="73.0" text="Name">
+      <ListView fx:id="ListView" layoutX="238.0" layoutY="178.0" prefHeight="290.0" prefWidth="289.0" />
+      <Label fx:id="lblNameWH" layoutX="238.0" layoutY="73.0" text="Name">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="241.0" layoutY="107.0" text="Adress">
+      <Label fx:id="lblAddress" layoutX="241.0" layoutY="107.0" text="Adress">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="466.0" layoutY="480.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #22313f;" text="Print" textFill="#ebebeb" />
+      <Button fx:id="btnPrint" layoutX="466.0" layoutY="480.0" mnemonicParsing="false" onAction="#printAction" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #22313f;" text="Print" textFill="#ebebeb" />
       <Label layoutX="241.0" layoutY="149.0" prefHeight="17.0" prefWidth="122.0" text="Last updates: ">
          <font>
             <Font size="14.0" />

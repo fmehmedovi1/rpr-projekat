@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="550.0" prefWidth="212.0" style="-fx-background-color: #22313f;">
+         <children>
+            <Line endX="-46.0" layoutX="101.0" layoutY="202.0" startX="-100.0" stroke="WHITE" />
+            <Label layoutX="60.0" layoutY="154.0" text="MyWH" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="222.0" text="Welcome to MyWH" textFill="#fffefe">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="241.0" text="Here, you will find  " textFill="#f8f8f8">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="260.0" text="storage information" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="297.0" text="Dashboard" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="84.0" layoutY="334.0" text="HOME" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="36.0" layoutY="370.0" text="MY PRODUCTS" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Line endX="100.0" layoutX="93.0" layoutY="468.0" startX="-74.0" stroke="#eeeeee" />
+            <Label layoutX="61.0" layoutY="486.0" text="CONTACT US" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="99.0" fitWidth="146.0" layoutX="35.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Desktop/warehouse.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="148.0" layoutY="370.0" prefHeight="21.0" prefWidth="27.0" style="-fx-background-color: #3498db;" text="0" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="83.0" layoutY="407.0" text="ABOUT" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="212.0" prefHeight="46.0" prefWidth="339.0" style="-fx-background-color: #22313f;">
+         <children>
+            <Label layoutX="87.0" layoutY="8.0" text="Welcome" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblName" layoutX="179.0" layoutY="8.0" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ListView layoutX="238.0" layoutY="178.0" prefHeight="290.0" prefWidth="289.0" />
+      <Label layoutX="238.0" layoutY="73.0" text="Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="241.0" layoutY="107.0" text="Adress">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="466.0" layoutY="480.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #22313f;" text="Print" textFill="#ebebeb" />
+      <Label layoutX="241.0" layoutY="149.0" prefHeight="17.0" prefWidth="122.0" text="Last updates: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -63,7 +63,7 @@ public class RegisterController {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning Dialog");
         alert.setHeaderText("The username you’ve entered doesn’t match any account.");
-        alert.setContentText("Sign up for an account.");
+        alert.setContentText(null);
         alert.showAndWait();
     }
 

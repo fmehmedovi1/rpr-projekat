@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class RegisterController {
     private UserModel model;
@@ -67,6 +68,7 @@ public class RegisterController {
     }
 
     public void cancelAction(ActionEvent actionEvent){
-        Platform.exit();
+        Stage stage = (Stage) fldFirstName.getScene().getWindow();
+        stage.close();
     }
 }

@@ -31,14 +31,14 @@
          </font>
       </Button>
       <PasswordField fx:id="fldPassword" layoutX="159.0" layoutY="196.0" />
-      <PasswordField fx:id="fldPassword1" layoutX="159.0" layoutY="237.0" />
+      <PasswordField fx:id="fldRePassword" layoutX="159.0" layoutY="237.0" />
       <Label layoutX="42.0" layoutY="237.0" prefHeight="25.0" prefWidth="118.0" text="Retype Pass" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="fldUsername1" layoutX="160.0" layoutY="111.0" />
-      <TextField fx:id="fldUsername2" layoutX="160.0" layoutY="71.0" />
+      <TextField fx:id="fldLastName" layoutX="160.0" layoutY="111.0" />
+      <TextField fx:id="fldFirstName" layoutX="160.0" layoutY="71.0" />
       <Label layoutX="42.0" layoutY="111.0" text="Last Name" textFill="WHITE">
          <font>
             <Font size="16.0" />

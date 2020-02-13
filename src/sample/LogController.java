@@ -72,14 +72,4 @@ public class LogController {
         stage.show();
     }
 
-    private void openNewWindow(String nameOfFXML, String stageTitle, int stageWidth, int stageHeight) throws IOException {
-        RegisterController controller = new RegisterController(model);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(nameOfFXML));
-        loader.setController(controller);
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setTitle(stageTitle);
-        stage.setScene(new Scene(root, stageWidth, stageHeight));
-        stage.show();
-    }
 }

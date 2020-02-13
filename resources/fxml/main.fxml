@@ -35,7 +35,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="54.0" layoutY="296.0" text="Dashboard" textFill="#fcfcfc">
+            <Label layoutX="63.0" layoutY="296.0" text="Dashboard" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -98,11 +98,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnPrint" layoutX="466.0" layoutY="480.0" mnemonicParsing="false" onAction="#actionPrint" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #22313f;" text="Print" textFill="#ebebeb" />
+      <Button fx:id="btnPrint" layoutX="248.0" layoutY="480.0" mnemonicParsing="false" onAction="#actionPrint" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #22313f;" text="Print" textFill="#ebebeb" />
       <Label layoutX="241.0" layoutY="149.0" prefHeight="17.0" prefWidth="122.0" text="Last updates: ">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <Button fx:id="btnExit" layoutX="476.0" layoutY="480.0" mnemonicParsing="false" onAction="#actionExit" prefHeight="30.0" prefWidth="36.0" style="-fx-background-color: #22313f;" styleClass="exitButton" />
    </children>
 </AnchorPane>

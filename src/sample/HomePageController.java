@@ -6,11 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -20,7 +19,7 @@ public class HomePageController {
     private UserModel model;
     private ProductModel productModel;
     public Label lblName, lblNameWH, lblAddress, lblNumber;
-
+    public Button btnExit;
 
     public HomePageController(UserModel model) {
         this.model = model;
@@ -32,6 +31,7 @@ public class HomePageController {
     public void initialize() {
         lblName.setText(model.getCurrentUser().getFirstName());
         lblNumber.setText(String.valueOf(productModel.getProducts().size()));
+        btnExit.setGraphic(new ImageView(new Image("icons/door.png")));
     }
 
     public void actionPrint(ActionEvent actionEvent){}
@@ -49,5 +49,10 @@ public class HomePageController {
         stage.setOnHiding(windowEvent -> {
             lblNumber.setText(String.valueOf(productModel.getProducts().size()));
         });
+    }
+
+    public void actionExit(ActionEvent actionEvent){
+        Stage stage = (Stage) btnExit.getScene().getWindow();
+        stage.close();
     }
 }

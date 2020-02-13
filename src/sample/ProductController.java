@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
@@ -51,5 +52,15 @@ public class ProductController {
             }
         }));
 
+    }
+
+    public void addAction(ActionEvent actionEvent){
+        model.getProducts().add(new Product(model.getProducts().size(), "", 0, ""));
+        tableView.getSelectionModel().selectLast();
+    }
+
+    public void removeAction(ActionEvent actionEvent){
+        model.getProducts().remove(model.getCurrentProduct());
+        tableView.getSelectionModel().selectLast();
     }
 }

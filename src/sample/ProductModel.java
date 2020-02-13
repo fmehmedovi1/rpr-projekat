@@ -12,6 +12,7 @@ public class ProductModel {
 
     public void napuni(){
         products.add(new Product(1, "Jabuke", 10, "10"));
+        products.add(new Product(1, "Breskve", 12, "15"));
         currentProduct.setValue(null);
     }
 

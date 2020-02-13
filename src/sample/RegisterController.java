@@ -12,6 +12,7 @@ public class RegisterController {
     public TextField fldFirstName;
     public TextField fldLastName;
     public TextField fldUsername;
+    public TextField fldEMail;
     public PasswordField fldPassword;
     public PasswordField fldRePassword;
 
@@ -45,6 +46,11 @@ public class RegisterController {
             fldPassword.getStyleClass().add("PoljeNijeIspravno");
             fldRePassword.getStyleClass().add("PoljeNijeIspravno");
         }
+
+        User user = new User(model.getUsers().size(), fldFirstName.getText(), fldLastName.getText(),
+                fldUsername.getText(), fldEMail.getText(), fldPassword.getText());
+
+        model.getUsers().put(fldUsername.getText(), user);
     }
 
     private boolean passwordValidation(String password){

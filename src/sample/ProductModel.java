@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 
 public class ProductModel {
     private ObservableList<Product> products = FXCollections.observableArrayList();
+    private Product currentProduct = null;
 
     public ProductModel() {}
 
@@ -22,5 +23,13 @@ public class ProductModel {
 
     public void removeProduct(Product product){
         products.remove(product);
+    }
+
+    public Product getCurrentProduct() {
+        return currentProduct;
+    }
+
+    public void setCurrentProduct(Product currentProduct) {
+        this.currentProduct = currentProduct;
     }
 }

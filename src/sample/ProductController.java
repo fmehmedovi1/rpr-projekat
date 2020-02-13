@@ -9,6 +9,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
+
 public class ProductController {
 
     public TableView<Product> tableView;
@@ -71,7 +75,11 @@ public class ProductController {
     }
 
     public void saveAction(ActionEvent actionEvent){
-        
+        JFileChooser fileChooser= new JFileChooser();
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Text Files", "*.txt"));
+        fileChooser.showSaveDialog(null);
+        File file = fileChooser.getSelectedFile();
+        model.zapisiDatoteku(file);
     }
 
 }

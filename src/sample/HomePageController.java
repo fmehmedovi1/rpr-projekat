@@ -24,13 +24,13 @@ public class HomePageController {
 
     public HomePageController(UserModel model) {
         this.model = model;
-        productModel = new ProductModel();
+        productModel = new ProductModel(model.getCurrentUser().getUsername());
         productModel.napuni();
     }
 
     @FXML
     public void initialize() {
-        lblName.setText("Faris");
+        lblName.setText(model.getCurrentUser().getFirstName());
         lblNumber.setText(String.valueOf(productModel.getProducts().size()));
     }
 

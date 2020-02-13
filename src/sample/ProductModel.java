@@ -11,8 +11,11 @@ import java.io.IOException;
 public class ProductModel {
     private ObservableList<Product> products = FXCollections.observableArrayList();
     private SimpleObjectProperty<Product> currentProduct = new SimpleObjectProperty<>();
+    private String username;
 
-    public ProductModel() {}
+    public ProductModel(String username) {
+        this.username = username;
+    }
 
     public void napuni(){
         products.add(new Product(1, "Jabuke", 10, "10"));

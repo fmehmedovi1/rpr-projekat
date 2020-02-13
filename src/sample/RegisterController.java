@@ -55,6 +55,7 @@ public class RegisterController {
                 fldUsername.getText(), fldEMail.getText(), fldPassword.getText());
 
         model.getUsers().put(fldUsername.getText(), user);
+        model.setCurrentUser(user);
         openHomepage();
     }
 

@@ -50,6 +50,4 @@ public class HomePageController {
             lblNumber.setText(String.valueOf(productModel.getProducts().size()));
         });
     }
-
-
 }

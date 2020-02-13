@@ -38,6 +38,9 @@ public class LogController {
                 stage.setTitle("Home Page");
                 stage.setScene(new Scene(root, 550, 550));
                 stage.show();
+
+                Stage stage2 = (Stage) fldUsername.getScene().getWindow();
+                stage2.close();
             }
             else {
                 warningAlert();
@@ -70,6 +73,9 @@ public class LogController {
         stage.setTitle("Register Form");
         stage.setScene(new Scene(root, 350, 400));
         stage.show();
+
+        Stage stage2 = (Stage) fldUsername.getScene().getWindow();
+        stage2.close();
     }
 
 }

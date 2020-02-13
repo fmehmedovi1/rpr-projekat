@@ -9,10 +9,10 @@ public class Product {
     SimpleStringProperty price, name;
 
     public Product(int id, String name, int amount, String price) {
-        this.id.set(id);
-        this.price.set(price);
-        this.amount.set(amount);
-        this.name.setValue(name);
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.price = new SimpleStringProperty(price);
+        this.amount = new SimpleIntegerProperty(amount);
     }
 
     public int getId() {

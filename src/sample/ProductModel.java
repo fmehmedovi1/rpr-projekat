@@ -10,6 +10,11 @@ public class ProductModel {
 
     public ProductModel() {}
 
+    public void napuni(){
+        products.add(new Product(1, "Jabuke", 10, "10"));
+        currentProduct = new SimpleObjectProperty<Product>(products.get(0));
+    }
+
     public ObservableList<Product> getProducts() {
         return products;
     }

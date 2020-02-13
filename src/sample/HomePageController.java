@@ -23,6 +23,7 @@ public class HomePageController {
     public HomePageController(UserModel model) {
         this.model = model;
         productModel = new ProductModel();
+        productModel.napuni();
     }
 
     public void actionPrint(ActionEvent actionEvent){}

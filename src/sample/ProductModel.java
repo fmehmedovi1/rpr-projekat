@@ -1,11 +1,12 @@
 package sample;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ProductModel {
     private ObservableList<Product> products = FXCollections.observableArrayList();
-    private Product currentProduct = null;
+    private SimpleObjectProperty<Product> currentProduct = null;
 
     public ProductModel() {}
 
@@ -26,10 +27,14 @@ public class ProductModel {
     }
 
     public Product getCurrentProduct() {
+        return currentProduct.get();
+    }
+
+    public SimpleObjectProperty<Product> currentProductProperty() {
         return currentProduct;
     }
 
     public void setCurrentProduct(Product currentProduct) {
-        this.currentProduct = currentProduct;
+        this.currentProduct.set(currentProduct);
     }
 }

@@ -57,7 +57,7 @@ public class RegisterController {
         model.getUsers().put(fldUsername.getText(), user);
         openHomepage();
     }
-    
+
     private boolean passwordValidation(String password){
         return password.contains("[a-zA-Z]+") == false && password.length() > 9;
     }

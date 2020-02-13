@@ -5,8 +5,8 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Product {
 
-    SimpleIntegerProperty id, amount;
-    SimpleStringProperty price, name;
+    private SimpleIntegerProperty id, amount;
+    private SimpleStringProperty price, name;
 
     public Product(int id, String name, int amount, String price) {
         this.id = new SimpleIntegerProperty(id);

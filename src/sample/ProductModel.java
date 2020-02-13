@@ -4,6 +4,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class ProductModel {
     private ObservableList<Product> products = FXCollections.observableArrayList();
     private SimpleObjectProperty<Product> currentProduct = new SimpleObjectProperty<>();
@@ -42,5 +46,19 @@ public class ProductModel {
 
     public void setCurrentProduct(Product currentProduct) {
         this.currentProduct.set(currentProduct);
+    }
+
+    public void zapisiDatoteku(File file){
+        if (file == null) return;
+        try {
+            String text = "";
+            FileWriter fileWriter = new FileWriter(file);
+            for(Product p : getProducts())
+                text += "::" + p.getName().toLowerCase() + ":" + p.getPrice() + ":" + p.getAmount() + "::\n";
+            fileWriter.write(text);
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

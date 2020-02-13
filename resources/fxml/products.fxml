@@ -62,11 +62,11 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TableView layoutX="23.0" layoutY="63.0" prefHeight="169.0" prefWidth="304.0">
+      <TableView fx:id="tableView" layoutX="23.0" layoutY="63.0" prefHeight="169.0" prefWidth="304.0">
         <columns>
-          <TableColumn prefWidth="115.0" text="Name" />
-          <TableColumn prefWidth="90.0" text="Price" />
-            <TableColumn prefWidth="97.0" text="Amount" />
+          <TableColumn fx:id="colName" prefWidth="115.0" text="Name" />
+          <TableColumn fx:id="colPrice" prefWidth="90.0" text="Price" />
+            <TableColumn fx:id="colAmount" prefWidth="97.0" text="Amount" />
         </columns>
       </TableView>
    </children>

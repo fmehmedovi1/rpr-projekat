@@ -1,11 +1,15 @@
 package sample;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class RegisterController {
     private UserModel model;
@@ -20,7 +24,7 @@ public class RegisterController {
         this.model = model;
     }
 
-    public void loginAction(ActionEvent actionEvent) {
+    public void loginAction(ActionEvent actionEvent) throws IOException {
         if (fldFirstName.getText().equals("") || fldLastName.getText().equals("") || fldUsername.getText().equals("")
                 || fldPassword.getText().equals("") || fldRePassword.getText().equals("")) {
             warningAlert();
@@ -51,8 +55,9 @@ public class RegisterController {
                 fldUsername.getText(), fldEMail.getText(), fldPassword.getText());
 
         model.getUsers().put(fldUsername.getText(), user);
+        openHomepage();
     }
-
+    
     private boolean passwordValidation(String password){
         return password.contains("[a-zA-Z]+") == false && password.length() > 9;
     }
@@ -71,6 +76,20 @@ public class RegisterController {
         alert.setHeaderText("The username you’ve entered doesn’t match any account.");
         alert.setContentText(null);
         alert.showAndWait();
+    }
+
+    private void openHomepage() throws IOException {
+        HomePageController controller = new HomePageController(model);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+        loader.setController(controller);
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Home Page");
+        stage.setScene(new Scene(root, 550, 550));
+        stage.show();
+
+        Stage stage2 = (Stage) fldUsername.getScene().getWindow();
+        stage2.close();
     }
 
     public void cancelAction(ActionEvent actionEvent){

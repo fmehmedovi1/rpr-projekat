@@ -6,13 +6,13 @@ import javafx.collections.ObservableList;
 
 public class ProductModel {
     private ObservableList<Product> products = FXCollections.observableArrayList();
-    private SimpleObjectProperty<Product> currentProduct = null;
+    private SimpleObjectProperty<Product> currentProduct = new SimpleObjectProperty<>();
 
     public ProductModel() {}
 
     public void napuni(){
         products.add(new Product(1, "Jabuke", 10, "10"));
-        currentProduct = new SimpleObjectProperty<Product>(products.get(0));
+        currentProduct.setValue(null);
     }
 
     public ObservableList<Product> getProducts() {

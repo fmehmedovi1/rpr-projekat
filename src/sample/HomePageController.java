@@ -25,6 +25,6 @@ public class HomePageController {
 
     public void actionPrint(ActionEvent actionEvent){}
 
-    public void actionOpenProducts(MouseEvent mouseEvent){}
+
 
 }

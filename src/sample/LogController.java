@@ -22,14 +22,23 @@ public class LogController {
         this.model = model;
     }
 
-    public void loginAction(ActionEvent actionEvent) {
+    public void loginAction(ActionEvent actionEvent) throws IOException {
         if (fldUsername.getText().equals("") || fldPassword.getText().equals("")) {
             warningAlert();
             return;
         }
 
-        if (model.getUsers().containsKey(fldUsername)){
-            if (model.getUsers().get(fldUsername).getPassword().equals(fldPassword.getText())) {}
+        if (model.getUsers().containsKey(fldUsername.getText())){
+            if (model.getUsers().get(fldUsername.getText()).getPassword().equals(fldPassword.getText())) {
+                HomePageController controller = new HomePageController(model);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+                loader.setController(controller);
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Home Page");
+                stage.setScene(new Scene(root, 550, 550));
+                stage.show();
+            }
             else {
                 warningAlert();
                 return;
@@ -38,7 +47,6 @@ public class LogController {
             warningAlert();
             return;
         }
-        openNewWindow("/fxml/main.fxml", "Home Page", 550, 550);
     }
 
     private void warningAlert() {
@@ -54,19 +62,21 @@ public class LogController {
     }
 
     public void addUserAction(MouseEvent mouseEvent) throws IOException {
-        openNewWindow("/fxml/register.fxml", "Register Form", 350, 400);
+        RegisterController controller = new RegisterController(model);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/register.fxml"));
+        loader.setController(controller);
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Register Form");
+        stage.setScene(new Scene(root, 350, 400));
+        stage.show();
     }
 
-    private void openNewWindow(String nameOfFXML, String stageTitle, int stageWidth, int stageHeight){
+    private void openNewWindow(String nameOfFXML, String stageTitle, int stageWidth, int stageHeight) throws IOException {
         RegisterController controller = new RegisterController(model);
         FXMLLoader loader = new FXMLLoader(getClass().getResource(nameOfFXML));
         loader.setController(controller);
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Parent root = loader.load();
         Stage stage = new Stage();
         stage.setTitle(stageTitle);
         stage.setScene(new Scene(root, stageWidth, stageHeight));

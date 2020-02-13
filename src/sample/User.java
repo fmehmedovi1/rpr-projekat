@@ -5,28 +5,24 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class User {
 
-    private SimpleIntegerProperty id;
+    private int id;
     private SimpleStringProperty firstName, lastName, username, email, password;
 
     public User(int user_id, String firstName, String lastName, String username, String email, String password) {
-        this.id.set(user_id);
-        this.firstName.setValue(firstName);
-        this.lastName.setValue(lastName);
-        this.username.setValue(username);
-        this.email.setValue(email);
-        this.password.setValue(username);
+        this.id = user_id;
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
+        this.username = new SimpleStringProperty(username);
+        this.email = new SimpleStringProperty(email);
+        this.password = new SimpleStringProperty(password);
     }
 
-    public int getUser_id() {
-        return id.get();
-    }
-
-    public SimpleIntegerProperty user_idProperty() {
+    public int getId() {
         return id;
     }
 
-    public void setUser_id(int user_id) {
-        this.id.set(user_id);
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {

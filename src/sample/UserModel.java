@@ -9,6 +9,13 @@ public class UserModel {
 
     public UserModel() {}
 
+    public void napuni(){
+
+        User u = new User(1, "Faris", "Mehmedovic", "fmehmedovi1",
+                "fmehmedovic@hotmai.com", "farisfaris1");
+        users.put("fmehmedovi1", u);
+    }
+
     public ObservableMap<String, User> getUsers() {
         return users;
     }

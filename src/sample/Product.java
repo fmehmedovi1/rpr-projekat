@@ -62,4 +62,9 @@ public class Product {
     public void setAmount(int amount) {
         this.amount.set(amount);
     }
+
+    @Override
+    public String toString() {
+        return name.getValue();
+    }
 }

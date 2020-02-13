@@ -2,51 +2,51 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="350.0" style="-fx-background-color: #2c3e50;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="65.0" layoutY="363.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #22313f;" text="Add" textFill="#ebebeb">
+      <Button layoutX="65.0" layoutY="382.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #22313f;" text="Add" textFill="#ebebeb">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="212.0" layoutY="363.0" mnemonicParsing="false" style="-fx-background-color: #22313f;" text="Remove" textFill="#fcfcfc">
+      <Button layoutX="212.0" layoutY="382.0" mnemonicParsing="false" style="-fx-background-color: #22313f;" text="Remove" textFill="#fcfcfc">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="135.0" layoutY="363.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #22313f;" text="Alter" textFill="WHITE">
+      <Button layoutX="135.0" layoutY="382.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #22313f;" text="Alter" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="fldPrice" layoutX="144.0" layoutY="268.0" prefHeight="25.0" prefWidth="140.0" />
-      <TextField fx:id="fldName" layoutX="144.0" layoutY="228.0" prefHeight="25.0" prefWidth="140.0" />
-      <Slider fx:id="sliderAmount" layoutX="144.0" layoutY="307.0" min="1.0" showTickLabels="true" showTickMarks="true" />
-      <Label layoutX="66.0" layoutY="270.0" prefHeight="20.0" prefWidth="48.0" text="Price:" textFill="WHITE">
+      <TextField fx:id="fldPrice" layoutX="144.0" layoutY="296.0" prefHeight="25.0" prefWidth="140.0" />
+      <TextField fx:id="fldName" layoutX="144.0" layoutY="256.0" prefHeight="25.0" prefWidth="140.0" />
+      <Slider fx:id="sliderAmount" layoutX="144.0" layoutY="335.0" min="1.0" showTickLabels="true" showTickMarks="true" />
+      <Label layoutX="66.0" layoutY="298.0" prefHeight="20.0" prefWidth="48.0" text="Price:" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="302.0" prefHeight="25.0" prefWidth="65.0" text="Amount:" textFill="WHITE">
+      <Label layoutX="57.0" layoutY="330.0" prefHeight="25.0" prefWidth="65.0" text="Amount:" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="65.0" layoutY="229.0" prefHeight="20.0" prefWidth="48.0" text="Name:" textFill="#f2f2f2">
+      <Label layoutX="65.0" layoutY="257.0" prefHeight="20.0" prefWidth="48.0" text="Name:" textFill="#f2f2f2">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <ListView fx:id="listView" layoutX="42.0" layoutY="69.0" prefHeight="122.0" prefWidth="267.0" />
       <MenuBar prefHeight="25.0" prefWidth="350.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
@@ -62,5 +62,12 @@
           </Menu>
         </menus>
       </MenuBar>
+      <TableView layoutX="23.0" layoutY="63.0" prefHeight="169.0" prefWidth="304.0">
+        <columns>
+          <TableColumn prefWidth="115.0" text="Name" />
+          <TableColumn prefWidth="90.0" text="Price" />
+            <TableColumn prefWidth="97.0" text="Amount" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

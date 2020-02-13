@@ -28,8 +28,8 @@ public class ProductController {
 
         model.currentProductProperty().addListener((obs, oldProduct, newProduct) -> {
             if (oldProduct != null){
-                fldName.textProperty().unbindBidirectional(oldProduct.nameProperty());
-                fldPrice.textProperty().unbindBidirectional(oldProduct.priceProperty());
+                fldName.textProperty().unbindBidirectional(oldProduct.nameProperty() );
+                fldPrice.textProperty().unbindBidirectional(oldProduct.nameProperty() );
                 sliderAmount.valueProperty().unbindBidirectional(oldProduct.amountProperty());
             }
 

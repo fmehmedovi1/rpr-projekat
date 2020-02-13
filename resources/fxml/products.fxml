@@ -42,7 +42,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <MenuBar prefHeight="25.0" prefWidth="350.0">
+      <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="350.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>

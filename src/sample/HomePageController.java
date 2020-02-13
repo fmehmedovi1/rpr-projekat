@@ -28,7 +28,7 @@ public class HomePageController {
 
     public void actionPrint(ActionEvent actionEvent){}
 
-    public void actionProducts(MouseEvent mouseEvent) throws IOException {
+    public void actionProducts(ActionEvent actionEvent) throws IOException {
         ProductController controller = new ProductController(productModel);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/products.fxml"));
         loader.setController(controller);

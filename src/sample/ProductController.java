@@ -2,12 +2,10 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -19,6 +17,7 @@ public class ProductController {
     public TextField fldName, fldPrice;
     public Slider sliderAmount;
     public TableColumn colName, colPrice, colAmount;
+    public MenuBar menuBar;
     private ProductModel model;
 
     public ProductController(ProductModel productModel){
@@ -70,8 +69,8 @@ public class ProductController {
     }
 
     public void closeAction(ActionEvent actionEvent){
-        Stage stage = (Stage) fldName.getScene().getWindow();
-        stage.close();
+       Stage stage = (Stage) menuBar.getScene().getWindow();
+       stage.close();
     }
 
     public void saveAction(ActionEvent actionEvent){

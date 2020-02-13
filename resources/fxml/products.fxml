@@ -28,9 +28,9 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField layoutX="144.0" layoutY="268.0" prefHeight="25.0" prefWidth="140.0" />
-      <TextField layoutX="144.0" layoutY="228.0" prefHeight="25.0" prefWidth="140.0" />
-      <Slider layoutX="144.0" layoutY="307.0" min="1.0" showTickLabels="true" showTickMarks="true" />
+      <TextField fx:id="fldPrice" layoutX="144.0" layoutY="268.0" prefHeight="25.0" prefWidth="140.0" />
+      <TextField fx:id="fldName" layoutX="144.0" layoutY="228.0" prefHeight="25.0" prefWidth="140.0" />
+      <Slider fx:id="sliderAmount" layoutX="144.0" layoutY="307.0" min="1.0" showTickLabels="true" showTickMarks="true" />
       <Label layoutX="66.0" layoutY="270.0" prefHeight="20.0" prefWidth="48.0" text="Price:" textFill="WHITE">
          <font>
             <Font size="15.0" />

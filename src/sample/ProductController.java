@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class ProductController {
 
@@ -63,4 +64,14 @@ public class ProductController {
         model.getProducts().remove(model.getCurrentProduct());
         tableView.getSelectionModel().selectLast();
     }
+
+    public void closeAction(ActionEvent actionEvent){
+        Stage stage = (Stage) fldName.getScene().getWindow();
+        stage.close();
+    }
+
+    public void saveAction(ActionEvent actionEvent){
+        
+    }
+
 }

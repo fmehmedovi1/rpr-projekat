@@ -5,12 +5,13 @@ import java.util.ArrayList;
 
 public class WarehouseDAO {
 
-    private static WarehouseDAO instance;
+    private static WarehouseDAO instance = null;
     private static Connection conn;
     private PreparedStatement getProductsStm, getWarehouseStm, getUsersStm, deleteProductStm, updateProductStm,
-            addUserStm, addProductStm;
+            addUserStm, addProductStm, getChangesInWarehouse;
 
-    private WarehouseDAO() {
+    public WarehouseDAO() {
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:database.db");
         } catch (SQLException e) {
@@ -23,6 +24,9 @@ public class WarehouseDAO {
             getWarehouseStm = conn.prepareStatement("SELECT * FROM warehouses w, users u " +
                     "WHERE w.responsible_preson_id = u.user_id AND u.username = ?");
             getUsersStm = conn.prepareStatement("SELECT * FROM users");
+            getChangesInWarehouse = conn.prepareStatement("SELECT cw.type_of_change, p.name, p.price, p.quantity " +
+                    "FROM changes_in_warehouse cw, products p, warehouses w " +
+                    "WHERE cw.product_id = p.product_id AND cw.warehouse_id = w.warehouse_id AND w.name=?");
 
             deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE product_id = ?");
             updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=? WHERE product_id=?");
@@ -97,7 +101,6 @@ public class WarehouseDAO {
     }
 
     public ArrayList<Product> products(String name){
-
         ArrayList<Product> result = new ArrayList<>();
         try {
             getProductsStm.setString(1, name);
@@ -138,13 +141,29 @@ public class WarehouseDAO {
     public void updateProducts(Product product){
         try {
             updateProductStm.setString(1, product.getName());
-            updateProductStm.setString(2, product.getPrice());
+            updateProductStm.setInt(2, Integer.parseInt(product.getPrice()));
             updateProductStm.setInt(3, product.getAmount());
             updateProductStm.setInt(4, product.getId());
             updateProductStm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<String> changesInProduct(String name){
+        ArrayList<String> result = new ArrayList<>();
+        try {
+            getChangesInWarehouse.setString(1, name);
+            ResultSet rs = getChangesInWarehouse.executeQuery();
+            while(rs.next()){
+                String text = rs.getString(2) + " : " + rs.getString(1) + ", value: "
+                        + rs.getString(3) + ", quantity: " + rs.getString(4);
+                result.add(text);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
 

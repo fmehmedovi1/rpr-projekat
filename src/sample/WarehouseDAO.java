@@ -19,16 +19,16 @@ public class WarehouseDAO {
 
         try {
             getProductsStm = conn.prepareStatement("SELECT * FROM products p, warehouse_products wp, warehouses w " +
-                    "WHERE warehouse_id = wp_warehouse_id AND wp.product_id = p.product_id AND w.warehouse.name = ?");
+                    "WHERE w.warehouse_id = wp.warehouse_id AND wp.product_id = p.product_id AND w.name = ?");
             getWarehouseStm = conn.prepareStatement("SELECT * FROM warehouses w, users u " +
                     "WHERE w.responsible_preson_id = u.user_id AND u.username = ?");
             getUsersStm = conn.prepareStatement("SELECT * FROM users");
 
-            deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE id = ?");
-            updateProductStm = conn.prepareStatement("UPDATE product SET name=?, price=?, quantity=? WHERE id=?");
+            deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE product_id = ?");
+            updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=? WHERE product_id=?");
 
-            addUserStm = conn.prepareStatement("INSERT INTO product VALUES(?,?,?,?,?,?)");
-            addProductStm = conn.prepareStatement("INSERT INTO product VALUES(?,?,?,?)");
+            addUserStm = conn.prepareStatement("INSERT INTO users VALUES(?,?,?,?,?,?)");
+            addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?)");
         } catch (SQLException e) {
             e.printStackTrace();
         }

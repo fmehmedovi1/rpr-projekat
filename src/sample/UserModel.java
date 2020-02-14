@@ -8,14 +8,21 @@ public class UserModel {
 
     private ObservableMap<String, User> users = FXCollections.observableHashMap();
     private SimpleObjectProperty<User> currentUser = new SimpleObjectProperty<>();
+    private WarehouseDAO warehouseDAO;
 
-    public UserModel() {}
+    public UserModel() {
+        warehouseDAO = WarehouseDAO.getInstance();
+    }
 
     public void napuni(){
-        User u = new User(1, "Faris", "Mehmedovic", "fmehmedovi1",
-                "fmehmedovic@hotmai.com", "farisfaris1");
-        users.put("fmehmedovi1", u);
-        currentUser.setValue(u);
+
+        for(User u: warehouseDAO.users()){
+            users.put(u.getUsername(), u);
+        }
+//        User u = new User(1, "Faris", "Mehmedovic", "fmehmedovi1",
+//                "fmehmedovic@hotmai.com", "farisfaris1");
+//        users.put("fmehmedovi1", u);
+        currentUser.setValue(null);
     }
 
     public ObservableMap<String, User> getUsers() {

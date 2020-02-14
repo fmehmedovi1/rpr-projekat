@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 
 public class UserModel {
-
     private ObservableMap<String, User> users = FXCollections.observableHashMap();
     private SimpleObjectProperty<User> currentUser = new SimpleObjectProperty<>();
     private WarehouseDAO warehouseDAO;
@@ -15,13 +14,9 @@ public class UserModel {
     }
 
     public void napuni(){
-
         for(User u: warehouseDAO.users()){
             users.put(u.getUsername(), u);
         }
-//        User u = new User(1, "Faris", "Mehmedovic", "fmehmedovi1",
-//                "fmehmedovic@hotmai.com", "farisfaris1");
-//        users.put("fmehmedovi1", u);
         currentUser.setValue(null);
     }
 
@@ -52,4 +47,10 @@ public class UserModel {
     public void deleteUser(User user){
         this.users.remove(user.getUsername());
     }
+
+    public Warehouse getUserWarehouse(){
+        return warehouseDAO.warehouse(currentUser.get().getUsername());
+    }
+
+    public WarehouseDAO getWarehouseDAO(){return warehouseDAO;}
 }

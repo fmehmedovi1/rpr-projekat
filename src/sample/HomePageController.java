@@ -57,6 +57,7 @@ public class HomePageController {
     }
 
     public void actionExit(ActionEvent actionEvent){
+
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
     }

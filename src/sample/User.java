@@ -4,7 +4,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class User {
-
     private int id;
     private SimpleStringProperty firstName, lastName, username, email, password;
 

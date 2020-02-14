@@ -13,11 +13,15 @@ public class UserModel {
         warehouseDAO = WarehouseDAO.getInstance();
     }
 
-    public void napuni(){
+    public void putData(){
         for(User u: warehouseDAO.users()){
             users.put(u.getUsername(), u);
         }
         currentUser.setValue(null);
+    }
+
+    public void disconnect(){
+        warehouseDAO.removeInstance();
     }
 
     public ObservableMap<String, User> getUsers() {

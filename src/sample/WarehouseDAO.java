@@ -76,7 +76,7 @@ public class WarehouseDAO {
         try {
             addProductStm.setInt(1, product.getId());
             addProductStm.setString(2, product.getName());
-            addProductStm.setString(3, product.getPrice());
+            addProductStm.setString(3, String.valueOf(product.getPrice()));
             addProductStm.setInt(4, product.getAmount());
             addProductStm.executeUpdate();
         } catch (SQLException e) {
@@ -107,7 +107,7 @@ public class WarehouseDAO {
             getProductsStm.setString(1, name);
             ResultSet rs = getProductsStm.executeQuery();
             while (rs.next()) {
-                Product product = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4));
+                Product product = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
                 result.add(product);
             }
         } catch (SQLException e) {
@@ -142,7 +142,7 @@ public class WarehouseDAO {
     public void updateProducts(Product product){
         try {
             updateProductStm.setString(1, product.getName());
-            updateProductStm.setInt(2, Integer.parseInt(product.getPrice()));
+            updateProductStm.setInt(2, product.getPrice());
             updateProductStm.setInt(3, product.getAmount());
             updateProductStm.setInt(4, product.getId());
             updateProductStm.executeUpdate();

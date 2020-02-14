@@ -5,13 +5,13 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Product {
 
-    private SimpleIntegerProperty id, amount, price;
-    private SimpleStringProperty name;
+    private SimpleIntegerProperty id, amount;
+    private SimpleStringProperty price, name;
 
-    public Product(int id, String name, int amount, int price) {
+    public Product(int id, String name, int amount, String price) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.price = new SimpleIntegerProperty(price);
+        this.price = new SimpleStringProperty(price);
         this.amount = new SimpleIntegerProperty(amount);
     }
 
@@ -27,15 +27,15 @@ public class Product {
         this.id.set(id);
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price.get();
     }
 
-    public SimpleIntegerProperty priceProperty() {
+    public SimpleStringProperty priceProperty() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price.set(price);
     }
 
@@ -61,6 +61,10 @@ public class Product {
 
     public void setAmount(int amount) {
         this.amount.set(amount);
+    }
+
+    public int getTotalValue(){
+        return Integer.parseInt(getPrice()) * this.getAmount();
     }
 
     @Override

@@ -21,7 +21,7 @@ public class HomePageController {
     private UserModel model;
     private ProductModel productModel;
     private Warehouse warehouse;
-    public Label lblName, lblNameWH, lblAddress, lblNumber;
+    public Label lblName, lblNameWH, lblAddress, lblNumber, lblValue;
     public Button btnExit;
     @FXML
     public ListView<String> listView;
@@ -44,6 +44,7 @@ public class HomePageController {
         btnExit.setGraphic(new ImageView(new Image("icons/door.png")));
         ObservableList<String> list = FXCollections.observableList(model.getWarehouseDAO().changesInProduct(warehouse.getName()));
         listView.setItems(list);
+        addGrossValue();
     }
 
     public void actionPrint(ActionEvent actionEvent){}
@@ -60,6 +61,7 @@ public class HomePageController {
 
         stage.setOnHiding(windowEvent -> {
             lblNumber.setText(String.valueOf(productModel.getProducts().size()));
+            addGrossValue();
         });
     }
 
@@ -76,5 +78,10 @@ public class HomePageController {
         stage.setTitle("About");
         stage.setScene(new Scene(root, 385, 275));
         stage.show();
+    }
+
+    private void addGrossValue(){
+        int sum = productModel.getProducts().stream().mapToInt(Product::getTotalValue).sum();
+        lblValue.setText(String.valueOf(sum));
     }
 }

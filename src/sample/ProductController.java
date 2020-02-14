@@ -38,7 +38,6 @@ public class ProductController {
         });
 
         model.currentProductProperty().addListener(((obs, oldProduct, newProduct) -> {
-
             if (oldProduct != null){
                 fldName.textProperty().unbindBidirectional(oldProduct.nameProperty());
                 fldPrice.textProperty().unbindBidirectional(oldProduct.priceProperty());
@@ -59,7 +58,7 @@ public class ProductController {
     }
 
     public void addAction(ActionEvent actionEvent){
-        model.addProduct(new Product(model.getProducts().size() + 1, "", 0, ""));
+        model.addProduct(new Product(model.getProducts().size() + 1, "", 0, 0));
         tableView.getSelectionModel().selectLast();
     }
 

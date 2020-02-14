@@ -21,6 +21,7 @@ public class HomePageController {
     private Warehouse warehouse;
     public Label lblName, lblNameWH, lblAddress, lblNumber;
     public Button btnExit;
+    public ListView<String> listView;
 
 
     public HomePageController(UserModel model) {
@@ -37,6 +38,7 @@ public class HomePageController {
         lblAddress.setText(warehouse.getAddress());
         lblNameWH.setText(warehouse.getName());
         btnExit.setGraphic(new ImageView(new Image("icons/door.png")));
+
     }
 
     public void actionPrint(ActionEvent actionEvent){}

@@ -59,7 +59,7 @@ public class ProductController {
     }
 
     public void addAction(ActionEvent actionEvent){
-        model.addProduct(new Product(model.getProducts().size(), "", 0, ""));
+        model.addProduct(new Product(model.getProducts().size() + 1, "", 0, ""));
         tableView.getSelectionModel().selectLast();
     }
 

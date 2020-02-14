@@ -29,7 +29,8 @@ public class HomePageController {
 
     public HomePageController(UserModel model) {
         this.model = model;
-        productModel = new ProductModel(model.getUserWarehouse().getName(), model.getWarehouseDAO());
+        productModel = new ProductModel(model.getUserWarehouse().getId(), model.getUserWarehouse().getName(),
+                model.getWarehouseDAO());
         productModel.putData();
         warehouse = model.getUserWarehouse();
     }

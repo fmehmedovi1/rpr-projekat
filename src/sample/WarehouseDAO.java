@@ -178,8 +178,6 @@ public class WarehouseDAO {
             e.printStackTrace();
         }
     }
-
-
 }
 
 

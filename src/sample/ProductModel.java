@@ -13,8 +13,10 @@ public class ProductModel {
     private SimpleObjectProperty<Product> currentProduct = new SimpleObjectProperty<>();
     private String name;
     private WarehouseDAO warehouseDAO;
+    private int id;
 
-    public ProductModel(String name, WarehouseDAO warehouseDAO) {
+    public ProductModel(int id, String name, WarehouseDAO warehouseDAO) {
+        this.id = id;
         this.name = name;
         this.warehouseDAO = warehouseDAO;
     }
@@ -37,6 +39,7 @@ public class ProductModel {
     public void addProduct(Product product){
         products.add(product);
         warehouseDAO.addProduct(product);
+        warehouseDAO.addChanges(warehouseDAO.changesInProduct(name).size() + 1, "added", product.getId(), id);
     }
 
     public void removeProduct(Product product){

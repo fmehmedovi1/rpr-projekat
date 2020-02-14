@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,7 @@ public class HomePageController {
     private Warehouse warehouse;
     public Label lblName, lblNameWH, lblAddress, lblNumber;
     public Button btnExit;
+    @FXML
     public ListView<String> listView;
 
 
@@ -38,7 +41,8 @@ public class HomePageController {
         lblAddress.setText(warehouse.getAddress());
         lblNameWH.setText(warehouse.getName());
         btnExit.setGraphic(new ImageView(new Image("icons/door.png")));
-
+        ObservableList<String> list = FXCollections.observableList(model.getWarehouseDAO().changesInProduct(warehouse.getName()));
+        listView.setItems(list);
     }
 
     public void actionPrint(ActionEvent actionEvent){}

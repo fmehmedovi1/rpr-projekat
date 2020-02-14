@@ -87,7 +87,7 @@
             </Label>
          </children>
       </Pane>
-      <ListView fx:id="ListView" layoutX="238.0" layoutY="178.0" prefHeight="290.0" prefWidth="289.0" />
+      <ListView fx:id="listView" layoutX="238.0" layoutY="178.0" prefHeight="290.0" prefWidth="289.0" />
       <Label fx:id="lblNameWH" layoutX="238.0" layoutY="73.0" text="Name">
          <font>
             <Font size="18.0" />

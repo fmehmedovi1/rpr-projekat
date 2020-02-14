@@ -22,7 +22,7 @@ public class WarehouseDAO {
                     "WHERE warehouse_id = wp_warehouse_id AND wp.product_id = p.product_id AND w.warehouse.name = ?");
             getWarehouseStm = conn.prepareStatement("SELECT * FROM warehouses w, users u " +
                     "WHERE w.responsible_preson_id = u.user_id AND u.username = ?");
-            getUsersStm = conn.prepareStatement("SELECT * FROM users WHERE username=?");
+            getUsersStm = conn.prepareStatement("SELECT * FROM users");
 
             deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE id = ?");
             updateProductStm = conn.prepareStatement("UPDATE product SET name=?, price=?, quantity=? WHERE id=?");
@@ -33,7 +33,6 @@ public class WarehouseDAO {
             e.printStackTrace();
         }
     }
-
 
     public static WarehouseDAO getInstance() {
         if (instance == null) instance = new WarehouseDAO();
@@ -82,10 +81,9 @@ public class WarehouseDAO {
 
     }
 
-    public ArrayList<User> users(String username) {
+    public ArrayList<User> users() {
         ArrayList<User> result = new ArrayList<>();
         try {
-            getUsersStm.setString(1, username);
             ResultSet rs = getUsersStm.executeQuery();
             while (rs.next()) {
                 User user = new User(rs.getInt(1), rs.getString(2),
@@ -127,6 +125,26 @@ public class WarehouseDAO {
         return w;
     }
 
+    public void deleteProduct(Product product){
+        try {
+            deleteProductStm.setInt(1, product.getId());
+            deleteProductStm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateProducts(Product product){
+        try {
+            updateProductStm.setString(1, product.getName());
+            updateProductStm.setString(2, product.getPrice());
+            updateProductStm.setInt(3, product.getAmount());
+            updateProductStm.setInt(4, product.getId());
+            updateProductStm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

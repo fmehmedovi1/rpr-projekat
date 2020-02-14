@@ -18,19 +18,24 @@ import java.io.IOException;
 public class HomePageController {
     private UserModel model;
     private ProductModel productModel;
+    private Warehouse warehouse;
     public Label lblName, lblNameWH, lblAddress, lblNumber;
     public Button btnExit;
 
+
     public HomePageController(UserModel model) {
         this.model = model;
-        productModel = new ProductModel(model.getCurrentUser().getUsername());
+        productModel = new ProductModel(model.getUserWarehouse().getName(), model.getWarehouseDAO());
         productModel.napuni();
+        warehouse = model.getUserWarehouse();
     }
 
     @FXML
     public void initialize() {
         lblName.setText(model.getCurrentUser().getFirstName());
         lblNumber.setText(String.valueOf(productModel.getProducts().size()));
+        lblAddress.setText(warehouse.getAddress());
+        lblNameWH.setText(warehouse.getName());
         btnExit.setGraphic(new ImageView(new Image("icons/door.png")));
     }
 

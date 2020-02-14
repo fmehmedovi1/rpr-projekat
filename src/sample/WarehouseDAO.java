@@ -97,6 +97,7 @@ public class WarehouseDAO {
     }
 
     public ArrayList<Product> products(String name){
+
         ArrayList<Product> result = new ArrayList<>();
         try {
             getProductsStm.setString(1, name);

@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         UserModel model = new UserModel();
-        model.napuni();
+        model.putData();
         LogController controller = new LogController(model);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
         loader.setController(controller);

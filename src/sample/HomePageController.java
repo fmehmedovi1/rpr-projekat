@@ -26,7 +26,7 @@ public class HomePageController {
     public HomePageController(UserModel model) {
         this.model = model;
         productModel = new ProductModel(model.getUserWarehouse().getName(), model.getWarehouseDAO());
-        productModel.napuni();
+        productModel.putData();
         warehouse = model.getUserWarehouse();
     }
 
@@ -57,7 +57,7 @@ public class HomePageController {
     }
 
     public void actionExit(ActionEvent actionEvent){
-
+        model.disconnect();
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
     }

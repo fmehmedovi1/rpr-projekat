@@ -62,6 +62,7 @@ public class LogController {
     }
 
     public void cancelAction(ActionEvent actionEvent){
+        model.disconnect();
         Platform.exit();
     }
 

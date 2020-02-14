@@ -19,7 +19,7 @@ public class ProductModel {
         this.warehouseDAO = warehouseDAO;
     }
 
-    public void napuni(){
+    public void putData(){
         for(Product p : warehouseDAO.products(name)) {
             products.add(p);
         }

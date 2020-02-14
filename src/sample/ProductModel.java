@@ -11,15 +11,18 @@ import java.io.IOException;
 public class ProductModel {
     private ObservableList<Product> products = FXCollections.observableArrayList();
     private SimpleObjectProperty<Product> currentProduct = new SimpleObjectProperty<>();
-    private String username;
+    private String name;
+    private WarehouseDAO warehouseDAO;
 
-    public ProductModel(String username) {
-        this.username = username;
+    public ProductModel(String name, WarehouseDAO warehouseDAO) {
+        this.name = name;
+        this.warehouseDAO = warehouseDAO;
     }
 
     public void napuni(){
-        products.add(new Product(1, "Jabuke", 10, "10"));
-        products.add(new Product(1, "Breskve", 12, "15"));
+        for(Product p : warehouseDAO.products(name)) {
+            products.add(p);
+        }
         currentProduct.setValue(null);
     }
 

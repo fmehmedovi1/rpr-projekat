@@ -9,10 +9,10 @@ public class Warehouse {
     private SimpleIntegerProperty id, responsiblePerson;
 
     public Warehouse(int id, String name, String address, int responsiblePerson) {
-        this.id.set(id);
-        this.name.setValue(name);
-        this.address.setValue(address);
-        this.responsiblePerson.set(responsiblePerson);
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.address = new SimpleStringProperty(address);
+        this.responsiblePerson = new SimpleIntegerProperty(responsiblePerson);
     }
 
     public String getName() {

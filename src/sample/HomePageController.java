@@ -55,4 +55,13 @@ public class HomePageController {
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
     }
+
+    public void actionAbout(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/about.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("About");
+        stage.setScene(new Scene(root, 385, 275));
+        stage.show();
+    }
 }

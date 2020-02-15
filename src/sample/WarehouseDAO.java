@@ -33,7 +33,7 @@ public class WarehouseDAO {
 
             deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE product_id = ?");
             deleteProductsWarehouse = conn.prepareStatement("DELETE FROM warehouse_products WHERE product_id=?");
-            deleteChangesInWarehouse = conn.prepareStatement("DELETE FROM changes_in_warehouse WHERE changes_in_warehouse=?");
+            deleteChangesInWarehouse = conn.prepareStatement("DELETE FROM changes_in_warehouse WHERE product_id=?");
 
             updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=? WHERE product_id=?");
 

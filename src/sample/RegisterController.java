@@ -51,11 +51,12 @@ public class RegisterController {
         }
 
         if (passwordValidation(fldPassword.getText())){
+
             infoAlert("Password must contain at least 9 characters with one number at least");
             return;
         }
 
-        if (!fldPassword.getText().equals(fldRePassword)) return;
+        if (!fldPassword.getText().equals(fldRePassword.getText())) return;
 
         User user = new User(model.getUsers().size(), fldFirstName.getText(), fldLastName.getText(),
                 fldUsername.getText(), fldEMail.getText(), fldPassword.getText());
@@ -91,7 +92,7 @@ public class RegisterController {
     }
 
     private boolean passwordValidation(String password){
-        return password.contains("[a-zA-Z]+") == false && password.length() > 9;
+        return password.contains("[0-9]+") && password.length() > 9;
     }
 
     private void infoAlert(String message) {
@@ -111,13 +112,13 @@ public class RegisterController {
     }
 
     private void openHomepage() throws IOException {
-        HomePageController controller = new HomePageController(model);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+        AddWHController controller = new AddWHController(model);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addwarehouse.fxml"));
         loader.setController(controller);
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setTitle("Home Page");
-        stage.setScene(new Scene(root, 550, 550));
+        stage.setScene(new Scene(root, 385, 300));
         stage.show();
 
         Stage stage2 = (Stage) fldUsername.getScene().getWindow();

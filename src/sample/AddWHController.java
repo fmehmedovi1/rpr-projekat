@@ -18,6 +18,8 @@ public class AddWHController {
     }
 
     public void addWarehouse(ActionEvent actionEvent) throws IOException {
+        model.getWarehouseDAO().addWarehouse(fldName.getText(), fldAddress.getText(), model.getCurrentUser().getId());
+
         HomePageController controller = new HomePageController(model);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addwarehouse.fxml"));
         loader.setController(controller);

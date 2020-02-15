@@ -108,7 +108,13 @@ public class LogController {
     }
 
     public void addUserAction(MouseEvent mouseEvent) throws IOException {
-        RegisterController controller = new RegisterController(model);
+
+// ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
+//                HomePageController controller = new HomePageController(model);
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), resourceBundle);
+
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
+        RegisterController controller = new RegisterController(model, currentLanguage);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/register.fxml"));
         loader.setController(controller);
         Parent root = loader.load();

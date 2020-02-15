@@ -14,10 +14,12 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class RegisterController {
     private UserModel model;
+    private Locale currentLanguage;
     public TextField fldFirstName;
     public TextField fldLastName;
     public TextField fldUsername;
@@ -25,8 +27,9 @@ public class RegisterController {
     public PasswordField fldPassword;
     public PasswordField fldRePassword;
 
-    public RegisterController(UserModel model) {
+    public RegisterController(UserModel model, Locale currentLanguage) {
         this.model = model;
+        this.currentLanguage = currentLanguage;
     }
 
     @FXML

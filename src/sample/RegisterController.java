@@ -62,6 +62,7 @@ public class RegisterController {
                 fldUsername.getText(), fldEMail.getText(), fldPassword.getText());
 
         model.getUsers().put(fldUsername.getText(), user);
+        model.getWarehouseDAO().addUser(user);
         model.setCurrentUser(user);
         openHomepage();
     }
@@ -131,15 +132,15 @@ public class RegisterController {
 
     private boolean emailValidation(){
 
-    if (fldEMail.getText().indexOf('@') == -1) return false;
-    String text = fldEMail.getText();
-    text = fldEMail.getText().substring(text.indexOf('@') + 1, text.length());
+        if (fldEMail.getText().indexOf('@') == -1) return false;
+        String text = fldEMail.getText();
+        text = fldEMail.getText().substring(text.indexOf('@') + 1, text.length());
 
-    try {
-        URL url = new URL("https://www." + text);
-        return true;
-    } catch (MalformedURLException e) {
-            return false;
+        try {
+            URL url = new URL("https://www." + text);
+            return true;
+        } catch (MalformedURLException e) {
+                return false;
+            }
         }
     }
-}

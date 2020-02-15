@@ -3,10 +3,10 @@ package sample;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Product {
+public class Product   {
 
-    private SimpleIntegerProperty id, amount;
-    private SimpleStringProperty price, name;
+    private transient  SimpleIntegerProperty id, amount;
+    private transient  SimpleStringProperty price, name;
 
     public Product(int id, String name, int amount, String price) {
         this.id = new SimpleIntegerProperty(id);

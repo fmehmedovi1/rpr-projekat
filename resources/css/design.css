@@ -1,0 +1,9 @@
+.rightData {
+   -fx-control-inner-background: white;
+}
+
+.wrongData {
+   -fx-control-inner-background: lightpink;
+}
+
+

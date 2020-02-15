@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,12 +25,18 @@ public class RegisterController {
         this.model = model;
     }
 
+    @FXML
+    public void initialize() {
+        checkFieldData(fldFirstName);
+        checkFieldData(fldLastName);
+        checkFieldData(fldUsername);
+        checkFieldData(fldEMail);
+
+        checkPasswordData(fldPassword, fldRePassword);
+        checkPasswordData(fldRePassword, fldPassword);
+    }
+
     public void loginAction(ActionEvent actionEvent) throws IOException {
-        if (fldFirstName.getText().equals("") || fldLastName.getText().equals("") || fldUsername.getText().equals("")
-                || fldPassword.getText().equals("") || fldRePassword.getText().equals("")) {
-            warningAlert();
-            return;
-        }
 
         if (model.getUsers().containsKey(fldUsername.getText())) {
             infoAlert("Username is already taken by another user");
@@ -41,15 +48,7 @@ public class RegisterController {
             return;
         }
 
-        if (fldPassword.getText().equals(fldRePassword)){
-            fldPassword.getStyleClass().removeAll("PoljeNijeIspravno");
-            fldRePassword.getStyleClass().removeAll("PoljeNijeIspravno");
-            return;
-        }
-        else {
-            fldPassword.getStyleClass().add("PoljeNijeIspravno");
-            fldRePassword.getStyleClass().add("PoljeNijeIspravno");
-        }
+        if (!fldPassword.getText().equals(fldRePassword)) return;
 
         User user = new User(model.getUsers().size(), fldFirstName.getText(), fldLastName.getText(),
                 fldUsername.getText(), fldEMail.getText(), fldPassword.getText());
@@ -57,6 +56,30 @@ public class RegisterController {
         model.getUsers().put(fldUsername.getText(), user);
         model.setCurrentUser(user);
         openHomepage();
+    }
+
+    private void checkFieldData(TextField textField){
+        textField.textProperty().addListener((obs, oldName, newName) -> {
+            if (!newName.isEmpty()) rightInfo(textField);
+            else wrongInfo(textField);
+        });
+    }
+
+    private void checkPasswordData(TextField textField1, TextField textField2){
+        textField1.textProperty().addListener((obs, oldName, newName) -> {
+            if (!newName.isEmpty() && textField1.getText().equals(textField2.getText())) rightInfo(textField1);
+            else wrongInfo(textField1);
+        });
+    }
+
+    private void rightInfo(TextField textField){
+        fldRePassword.getStyleClass().removeAll("wrongData");
+        fldRePassword.getStyleClass().add("rightData");
+    }
+
+    private void wrongInfo(TextField textField){
+        textField.getStyleClass().removeAll("rightData");
+        textField.getStyleClass().add("wrongData");
     }
 
     private boolean passwordValidation(String password){

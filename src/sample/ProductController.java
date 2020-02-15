@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
@@ -58,7 +57,7 @@ public class ProductController {
     }
 
     public void addAction(ActionEvent actionEvent){
-        model.addProduct(new Product(model.getProducts().size() + 1, "", 0, 0));
+        model.addProduct(new Product(model.getProducts().size() + 1, "", 0, ""));
         tableView.getSelectionModel().selectLast();
     }
 
@@ -79,5 +78,4 @@ public class ProductController {
         File file = fileChooser.getSelectedFile();
         model.zapisiDatoteku(file);
     }
-
 }

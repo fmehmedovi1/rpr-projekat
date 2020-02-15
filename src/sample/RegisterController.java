@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -58,7 +59,7 @@ public class RegisterController {
 
         if (!fldPassword.getText().equals(fldRePassword.getText())) return;
 
-        User user = new User(model.getUsers().size(), fldFirstName.getText(), fldLastName.getText(),
+        User user = new User(model.getUsers().size() + 1, fldFirstName.getText(), fldLastName.getText(),
                 fldUsername.getText(), fldEMail.getText(), fldPassword.getText());
 
         model.getUsers().put(fldUsername.getText(), user);
@@ -117,7 +118,7 @@ public class RegisterController {
         loader.setController(controller);
         Parent root = loader.load();
         Stage stage = new Stage();
-        stage.setTitle("Home Page");
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root, 385, 300));
         stage.show();
 
@@ -126,6 +127,7 @@ public class RegisterController {
     }
 
     public void cancelAction(ActionEvent actionEvent){
+        model.getWarehouseDAO().removeInstance();
         Stage stage = (Stage) fldFirstName.getScene().getWindow();
         stage.close();
     }

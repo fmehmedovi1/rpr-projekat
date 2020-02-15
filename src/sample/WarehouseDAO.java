@@ -6,13 +6,15 @@ import java.util.ArrayList;
 public class WarehouseDAO {
 
     private static WarehouseDAO instance = null;
-    private static Connection conn;
+    private static Connection conn = null;
     private PreparedStatement getProductsStm, getWarehouseStm, getUsersStm, deleteProductStm, updateProductStm,
             addUserStm, addProductStm, getChangesInWarehouse, addChangesStm, addWarehouseStm, countWarehouseStm;
 
     public WarehouseDAO() {
 
         try {
+            if (conn != null) conn.close();
+
             conn = DriverManager.getConnection("jdbc:sqlite:database.db");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -35,7 +37,7 @@ public class WarehouseDAO {
             addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?)");
             addChangesStm = conn.prepareStatement("INSERT INTO changes_in_warehouse VALUES(?,?,?,?)");
             addWarehouseStm = conn.prepareStatement("INSERT INTO warehouses VALUES(?,?,?,?)");
-            countWarehouseStm = conn.prepareStatement("SELECT MAX(warehouse_id)+1 FROM warehouses");
+            countWarehouseStm = conn.prepareStatement("SELECT COUNT(warehouse_id)+1 FROM warehouses");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -102,14 +104,13 @@ public class WarehouseDAO {
         try {
             ResultSet rs = countWarehouseStm.executeQuery();
             addWarehouseStm.setInt(1, rs.getInt(1) + 1);
-            addWarehouseStm.setString(2, rs.getString(2));
-            addWarehouseStm.setString(3, rs.getString(3));
-            addWarehouseStm.setInt(3, id);
+            addWarehouseStm.setString(2, name);
+            addWarehouseStm.setString(3, address);
+            addWarehouseStm.setInt(4, id);
             addWarehouseStm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     public ArrayList<User> users() {

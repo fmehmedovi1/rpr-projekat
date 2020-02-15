@@ -11,6 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Scanner;
 
 public class RegisterController {
     private UserModel model;
@@ -31,8 +34,8 @@ public class RegisterController {
         checkFieldData(fldLastName);
         checkFieldData(fldUsername);
         checkFieldData(fldEMail);
+        checkFieldData(fldPassword);
 
-        checkPasswordData(fldPassword, fldRePassword);
         checkPasswordData(fldRePassword, fldPassword);
     }
 
@@ -40,6 +43,11 @@ public class RegisterController {
 
         if (model.getUsers().containsKey(fldUsername.getText())) {
             infoAlert("Username is already taken by another user");
+            return;
+        }
+
+        if (!emailValidation()){
+            warningAlert("Invalid e-mail");
             return;
         }
 
@@ -94,10 +102,10 @@ public class RegisterController {
         alert.showAndWait();
     }
 
-    private void warningAlert() {
+    private void warningAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning Dialog");
-        alert.setHeaderText("The username you’ve entered doesn’t match any account.");
+        alert.setHeaderText(message);
         alert.setContentText(null);
         alert.showAndWait();
     }
@@ -119,5 +127,19 @@ public class RegisterController {
     public void cancelAction(ActionEvent actionEvent){
         Stage stage = (Stage) fldFirstName.getScene().getWindow();
         stage.close();
+    }
+
+    private boolean emailValidation(){
+
+    if (fldEMail.getText().indexOf('@') == -1) return false;
+    String text = fldEMail.getText();
+    text = fldEMail.getText().substring(text.indexOf('@') + 1, text.length());
+
+    try {
+        URL url = new URL("https://www." + text);
+        return true;
+    } catch (MalformedURLException e) {
+            return false;
+        }
     }
 }

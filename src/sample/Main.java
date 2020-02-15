@@ -6,8 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Main extends Application {
 
@@ -15,8 +15,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         UserModel model = new UserModel();
         model.putData();
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", new Locale("en", "EN"));
         LogController controller = new LogController(model);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"), resourceBundle);
         loader.setController(controller);
 
         Parent root = loader.load();

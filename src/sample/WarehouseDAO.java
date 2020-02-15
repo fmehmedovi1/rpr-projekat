@@ -35,7 +35,7 @@ public class WarehouseDAO {
             addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?)");
             addChangesStm = conn.prepareStatement("INSERT INTO changes_in_warehouse VALUES(?,?,?,?)");
             addWarehouseStm = conn.prepareStatement("INSERT INTO warehouses VALUES(?,?,?,?)");
-            countWarehouseStm = conn.prepareStatement("SELECT COUNT(warehouse_id) FROM warehouse");
+            countWarehouseStm = conn.prepareStatement("SELECT MAX(warehouse_id)+1 FROM warehouses");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -99,7 +99,6 @@ public class WarehouseDAO {
     }
 
     public void addWarehouse(String name, String address, int id){
-
         try {
             ResultSet rs = countWarehouseStm.executeQuery();
             addWarehouseStm.setInt(1, rs.getInt(1) + 1);

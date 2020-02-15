@@ -43,11 +43,11 @@ public class ProductModel {
     }
 
     public void removeProduct(Product product){
-
-
         warehouseDAO.addChanges(warehouseDAO.changesInProduct(name).size() + 1, "removed", product.getId(), id);
         products.remove(product);
         warehouseDAO.deleteProduct(product);
+        warehouseDAO.deleteChangesInWarehouse(product);
+        warehouseDAO.deleteChangesInWarehouse(product);
     }
 
     public Product getCurrentProduct() {

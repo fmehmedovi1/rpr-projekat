@@ -8,17 +8,20 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class AddWHController {
     public TextField fldName, fldAddress;
     private UserModel model;
+    private Locale currentLanguage;
 
-    public AddWHController(UserModel model) {
+    public AddWHController(UserModel model, Locale currentLanguage) {
         this.model = model;
+        this.currentLanguage = currentLanguage;
     }
 
     public void addWarehouse(ActionEvent actionEvent) throws IOException {
-
         model.getWarehouseDAO().addWarehouse(fldName.getText(), fldAddress.getText(), model.getCurrentUser().getId());
         HomePageController controller = new HomePageController(model);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));

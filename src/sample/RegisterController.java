@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class RegisterController {
@@ -116,8 +117,10 @@ public class RegisterController {
     }
 
     private void openHomepage() throws IOException {
-        AddWHController controller = new AddWHController(model);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addwarehouse.fxml"));
+
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
+        AddWHController controller = new AddWHController(model, currentLanguage);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addwarehouse.fxml"), resourceBundle);
         loader.setController(controller);
         Parent root = loader.load();
         Stage stage = new Stage();

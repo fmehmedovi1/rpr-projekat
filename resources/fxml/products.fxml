@@ -27,17 +27,17 @@
       <TextField fx:id="fldPrice" layoutX="144.0" layoutY="296.0" prefHeight="25.0" prefWidth="140.0" />
       <TextField fx:id="fldName" layoutX="144.0" layoutY="256.0" prefHeight="25.0" prefWidth="140.0" />
       <Slider fx:id="sliderAmount" layoutX="144.0" layoutY="335.0" showTickLabels="true" showTickMarks="true" />
-      <Label layoutX="51.0" layoutY="298.0" prefHeight="20.0" prefWidth="48.0" text="%Price:" textFill="WHITE">
+      <Label layoutX="51.0" layoutY="298.0" prefHeight="20.0" prefWidth="48.0" text="%Price" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="335.0" prefHeight="25.0" prefWidth="70.0" text="%Amount:" textFill="WHITE">
+      <Label layoutX="50.0" layoutY="335.0" prefHeight="25.0" prefWidth="70.0" text="%Amount" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="52.0" layoutY="257.0" prefHeight="21.0" prefWidth="65.0" text="%Name:" textFill="#f2f2f2">
+      <Label layoutX="52.0" layoutY="257.0" prefHeight="21.0" prefWidth="65.0" text="%Name" textFill="#f2f2f2">
          <font>
             <Font size="15.0" />
          </font>

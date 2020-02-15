@@ -72,7 +72,7 @@ public class LogController {
             if (model.getUsers().get(fldUsername.getText()).getPassword().equals(fldPassword.getText())) {
                 model.setCurrentUser(model.getUsers().get(fldUsername.getText()));
                 ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
-                HomePageController controller = new HomePageController(model);
+                HomePageController controller = new HomePageController(model, currentLanguage);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), resourceBundle);
                 loader.setController(controller);
                 Parent root = loader.load();

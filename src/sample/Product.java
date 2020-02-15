@@ -8,7 +8,7 @@ public class Product   {
     private transient  SimpleIntegerProperty id, price, amount;
     private transient  SimpleStringProperty name;
 
-    public Product(int id, String name, int amount, int price) {
+    public Product(int id, String name, int price, int amount) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleIntegerProperty(price);

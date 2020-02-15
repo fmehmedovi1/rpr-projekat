@@ -39,25 +39,27 @@ public class ProductController {
         model.currentProductProperty().addListener(((obs, oldProduct, newProduct) -> {
             if (oldProduct != null){
                 fldName.textProperty().unbindBidirectional(oldProduct.nameProperty());
-                fldPrice.textProperty().unbindBidirectional(oldProduct.priceProperty());
+                fldPrice.setText(String.valueOf(oldProduct.getPrice()));
                 sliderAmount.valueProperty().unbindBidirectional(oldProduct.amountProperty());
             }
-
             if (newProduct == null){
                 fldName.setText("");
                 fldPrice.setText("");
             }
             else {
                 fldName.textProperty().bindBidirectional(newProduct.nameProperty());
-                fldPrice.textProperty().bindBidirectional(newProduct.priceProperty());
+                fldPrice.setText(String.valueOf(newProduct.getPrice()));
                 sliderAmount.valueProperty().bindBidirectional(newProduct.amountProperty());
             }
         }));
-
     }
 
     public void addAction(ActionEvent actionEvent){
-        model.addProduct(new Product(model.getProducts().size() + 1, "", 0, ""));
+
+        int max = 0;
+        if (model.getProducts().size() != 0)
+            for(Product p : model.getProducts()) if (p.getId() > max) max = p.getId();
+        model.addProduct(new Product(max + 1, "", 0, 0));
         tableView.getSelectionModel().selectLast();
     }
 

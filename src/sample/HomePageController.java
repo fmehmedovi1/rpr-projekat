@@ -16,11 +16,10 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
-
 public class HomePageController {
     private UserModel model;
     private ProductModel productModel;
+    private Locale currentLanguage;
     private Warehouse warehouse;
     public Label lblName, lblNameWH, lblAddress, lblNumber, lblValue;
     public Button btnExit;
@@ -28,8 +27,9 @@ public class HomePageController {
     public ListView<String> listView;
 
 
-    public HomePageController(UserModel model) {
+    public HomePageController(UserModel model, Locale currentLanguage) {
         this.model = model;
+        this.currentLanguage = currentLanguage;
         productModel = new ProductModel(model.getUserWarehouse().getId(), model.getUserWarehouse().getName(),
                 model.getWarehouseDAO());
         productModel.putData();
@@ -51,8 +51,9 @@ public class HomePageController {
     public void actionPrint(ActionEvent actionEvent){}
 
     public void actionProducts(ActionEvent actionEvent) throws IOException {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
         ProductController controller = new ProductController(productModel);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/products.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/products.fxml"), resourceBundle);
         loader.setController(controller);
         Parent root = loader.load();
         Stage stage = new Stage();

@@ -69,7 +69,7 @@ public class RegisterController {
         model.getUsers().put(fldUsername.getText(), user);
         model.getWarehouseDAO().addUser(user);
         model.setCurrentUser(user);
-        openHomepage();
+        loadView();
     }
 
     private void checkFieldData(TextField textField){
@@ -116,8 +116,7 @@ public class RegisterController {
         alert.showAndWait();
     }
 
-    private void openHomepage() throws IOException {
-
+    private void loadView()throws IOException {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
         AddWHController controller = new AddWHController(model, currentLanguage);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addwarehouse.fxml"), resourceBundle);

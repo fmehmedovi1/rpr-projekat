@@ -170,6 +170,15 @@ public class WarehouseDAO {
         }
     }
 
+    public void deleteChangesInWarehouse(Product product){
+        try {
+            deleteChangesInWarehouse.setInt(1, product.getId());
+            deleteChangesInWarehouse.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void deleteProductWarehouse(Product product){
         try {
             deleteProductsWarehouse.setInt(1, product.getId());

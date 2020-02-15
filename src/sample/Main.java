@@ -15,7 +15,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         UserModel model = new UserModel();
         model.putData();
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", new Locale("en", "EN"));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation");
         LogController controller = new LogController(model);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"), resourceBundle);
         loader.setController(controller);

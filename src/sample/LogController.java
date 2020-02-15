@@ -25,6 +25,7 @@ public class LogController {
 
     public LogController(UserModel model) {
         this.model = model;
+        currentLanguage = new Locale("en", "EN");
     }
 
     @FXML

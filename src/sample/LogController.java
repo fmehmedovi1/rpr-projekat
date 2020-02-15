@@ -70,8 +70,9 @@ public class LogController {
         if (model.getUsers().containsKey(fldUsername.getText())){
             if (model.getUsers().get(fldUsername.getText()).getPassword().equals(fldPassword.getText())) {
                 model.setCurrentUser(model.getUsers().get(fldUsername.getText()));
+                ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
                 HomePageController controller = new HomePageController(model);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), resourceBundle);
                 loader.setController(controller);
                 Parent root = loader.load();
                 Stage stage = new Stage();

@@ -13,6 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class HomePageController {
     private UserModel model;

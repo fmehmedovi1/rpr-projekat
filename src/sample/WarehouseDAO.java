@@ -8,7 +8,7 @@ public class WarehouseDAO {
     private static WarehouseDAO instance = null;
     private static Connection conn;
     private PreparedStatement getProductsStm, getWarehouseStm, getUsersStm, deleteProductStm, updateProductStm,
-            addUserStm, addProductStm, getChangesInWarehouse, addChangesStm;
+            addUserStm, addProductStm, getChangesInWarehouse, addChangesStm, addWarehouseStm;
 
     public WarehouseDAO() {
 
@@ -34,6 +34,7 @@ public class WarehouseDAO {
             addUserStm = conn.prepareStatement("INSERT INTO users VALUES(?,?,?,?,?,?)");
             addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?)");
             addChangesStm = conn.prepareStatement("INSERT INTO changes_in_warehouse VALUES(?,?,?,?)");
+            addWarehouseStm = conn.prepareStatement("INSERT INTO warehouses VALUES(?,?,?,?)");
         } catch (SQLException e) {
             e.printStackTrace();
         }

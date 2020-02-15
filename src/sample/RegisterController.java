@@ -35,7 +35,6 @@ public class RegisterController {
         checkFieldData(fldUsername);
         checkFieldData(fldEMail);
         checkFieldData(fldPassword);
-
         checkPasswordData(fldRePassword, fldPassword);
     }
 
@@ -143,7 +142,5 @@ public class RegisterController {
                 return false;
             }
         }
-
-
 
 }

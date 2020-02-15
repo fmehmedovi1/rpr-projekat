@@ -8,7 +8,8 @@ public class WarehouseDAO {
     private static WarehouseDAO instance = null;
     private static Connection conn = null;
     private PreparedStatement getProductsStm, getWarehouseStm, getUsersStm, deleteProductStm, updateProductStm,
-            addUserStm, addProductStm, getChangesInWarehouse, addChangesStm, addWarehouseStm, countWarehouseStm;
+            addUserStm, addProductStm, getChangesInWarehouse, addChangesStm, addWarehouseStm, countWarehouseStm,
+            deleteProductsWarehouse, deleteChangesInWarehouse;
 
     public WarehouseDAO() {
 
@@ -31,6 +32,9 @@ public class WarehouseDAO {
                     "WHERE cw.product_id = p.product_id AND cw.warehouse_id = w.warehouse_id AND w.name=?");
 
             deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE product_id = ?");
+            deleteProductsWarehouse = conn.prepareStatement("DELETE FROM warehouse_products WHERE product_id=?");
+            deleteChangesInWarehouse = conn.prepareStatement("DELETE FROM changes_in_warehouse WHERE changes_in_warehouse=?");
+
             updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=? WHERE product_id=?");
 
             addUserStm = conn.prepareStatement("INSERT INTO users VALUES(?,?,?,?,?,?)");
@@ -161,6 +165,15 @@ public class WarehouseDAO {
         try {
             deleteProductStm.setInt(1, product.getId());
             deleteProductStm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteProductWarehouse(Product product){
+        try {
+            deleteProductsWarehouse.setInt(1, product.getId());
+            deleteProductsWarehouse.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

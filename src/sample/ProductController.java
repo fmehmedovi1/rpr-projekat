@@ -55,7 +55,6 @@ public class ProductController {
     }
 
     public void addAction(ActionEvent actionEvent){
-
         int max = 0;
         if (model.getProducts().size() != 0)
             for(Product p : model.getProducts()) if (p.getId() > max) max = p.getId();

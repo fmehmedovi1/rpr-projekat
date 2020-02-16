@@ -1,7 +1,10 @@
 package sample;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class WarehouseDAO {
 
@@ -221,8 +224,11 @@ public class WarehouseDAO {
             getChangesInWarehouse.setString(1, name);
             ResultSet rs = getChangesInWarehouse.executeQuery();
             while(rs.next()){
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Calendar cal = Calendar.getInstance();
                 String text = rs.getString(2) + " : " + rs.getString(1) + ", value: "
-                        + rs.getString(3) + ", quantity: " + rs.getString(4);
+                        + rs.getString(3) + ", quantity: " + rs.getString(4) + " " +
+                        dateFormat.format(cal);
                 result.add(text);
             }
         } catch (SQLException e) {

@@ -37,7 +37,6 @@ public class ProductModel {
     }
 
     public void addProduct(Product product){
-
         products.add(product);
         warehouseDAO.addProduct(product);
         setCurrentProduct(product);

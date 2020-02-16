@@ -67,6 +67,10 @@ public class WarehouseDAO {
         }
     }
 
+    public static Connection getConn() {
+        return conn;
+    }
+
     public void addUser(User user) {
         try {
             addUserStm.setInt(1, user.getId());

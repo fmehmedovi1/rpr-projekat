@@ -83,7 +83,11 @@ public class HomePageController {
     }
 
     public void otherUsersAction(ActionEvent actionEvent){
-
+//        try {
+//            new PrintReport().showReport(model.getWarehouseDAO().getConn());
+//        } catch (JRException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void addGrossValue(){

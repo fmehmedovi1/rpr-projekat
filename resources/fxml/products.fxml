@@ -58,6 +58,6 @@
             <TableColumn fx:id="colAmount" prefWidth="97.0" text="%Amount" />
         </columns>
       </TableView>
-      <Slider fx:id="sliderAmount1" layoutX="143.0" layoutY="345.0" prefHeight="38.0" prefWidth="182.0" showTickLabels="true" showTickMarks="true" />
+      <Slider fx:id="sliderAmount" layoutX="143.0" layoutY="345.0" prefHeight="38.0" prefWidth="182.0" showTickLabels="true" showTickMarks="true" />
    </children>
 </AnchorPane>

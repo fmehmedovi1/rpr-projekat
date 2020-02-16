@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class WarehouseDAO {
 
@@ -224,11 +225,11 @@ public class WarehouseDAO {
             getChangesInWarehouse.setString(1, name);
             ResultSet rs = getChangesInWarehouse.executeQuery();
             while(rs.next()){
-                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                Calendar cal = Calendar.getInstance();
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String date = df.format(new Date());
                 String text = rs.getString(2) + " : " + rs.getString(1) + ", value: "
-                        + rs.getString(3) + ", quantity: " + rs.getString(4) + " " +
-                        dateFormat.format(cal);
+                        + rs.getString(3) + ", quantity: " + rs.getString(4) + " "
+                        ;
                 result.add(text);
             }
         } catch (SQLException e) {

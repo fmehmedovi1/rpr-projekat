@@ -24,9 +24,8 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="fldPrice" layoutX="144.0" layoutY="296.0" prefHeight="25.0" prefWidth="140.0" />
-      <TextField fx:id="fldName" layoutX="144.0" layoutY="256.0" prefHeight="25.0" prefWidth="140.0" />
-      <Slider fx:id="sliderAmount" layoutX="144.0" layoutY="335.0" showTickLabels="true" showTickMarks="true" />
+      <TextField fx:id="fldName" layoutX="144.0" layoutY="256.0" prefHeight="25.0" prefWidth="174.0" />
+      <Slider fx:id="sliderPrice" layoutX="144.0" layoutY="300.0" max="1000.0" prefHeight="38.0" prefWidth="182.0" showTickLabels="true" showTickMarks="true" />
       <Label layoutX="51.0" layoutY="298.0" prefHeight="20.0" prefWidth="48.0" text="%Price" textFill="WHITE">
          <font>
             <Font size="15.0" />
@@ -65,5 +64,6 @@
             <TableColumn fx:id="colAmount" prefWidth="97.0" text="%Amount" />
         </columns>
       </TableView>
+      <Slider fx:id="sliderAmount1" layoutX="143.0" layoutY="345.0" prefHeight="38.0" prefWidth="182.0" showTickLabels="true" showTickMarks="true" />
    </children>
 </AnchorPane>

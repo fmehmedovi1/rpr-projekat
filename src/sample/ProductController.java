@@ -14,7 +14,7 @@ public class ProductController {
 
     public TableView<Product> tableView;
     public TextField fldName, fldPrice;
-    public Slider sliderAmount;
+    public Slider sliderAmount, sliderPrice;
     public TableColumn colName, colPrice, colAmount;
     public MenuBar menuBar;
     private ProductModel model;
@@ -32,7 +32,7 @@ public class ProductController {
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldProduct, newProduct) -> {
             model.setCurrentProduct(newProduct);
-            model.getCurrentProduct().setPrice(Integer.parseInt(fldPrice.getText()));
+            model.getCurrentProduct().setAmount((int)sliderPrice.getValue());
             model.getCurrentProduct().setAmount((int)sliderAmount.getValue());
             tableView.refresh();
         });
@@ -40,16 +40,15 @@ public class ProductController {
         model.currentProductProperty().addListener(((obs, oldProduct, newProduct) -> {
             if (oldProduct != null){
                 fldName.textProperty().unbindBidirectional(oldProduct.nameProperty());
-                fldPrice.setText(String.valueOf(oldProduct.getPrice()));
+                sliderPrice.valueProperty().unbindBidirectional(oldProduct.amountProperty());
                 sliderAmount.valueProperty().unbindBidirectional(oldProduct.amountProperty());
             }
             if (newProduct == null){
                 fldName.setText("");
-                fldPrice.setText("");
             }
             else {
                 fldName.textProperty().bindBidirectional(newProduct.nameProperty());
-                fldPrice.setText(String.valueOf(newProduct.getPrice()));
+                sliderPrice.valueProperty().bindBidirectional(newProduct.amountProperty());
                 sliderAmount.valueProperty().bindBidirectional(newProduct.amountProperty());
             }
         }));

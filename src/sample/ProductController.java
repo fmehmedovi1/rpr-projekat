@@ -67,7 +67,11 @@ public class ProductController {
         tableView.getSelectionModel().selectLast();
     }
 
-    public void closeAction(ActionEvent actionEvent){
+    public void closeAction(ActionEvent actionEvent) throws WrongProductDataException {
+
+        for(Product p : model.getProducts()) {
+            if (p.getAmount() == 0) throw new WrongProductDataException("Wrong info about product");
+        }
        Stage stage = (Stage) menuBar.getScene().getWindow();
        stage.close();
     }

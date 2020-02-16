@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -83,11 +84,11 @@ public class HomePageController {
     }
 
     public void otherUsersAction(ActionEvent actionEvent){
-//        try {
-//            new PrintReport().showReport(model.getWarehouseDAO().getConn());
-//        } catch (JRException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            new PrintReport().showReport(model.getWarehouseDAO().getConn());
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addGrossValue(){

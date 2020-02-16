@@ -71,11 +71,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnAbout1" layoutX="19.0" layoutY="477.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="175.0" style="-fx-background-color: #22313f;" text="%CONTACT" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
+            <Button fx:id="btnAbout1" layoutX="7.0" layoutY="477.0" mnemonicParsing="false" onAction="#otherUsersAction" prefHeight="31.0" prefWidth="198.0" style="-fx-background-color: #22313f;" text="%CONTACT" textFill="WHITE" />
             <Label fx:id="lblValue" alignment="CENTER" layoutX="171.0" layoutY="381.0" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #3498db;" text="0" textFill="#f2f2f2">
                <font>
                   <Font size="15.0" />

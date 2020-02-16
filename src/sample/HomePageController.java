@@ -82,6 +82,10 @@ public class HomePageController {
         stage.show();
     }
 
+    public void otherUsersAction(ActionEvent actionEvent){
+
+    }
+
     private void addGrossValue(){
         int sum = productModel.getProducts().stream().mapToInt(Product::getTotalValue).sum();
         lblValue.setText(String.valueOf(sum));

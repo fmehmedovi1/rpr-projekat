@@ -225,8 +225,6 @@ public class WarehouseDAO {
         }
         return result;
     }
-
-
 }
 
 

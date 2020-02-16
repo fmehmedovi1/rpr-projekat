@@ -86,6 +86,7 @@ public class WarehouseDAO {
     }
 
     public void addProduct(Product product) {
+
         try {
             addProductStm.setInt(1, product.getId());
             addProductStm.setString(2, product.getName());

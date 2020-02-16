@@ -1,5 +1,5 @@
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "changes_in_warehouse" (
+CREATE TABLE IF NOT EXISTS "i" (
 	"changes_id"	INTEGER,
 	"type_of_change"	TEXT,
 	"product_id"	INTEGER,

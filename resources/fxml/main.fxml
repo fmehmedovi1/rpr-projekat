@@ -40,7 +40,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="37.0" layoutY="383.0" prefHeight="21.0" prefWidth="109.0" text="%TOTALVALUE" textFill="WHITE">
+            <Label layoutX="18.0" layoutY="383.0" prefHeight="21.0" prefWidth="109.0" text="%TOTALVALUE" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -56,12 +56,12 @@
                   <Image url="@../icons/warehouse.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnProducts" layoutX="13.0" layoutY="334.0" mnemonicParsing="false" onAction="#actionProducts" prefHeight="31.0" prefWidth="153.0" style="-fx-background-color: #22313f;" text="%MYPRODUCTS" textFill="WHITE">
+            <Button fx:id="btnProducts" layoutX="-9.0" layoutY="334.0" mnemonicParsing="false" onAction="#actionProducts" prefHeight="31.0" prefWidth="153.0" style="-fx-background-color: #22313f;" text="%MYPRODUCTS" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Label fx:id="lblNumber" alignment="CENTER" layoutX="171.0" layoutY="337.0" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #3498db;" text="0" textFill="#f2f2f2">
+            <Label fx:id="lblNumber" alignment="CENTER" layoutX="153.0" layoutY="337.0" prefHeight="25.0" prefWidth="36.0" style="-fx-background-color: #3498db;" text="0" textFill="#f2f2f2">
                <font>
                   <Font size="15.0" />
                </font>
@@ -72,7 +72,7 @@
                </font>
             </Button>
             <Button fx:id="btnAbout1" layoutX="7.0" layoutY="477.0" mnemonicParsing="false" onAction="#otherUsersAction" prefHeight="31.0" prefWidth="198.0" style="-fx-background-color: #22313f;" text="%CONTACT" textFill="WHITE" />
-            <Label fx:id="lblValue" alignment="CENTER" layoutX="171.0" layoutY="381.0" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #3498db;" text="0" textFill="#f2f2f2">
+            <Label fx:id="lblValue" alignment="CENTER" layoutX="153.0" layoutY="381.0" prefHeight="25.0" prefWidth="36.0" style="-fx-background-color: #3498db;" text="0" textFill="#f2f2f2">
                <font>
                   <Font size="15.0" />
                </font>

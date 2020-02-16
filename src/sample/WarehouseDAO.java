@@ -9,7 +9,7 @@ public class WarehouseDAO {
     private static Connection conn = null;
     private PreparedStatement getProductsStm, getWarehouseStm, getUsersStm, deleteProductStm, updateProductStm,
             addUserStm, addProductStm, getChangesInWarehouse, addChangesStm, addWarehouseStm, countWarehouseStm,
-            deleteProductsWarehouse, deleteChangesInWarehouse;
+            deleteProductsWarehouse, deleteChangesInWarehouse, addProductsWarehouse;
 
     public WarehouseDAO() {
 
@@ -41,6 +41,7 @@ public class WarehouseDAO {
             addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?)");
             addChangesStm = conn.prepareStatement("INSERT INTO changes_in_warehouse VALUES(?,?,?,?)");
             addWarehouseStm = conn.prepareStatement("INSERT INTO warehouses VALUES(?,?,?,?)");
+            addProductsWarehouse = conn.prepareStatement("INSERT INTO warehouse_products VALUES(?,?)");
             countWarehouseStm = conn.prepareStatement("SELECT COUNT(warehouse_id)+1 FROM warehouses");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -112,6 +113,15 @@ public class WarehouseDAO {
             addWarehouseStm.setString(3, address);
             addWarehouseStm.setInt(4, id);
             addWarehouseStm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addProductsWarehouse(int warehouseId, int productId){
+        try {
+            addProductsWarehouse.setInt(1, warehouseId);
+            addProductsWarehouse.setInt(2, productId);
         } catch (SQLException e) {
             e.printStackTrace();
         }

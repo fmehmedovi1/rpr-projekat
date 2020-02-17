@@ -4,7 +4,6 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class WarehouseDAO {
@@ -90,7 +89,6 @@ public class WarehouseDAO {
     }
 
     public void addProduct(Product product) {
-
         try {
             addProductStm.setInt(1, product.getId());
             addProductStm.setString(2, product.getName());

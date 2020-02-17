@@ -39,6 +39,7 @@ public class ProductModel {
     public void addProduct(Product product){
         products.add(product);
         warehouseDAO.addProduct(product);
+        warehouseDAO.addProductsWarehouse(id, product.getId());
         setCurrentProduct(product);
     }
 
@@ -64,7 +65,6 @@ public class ProductModel {
             if (products.size() > warehouseDAO.changesInProduct(name).size()) {
                 warehouseDAO.addChanges(warehouseDAO.changesInProduct(name).size() + 1, "added",
                         this.currentProduct.get().getId(), id);
-                warehouseDAO.addProductsWarehouse(id, this.currentProduct.get().getId());
             }
         }
         this.currentProduct.set(currentProduct);

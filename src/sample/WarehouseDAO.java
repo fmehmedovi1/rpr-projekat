@@ -11,8 +11,8 @@ public class WarehouseDAO {
     private static WarehouseDAO instance = null;
     private static Connection conn = null;
     private PreparedStatement getProductsStm, getWarehouseStm, getUsersStm, deleteProductStm, updateProductStm,
-            addUserStm, addProductStm, getChangesInWarehouse, addChangesStm, addWarehouseStm, WarehouseIdStm,
-            deleteProductsWarehouse, deleteChangesInWarehouse, addProductsWarehouse;
+            addUserStm, addProductStm, getChangesInWarehouse, addChangesStm, addWarehouseStm, warehouseIdStm,
+            deleteProductsWarehouse, deleteChangesInWarehouse, addProductsWarehouse, productIdStm;
 
     public WarehouseDAO() {
 
@@ -38,14 +38,15 @@ public class WarehouseDAO {
             deleteProductsWarehouse = conn.prepareStatement("DELETE FROM warehouse_products WHERE product_id=?");
             deleteChangesInWarehouse = conn.prepareStatement("DELETE FROM changes_in_warehouse WHERE product_id=?");
 
-            updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=?, warrnty=? WHERE product_id=?");
+            updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=?, warranty=? WHERE product_id=?");
 
             addUserStm = conn.prepareStatement("INSERT INTO users VALUES(?,?,?,?,?,?)");
             addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?,?)");
             addChangesStm = conn.prepareStatement("INSERT INTO changes_in_warehouse VALUES(?,?,?,?)");
             addWarehouseStm = conn.prepareStatement("INSERT INTO warehouses VALUES(?,?,?,?)");
             addProductsWarehouse = conn.prepareStatement("INSERT INTO warehouse_products VALUES(?,?)");
-            WarehouseIdStm = conn.prepareStatement("SELECT MAX(warehouse_id)+1 FROM warehouses");
+            warehouseIdStm = conn.prepareStatement("SELECT MAX(warehouse_id)+1 FROM warehouses");
+            productIdStm = conn.prepareStatement("SELECT MAX(product_id)+1 FROM products");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,11 +91,12 @@ public class WarehouseDAO {
 
     public void addProduct(Product product) {
         try {
-            addProductStm.setInt(1, product.getId());
+            ResultSet rs = productIdStm.executeQuery();
+            addProductStm.setInt(1, rs.getInt(1));
             addProductStm.setString(2, product.getName());
-            addProductStm.setInt(3, product.getPrice());
+            addProductStm.setInt(3, Integer.parseInt(product.getPrice()));
             addProductStm.setInt(4, product.getAmount());
-            addProductStm.setInt(5, product.getWarranty());
+            addProductStm.setInt(5, Integer.parseInt(product.getWarranty()));
             addProductStm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -115,8 +117,8 @@ public class WarehouseDAO {
 
     public void addWarehouse(String name, String address, int id){
         try {
-            ResultSet rs = WarehouseIdStm.executeQuery();
-            addWarehouseStm.setInt(1, rs.getInt(1) + 1);
+            ResultSet rs = warehouseIdStm.executeQuery();
+            addWarehouseStm.setInt(1, rs.getInt(1));
             addWarehouseStm.setString(2, name);
             addWarehouseStm.setString(3, address);
             addWarehouseStm.setInt(4, id);
@@ -157,7 +159,7 @@ public class WarehouseDAO {
             ResultSet rs = getProductsStm.executeQuery();
             while (rs.next()) {
                 Product product = new Product(rs.getInt(1), rs.getString(2),
-                        rs.getInt(3), rs.getInt(4), rs.getInt(5));
+                        String.valueOf(rs.getInt(3)), rs.getInt(4), String.valueOf(rs.getInt(5)));
                 result.add(product);
             }
         } catch (SQLException e) {
@@ -210,9 +212,9 @@ public class WarehouseDAO {
     public void updateProducts(Product product){
         try {
             updateProductStm.setString(1, product.getName());
-            updateProductStm.setInt(2, product.getPrice());
+            updateProductStm.setInt(2, Integer.parseInt(product.getPrice()));
             updateProductStm.setInt(3, product.getAmount());
-            updateProductStm.setInt(4, product.getId());
+            updateProductStm.setInt(4, Integer.parseInt(product.getWarranty()));
             updateProductStm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

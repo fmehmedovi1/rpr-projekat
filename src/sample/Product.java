@@ -4,27 +4,24 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Product   {
+    private int id;
+    private SimpleStringProperty name;
+    private SimpleIntegerProperty price, amount, warranty;
 
-    private transient  SimpleIntegerProperty id, price, amount;
-    private transient  SimpleStringProperty name;
-
-    public Product(int id, String name, int price, int amount) {
-        this.id = new SimpleIntegerProperty(id);
+    public Product(int id, String name, int price, int amount, int warranty) {
+        this.id = id;
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleIntegerProperty(price);
         this.amount = new SimpleIntegerProperty(amount);
+        this.warranty = new SimpleIntegerProperty(warranty);
     }
 
     public int getId() {
-        return id.get();
-    }
-
-    public SimpleIntegerProperty idProperty() {
         return id;
     }
 
     public void setId(int id) {
-        this.id.set(id);
+        this.id = id;
     }
 
     public int getPrice() {
@@ -39,18 +36,6 @@ public class Product   {
         this.price.set(price);
     }
 
-    public String getName() {
-        return name.get();
-    }
-
-    public SimpleStringProperty nameProperty() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name.set(name);
-    }
-
     public int getAmount() {
         return amount.get();
     }
@@ -61,6 +46,30 @@ public class Product   {
 
     public void setAmount(int amount) {
         this.amount.set(amount);
+    }
+
+    public int getWarranty() {
+        return warranty.get();
+    }
+
+    public SimpleIntegerProperty warrantyProperty() {
+        return warranty;
+    }
+
+    public void setWarranty(int warranty) {
+        this.warranty.set(warranty);
+    }
+
+    public String getName() {
+        return name.get();
+    }
+
+    public SimpleStringProperty nameProperty() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name.set(name);
     }
 
     public int getTotalValue(){

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class HomePageController {
+public class HomepageController {
     private UserModel model;
     private ProductModel productModel;
     private Locale currentLanguage;
@@ -28,7 +28,7 @@ public class HomePageController {
     public ListView<String> listView;
 
 
-    public HomePageController(UserModel model, Locale currentLanguage) {
+    public HomepageController(UserModel model, Locale currentLanguage) {
         this.model = model;
         this.currentLanguage = currentLanguage;
         productModel = new ProductModel(model.getUserWarehouse().getId(), model.getUserWarehouse().getName(),
@@ -44,8 +44,7 @@ public class HomePageController {
         lblAddress.setText(warehouse.getAddress());
         lblNameWH.setText(warehouse.getName());
         btnExit.setGraphic(new ImageView(new Image("icons/door.png")));
-        ObservableList<String> list = FXCollections.observableList(model.getWarehouseDAO().changesInProduct(warehouse.getName()));
-        listView.setItems(list);
+        setUpdatesOnScreen();
         addGrossValue();
     }
 
@@ -65,6 +64,7 @@ public class HomePageController {
         stage.setOnHiding(windowEvent -> {
             lblNumber.setText(String.valueOf(productModel.getProducts().size()));
             addGrossValue();
+            setUpdatesOnScreen();
         });
     }
 
@@ -94,5 +94,10 @@ public class HomePageController {
     private void addGrossValue(){
         int sum = productModel.getProducts().stream().mapToInt(Product::getTotalValue).sum();
         lblValue.setText(String.valueOf(sum));
+    }
+
+    private void setUpdatesOnScreen(){
+        ObservableList<String> list = FXCollections.observableList(model.getWarehouseDAO().changesInProduct(warehouse.getName()));
+        listView.setItems(list);
     }
 }

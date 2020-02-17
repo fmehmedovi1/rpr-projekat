@@ -72,7 +72,7 @@ public class LogController {
             if (model.getUsers().get(fldUsername.getText()).getPassword().equals(fldPassword.getText())) {
                 model.setCurrentUser(model.getUsers().get(fldUsername.getText()));
                 ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
-                HomePageController controller = new HomePageController(model, currentLanguage);
+                HomepageController controller = new HomepageController(model, currentLanguage);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), resourceBundle);
                 loader.setController(controller);
                 Parent root = loader.load();
@@ -110,7 +110,7 @@ public class LogController {
     public void addUserAction(MouseEvent mouseEvent) throws IOException {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
         RegisterController controller = new RegisterController(model, currentLanguage);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/register.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/register.fxml"), resourceBundle);
         loader.setController(controller);
         Parent root = loader.load();
         Stage stage = new Stage();

@@ -24,7 +24,7 @@ public class AddWHController {
     public void addWarehouse(ActionEvent actionEvent) throws IOException {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
         model.getWarehouseDAO().addWarehouse(fldName.getText(), fldAddress.getText(), model.getCurrentUser().getId());
-        HomePageController controller = new HomePageController(model, currentLanguage);
+        HomepageController controller = new HomepageController(model, currentLanguage);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), resourceBundle);
         loader.setController(controller);
         Parent root = loader.load();

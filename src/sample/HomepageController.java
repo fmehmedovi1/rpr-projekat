@@ -58,7 +58,7 @@ public class HomepageController {
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setTitle("My Products");
-        stage.setScene(new Scene(root, 350, 450));
+        stage.setScene(new Scene(root, 450, 500));
         stage.show();
 
         stage.setOnHiding(windowEvent -> {

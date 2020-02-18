@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS "products" (
 	"name"	TEXT,
 	"price"	INTEGER,
 	"quantity"	INTEGER,
+	"warranty"	INTEGER,
 	PRIMARY KEY("product_id")
 );
 CREATE TABLE IF NOT EXISTS "users" (

@@ -12,7 +12,7 @@ public class WarehouseDAO {
     private static Connection conn = null;
     private PreparedStatement getProductsStm, getWarehouseStm, getUsersStm, deleteProductStm, updateProductStm,
             addUserStm, addProductStm, getChangesInWarehouse, addChangesStm, addWarehouseStm, warehouseIdStm,
-            deleteProductsWarehouse, deleteChangesInWarehouse, addProductsWarehouse, productIdStm;
+            deleteProductsWarehouse, deleteChangesInWarehouse, addProductsWarehouse, productIdStm, getWarehousesStm;
 
     public WarehouseDAO() {
 
@@ -27,6 +27,7 @@ public class WarehouseDAO {
         try {
             getProductsStm = conn.prepareStatement("SELECT * FROM products p, warehouse_products wp, warehouses w " +
                     "WHERE w.warehouse_id = wp.warehouse_id AND wp.product_id = p.product_id AND w.name = ?");
+            getWarehousesStm = conn.prepareStatement("SELECT * FROM warehouses w");
             getWarehouseStm = conn.prepareStatement("SELECT * FROM warehouses w, users u " +
                     "WHERE w.responsible_preson_id = u.user_id AND u.username = ?");
             getUsersStm = conn.prepareStatement("SELECT * FROM users");
@@ -161,6 +162,21 @@ public class WarehouseDAO {
                 Product product = new Product(rs.getInt(1), rs.getString(2),
                         String.valueOf(rs.getInt(3)), rs.getInt(4), String.valueOf(rs.getInt(5)));
                 result.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public ArrayList<Warehouse> warehouses(){
+        ArrayList<Warehouse> result = new ArrayList<>();
+        try {
+            ResultSet rs = getWarehouseStm.executeQuery();
+            while (rs.next()) {
+                Warehouse warehouse = new Warehouse(rs.getInt(1), rs.getString(2),
+                        rs.getString(3), rs.getInt(4));
+                result.add(warehouse);
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -76,4 +76,8 @@ public class Product   {
     public String toString() {
         return name.getValue();
     }
+
+    public static int getTotalValue(Product product) {
+        return product.getAmount() * Integer.parseInt(product.getPrice());
+    }
 }

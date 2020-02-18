@@ -13,9 +13,9 @@ import java.io.File;
 public class ProductController {
 
     public TableView<Product> tableView;
-    public TextField fldName;
+    public TextField fldName, fldPrice, fldWarranty;
     public Slider sliderAmount, sliderPrice;
-    public TableColumn colName, colPrice, colAmount;
+    public TableColumn colName, colPrice, colAmount, colWarranty;
     public MenuBar menuBar;
     private ProductModel model;
 
@@ -25,14 +25,15 @@ public class ProductController {
 
     @FXML
     public void initialize() {
+
         tableView.setItems(model.getProducts());
         colName.setCellValueFactory(new PropertyValueFactory("Name"));
         colPrice.setCellValueFactory(new PropertyValueFactory("Price"));
         colAmount.setCellValueFactory(new PropertyValueFactory("Amount"));
+        colWarranty.setCellValueFactory(new PropertyValueFactory("Warranty"));
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldProduct, newProduct) -> {
             model.setCurrentProduct(newProduct);
-            model.getCurrentProduct().setPrice((int)sliderPrice.getValue());
             model.getCurrentProduct().setAmount((int)sliderAmount.getValue());
             tableView.refresh();
         });
@@ -40,16 +41,20 @@ public class ProductController {
         model.currentProductProperty().addListener(((obs, oldProduct, newProduct) -> {
             if (oldProduct != null){
                 fldName.textProperty().unbindBidirectional(oldProduct.nameProperty());
-                sliderPrice.valueProperty().unbindBidirectional(oldProduct.priceProperty());
                 sliderAmount.valueProperty().unbindBidirectional(oldProduct.amountProperty());
+                fldPrice.textProperty().unbindBidirectional(oldProduct.priceProperty());
+                fldWarranty.textProperty().unbindBidirectional((oldProduct.priceProperty()));
             }
             if (newProduct == null){
                 fldName.setText("");
+                fldPrice.setText("0");
+                fldWarranty.setText("0");
             }
             else {
                 fldName.textProperty().bindBidirectional(newProduct.nameProperty());
-                sliderPrice.valueProperty().bindBidirectional(newProduct.priceProperty());
+                fldPrice.textProperty().bindBidirectional(newProduct.priceProperty());
                 sliderAmount.valueProperty().bindBidirectional(newProduct.amountProperty());
+                fldWarranty.textProperty().bindBidirectional(newProduct.warrantyProperty());
             }
         }));
     }
@@ -58,7 +63,7 @@ public class ProductController {
         int max = 0;
         if (model.getProducts().size() != 0)
             for(Product p : model.getProducts()) if (p.getId() > max) max = p.getId();
-        model.addProduct(new Product(max + 1, "", 0, 0));
+        model.addProduct(new Product(max + 1, "", "0", 0,"0"));
         tableView.getSelectionModel().selectLast();
     }
 

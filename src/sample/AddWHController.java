@@ -27,7 +27,7 @@ public class AddWHController {
             warningAlert("Warehouse with that names already exists");
             return;
         }
-        
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
         model.getWarehouseDAO().addWarehouse(fldName.getText(), fldAddress.getText(), model.getCurrentUser().getId());
         HomepageController controller = new HomepageController(model, currentLanguage);

@@ -11,8 +11,8 @@ public class WarehouseDAO {
     private static WarehouseDAO instance = null;
     private static Connection conn = null;
     private PreparedStatement getProductsStm, getWarehouseStm, getUsersStm, deleteProductStm, updateProductStm,
-            addUserStm, addProductStm, getChangesInWarehouse, addChangesStm, addWarehouseStm, warehouseIdStm,
-            deleteProductsWarehouse, deleteChangesInWarehouse, addProductsWarehouse, productIdStm, getWarehousesStm;
+            addUserStm, addProductStm, addWarehouseStm, warehouseIdStm,
+            deleteProductsWarehouse, addProductsWarehouse, productIdStm, getWarehousesStm;
 
     public WarehouseDAO() {
 
@@ -27,27 +27,26 @@ public class WarehouseDAO {
         try {
             getProductsStm = conn.prepareStatement("SELECT * FROM products p, warehouse_products wp, warehouses w " +
                     "WHERE w.warehouse_id = wp.warehouse_id AND wp.product_id = p.product_id AND w.name = ?");
-            getWarehousesStm = conn.prepareStatement("SELECT * FROM warehouses w");
-            getWarehouseStm = conn.prepareStatement("SELECT * FROM warehouses w, users u " +
-                    "WHERE w.responsible_preson_id = u.user_id AND u.username = ?");
+
+
             getUsersStm = conn.prepareStatement("SELECT * FROM users");
-            getChangesInWarehouse = conn.prepareStatement("SELECT cw.type_of_change, p.name, p.price, p.quantity " +
-                    "FROM changes_in_warehouse cw, products p, warehouses w " +
-                    "WHERE cw.product_id = p.product_id AND cw.warehouse_id = w.warehouse_id AND w.name=?");
-
-            deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE product_id = ?");
-            deleteProductsWarehouse = conn.prepareStatement("DELETE FROM warehouse_products WHERE product_id=?");
-            deleteChangesInWarehouse = conn.prepareStatement("DELETE FROM changes_in_warehouse WHERE product_id=?");
-
-            updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=?, warranty=? WHERE product_id=?");
-
             addUserStm = conn.prepareStatement("INSERT INTO users VALUES(?,?,?,?,?,?)");
-            addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?,?)");
-            addChangesStm = conn.prepareStatement("INSERT INTO changes_in_warehouse VALUES(?,?,?,?)");
+
             addWarehouseStm = conn.prepareStatement("INSERT INTO warehouses VALUES(?,?,?,?)");
-            addProductsWarehouse = conn.prepareStatement("INSERT INTO warehouse_products VALUES(?,?)");
+            getWarehousesStm = conn.prepareStatement("SELECT * FROM warehouses w");
+            getWarehouseStm = conn.prepareStatement("SELECT * FROM warehouses w, users u WHERE w.responsible_preson_id = u.user_id AND u.username = ?");
             warehouseIdStm = conn.prepareStatement("SELECT MAX(warehouse_id)+1 FROM warehouses");
+
+
+            addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?,?)");
+            deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE product_id = ?");
+            updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=?, warranty=? WHERE product_id=?");
             productIdStm = conn.prepareStatement("SELECT MAX(product_id)+1 FROM products");
+
+            addProductsWarehouse = conn.prepareStatement("INSERT INTO warehouse_products VALUES(?,?)");
+            deleteProductsWarehouse = conn.prepareStatement("DELETE FROM warehouse_products WHERE product_id=?");
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -93,24 +92,13 @@ public class WarehouseDAO {
     public void addProduct(Product product) {
         try {
             ResultSet rs = productIdStm.executeQuery();
+            product.setId(rs.getInt(1));
             addProductStm.setInt(1, rs.getInt(1));
             addProductStm.setString(2, product.getName());
             addProductStm.setInt(3, Integer.parseInt(product.getPrice()));
             addProductStm.setInt(4, product.getAmount());
             addProductStm.setInt(5, Integer.parseInt(product.getWarranty()));
             addProductStm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void addChanges(int id, String text, int product_id, int warehouse_id){
-        try {
-            addChangesStm.setInt(1, id);
-            addChangesStm.setString(2, text);
-            addChangesStm.setInt(3, product_id);
-            addChangesStm.setInt(4, warehouse_id);
-            addChangesStm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -207,15 +195,6 @@ public class WarehouseDAO {
         }
     }
 
-    public void deleteChangesInWarehouse(Product product){
-        try {
-            deleteChangesInWarehouse.setInt(1, product.getId());
-            deleteChangesInWarehouse.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void deleteProductWarehouse(Product product){
         try {
             deleteProductsWarehouse.setInt(1, product.getId());
@@ -235,24 +214,6 @@ public class WarehouseDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public ArrayList<String> changesInProduct(String name){
-        ArrayList<String> result = new ArrayList<>();
-        try {
-            getChangesInWarehouse.setString(1, name);
-            ResultSet rs = getChangesInWarehouse.executeQuery();
-            while(rs.next()){
-                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                String date = df.format(new Date());
-                String text = rs.getString(2) + " : " + rs.getString(1) + ", value: "
-                        + rs.getString(3) + ", quantity: " + rs.getString(4) + " " + date;
-                result.add(text);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
     }
 }
 

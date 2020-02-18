@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -22,6 +23,11 @@ public class AddWHController {
     }
 
     public void addWarehouse(ActionEvent actionEvent) throws IOException {
+        for(Warehouse w : model.getWarehouseDAO().warehouses()) if (w.getName().equals(fldName.getText())){
+            warningAlert("Warehouse with that names already exists");
+            return;
+        }
+        
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
         model.getWarehouseDAO().addWarehouse(fldName.getText(), fldAddress.getText(), model.getCurrentUser().getId());
         HomepageController controller = new HomepageController(model, currentLanguage);
@@ -35,5 +41,13 @@ public class AddWHController {
 
         Stage stage2 = (Stage) fldName.getScene().getWindow();
         stage2.close();
+    }
+
+    private void warningAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning Dialog");
+        alert.setHeaderText(message);
+        alert.setContentText(null);
+        alert.showAndWait();
     }
 }

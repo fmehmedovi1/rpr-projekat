@@ -1,13 +1,4 @@
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "changes_in_warehouse" (
-	"changes_id"	INTEGER,
-	"type_of_change"	TEXT,
-	"product_id"	INTEGER,
-	"warehouse_id"	INTEGER,
-	PRIMARY KEY("changes_id"),
-	FOREIGN KEY("product_id") REFERENCES "products"("product_id"),
-	FOREIGN KEY("warehouse_id") REFERENCES "warehouses"("warehouse_id")
-);
 CREATE TABLE IF NOT EXISTS "warehouses" (
 	"warehouse_id"	INTEGER,
 	"name"	TEXT,
@@ -39,12 +30,6 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"password"	TEXT,
 	PRIMARY KEY("user_id")
 );
-INSERT INTO "changes_in_warehouse" VALUES (1,'added',1,1);
-INSERT INTO "changes_in_warehouse" VALUES (2,'added',2,1);
-INSERT INTO "changes_in_warehouse" VALUES (3,'added',3,2);
-INSERT INTO "changes_in_warehouse" VALUES (4,'added',4,2);
-INSERT INTO "changes_in_warehouse" VALUES (5,'added',5,3);
-INSERT INTO "changes_in_warehouse" VALUES (6,'added',6,3);
 INSERT INTO "warehouses" VALUES (1,'FarisWH','Tuzla',1);
 INSERT INTO "warehouses" VALUES (2,'MuxWare','Trebinje',2);
 INSERT INTO "warehouses" VALUES (3,'SareWare','Tučepi',3);

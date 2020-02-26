@@ -3,12 +3,13 @@ package sample;
 public class Warehouse {
 
     private String name, address;
-    private int id, responsiblePerson;
+    private int id;
+    private User responsiblePerson;
 
-    public Warehouse(int id, String name, String address, int responsiblePerson) {
-        this.id = id;
+    public Warehouse(String name, String address, int id, User responsiblePerson) {
         this.name = name;
         this.address = address;
+        this.id = id;
         this.responsiblePerson = responsiblePerson;
     }
 
@@ -36,11 +37,11 @@ public class Warehouse {
         this.id = id;
     }
 
-    public int getResponsiblePerson() {
+    public User getResponsiblePerson() {
         return responsiblePerson;
     }
 
-    public void setResponsiblePerson(int responsiblePerson) {
+    public void setResponsiblePerson(User responsiblePerson) {
         this.responsiblePerson = responsiblePerson;
     }
 }

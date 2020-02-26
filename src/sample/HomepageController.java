@@ -97,7 +97,7 @@ public class HomepageController {
     }
 
     private void setUpdatesOnScreen(){
-        ObservableList<String> list = FXCollections.observableList(model.getWarehouseDAO().changesInProduct(warehouse.getName()));
-        listView.setItems(list);
+   //     ObservableList<String> list = FXCollections.observableList(model.getWarehouseDAO().changesInProduct(warehouse.getName()));
+        listView.setItems(null);
     }
 }

@@ -16,10 +16,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 public class RegisterController {
-    private UserModel model;
+    private UserModel userModel;
     private Locale currentLanguage;
     public TextField fldFirstName;
     public TextField fldLastName;
@@ -29,7 +28,7 @@ public class RegisterController {
     public PasswordField fldRePassword;
 
     public RegisterController(UserModel model, Locale currentLanguage) {
-        this.model = model;
+        this.userModel = model;
         this.currentLanguage = currentLanguage;
     }
 
@@ -45,7 +44,7 @@ public class RegisterController {
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
 
-        if (model.getUsers().containsKey(fldUsername.getText())) {
+        if (userModel.getUsers().containsKey(fldUsername.getText())) {
             infoAlert("Username is already taken by another user");
             return;
         }
@@ -56,19 +55,18 @@ public class RegisterController {
         }
 
         if (passwordValidation(fldPassword.getText())){
-
             infoAlert("Password must contain at least 9 characters with one number at least");
             return;
         }
 
         if (!fldPassword.getText().equals(fldRePassword.getText())) return;
 
-        User user = new User(model.getUsers().size() + 1, fldFirstName.getText(), fldLastName.getText(),
+        User user = new User(userModel.getUsers().size() + 1, fldFirstName.getText(), fldLastName.getText(),
                 fldUsername.getText(), fldEMail.getText(), fldPassword.getText());
 
-        model.getUsers().put(fldUsername.getText(), user);
-        model.getWarehouseDAO().addUser(user);
-        model.setCurrentUser(user);
+        userModel.getUsers().put(fldUsername.getText(), user);
+        userModel.addUser(user);
+        userModel.setCurrentUser(user);
         loadView();
     }
 
@@ -118,7 +116,7 @@ public class RegisterController {
 
     private void loadView()throws IOException {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
-        AddWHController controller = new AddWHController(model, currentLanguage);
+        AddWHController controller = new AddWHController(userModel, currentLanguage);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addwarehouse.fxml"), resourceBundle);
         loader.setController(controller);
         Parent root = loader.load();
@@ -132,13 +130,12 @@ public class RegisterController {
     }
 
     public void cancelAction(ActionEvent actionEvent){
-        model.getWarehouseDAO().removeInstance();
+        userModel.getWarehouseDAO().removeInstance();
         Stage stage = (Stage) fldFirstName.getScene().getWindow();
         stage.close();
     }
 
     private boolean emailValidation(){
-
         if (fldEMail.getText().indexOf('@') == -1) return false;
         String text = fldEMail.getText();
         text = fldEMail.getText().substring(text.indexOf('@') + 1, text.length());

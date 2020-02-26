@@ -14,23 +14,24 @@ import java.util.ResourceBundle;
 
 public class AddWHController {
     public TextField fldName, fldAddress;
-    private UserModel model;
+    private UserModel userModel;
     private Locale currentLanguage;
 
     public AddWHController(UserModel model, Locale currentLanguage) {
-        this.model = model;
+        this.userModel = model;
         this.currentLanguage = currentLanguage;
     }
 
     public void addWarehouse(ActionEvent actionEvent) throws IOException {
-        for(Warehouse w : model.getWarehouseDAO().warehouses()) if (w.getName().equals(fldName.getText())){
+        for(Warehouse w : userModel.getWarehouseDAO().warehouses()) if (w.getName().equals(fldName.getText())){
             warningAlert("Warehouse with that names already exists");
             return;
         }
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
-        model.getWarehouseDAO().addWarehouse(fldName.getText(), fldAddress.getText(), model.getCurrentUser().getId());
-        HomepageController controller = new HomepageController(model, currentLanguage);
+        userModel.getWarehouseDAO().addWarehouse(fldName.getText(), fldAddress.getText(), userModel.getCurrentUser().getId());
+
+        HomepageController controller = new HomepageController(userModel, currentLanguage);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), resourceBundle);
         loader.setController(controller);
         Parent root = loader.load();

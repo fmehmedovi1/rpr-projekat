@@ -1,12 +1,11 @@
 package sample;
 
 public class Warehouse {
-
-    private String name, address;
     private int id;
+    private String name, address;
     private User responsiblePerson;
 
-    public Warehouse(String name, String address, int id, User responsiblePerson) {
+    public Warehouse(int id, String name, String address,  User responsiblePerson) {
         this.name = name;
         this.address = address;
         this.id = id;

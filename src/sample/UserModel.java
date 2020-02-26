@@ -41,6 +41,7 @@ public class UserModel {
 
     public void addUser(User user){
         this.users.put(user.getUsername(), user);
+        warehouseDAO.addUser(user);
     }
 
     public void deleteUser(User user){

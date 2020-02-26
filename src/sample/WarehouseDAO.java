@@ -195,7 +195,8 @@ public class WarehouseDAO {
             getWarehouseStm.setString(1, username);
             ResultSet rs = getWarehouseStm.executeQuery();
             w = new Warehouse(rs.getInt(1), rs.getString(2), rs.getString(3), null);
-
+            User user = getUser(rs.getInt(4));
+            w.setResponsiblePerson(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }

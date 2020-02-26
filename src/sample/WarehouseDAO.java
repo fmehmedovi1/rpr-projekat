@@ -172,6 +172,23 @@ public class WarehouseDAO {
         return result;
     }
 
+    private User getUserFromResultSet(ResultSet rs) throws SQLException {
+        return new User(rs.getInt(1), rs.getString(2), rs.getString(3),
+                rs.getString(4), rs.getString(5), rs.getString(6));
+    }
+
+    private User getUser(int id){
+        try {
+            getUserStm.setInt(1, id);
+            ResultSet rs = getUserStm.executeQuery();
+            if (!rs.next()) return null;
+            return getUserFromResultSet(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public Warehouse getWarehouse(String username){
         Warehouse w = null;
         try {

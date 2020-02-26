@@ -49,7 +49,7 @@ public class UserModel {
     }
 
     public Warehouse getUserWarehouse(){
-        return warehouseDAO.warehouse(currentUser.getUsername());
+        return warehouseDAO.getWarehouse(currentUser.getUsername());
     }
 
     public WarehouseDAO getWarehouseDAO(){return warehouseDAO;}

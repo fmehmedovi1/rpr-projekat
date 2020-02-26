@@ -11,7 +11,7 @@ public class WarehouseDAO {
     private static WarehouseDAO instance = null;
     private static Connection conn = null;
     private PreparedStatement getProductsStm, getWarehouseStm, getUsersStm, deleteProductStm, updateProductStm,
-            addUserStm, addProductStm, addWarehouseStm, warehouseIdStm,
+            addUserStm, addProductStm, addWarehouseStm, warehouseIdStm, getUserStm,
             deleteProductsWarehouse, addProductsWarehouse, productIdStm, getWarehousesStm;
 
     public WarehouseDAO() {
@@ -30,6 +30,7 @@ public class WarehouseDAO {
 
 
             getUsersStm = conn.prepareStatement("SELECT * FROM users");
+            getUserStm = conn.prepareStatement("SELECT * FROM users WHERE user_id=?");
             addUserStm = conn.prepareStatement("INSERT INTO users VALUES(?,?,?,?,?,?)");
 
             addWarehouseStm = conn.prepareStatement("INSERT INTO warehouses VALUES(?,?,?,?)");
@@ -162,8 +163,7 @@ public class WarehouseDAO {
         try {
             ResultSet rs = getWarehouseStm.executeQuery();
             while (rs.next()) {
-                Warehouse warehouse = new Warehouse(rs.getInt(1), rs.getString(2),
-                        rs.getString(3), rs.getInt(4));
+                Warehouse warehouse = null;
                 result.add(warehouse);
             }
         } catch (SQLException e) {
@@ -172,13 +172,12 @@ public class WarehouseDAO {
         return result;
     }
 
-    public Warehouse warehouse(String username){
+    public Warehouse getWarehouse(String username){
         Warehouse w = null;
         try {
             getWarehouseStm.setString(1, username);
             ResultSet rs = getWarehouseStm.executeQuery();
-            w = new Warehouse(rs.getInt(1), rs.getString(2), rs.getString(3),
-                    rs.getInt(4));
+            w = new Warehouse(rs.getInt(1), rs.getString(2), rs.getString(3), null);
 
         } catch (SQLException e) {
             e.printStackTrace();

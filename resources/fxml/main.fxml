@@ -40,7 +40,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="383.0" prefHeight="21.0" prefWidth="109.0" text="%TOTALVALUE" textFill="WHITE">
+            <Label layoutX="19.0" layoutY="383.0" prefHeight="21.0" prefWidth="109.0" text="%TOTALVALUE" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>

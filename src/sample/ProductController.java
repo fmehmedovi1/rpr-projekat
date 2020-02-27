@@ -61,7 +61,11 @@ public class ProductController {
         }));
     }
 
-    public void addAction(ActionEvent actionEvent){
+    public void addAction(ActionEvent actionEvent) throws WrongProductDataException {
+        
+        if (fldName.getText().equals("") || fldWarranty.getText().equals(""))
+            throw new WrongProductDataException("Wrong info about product");
+
         int max = 0;
         if (model.getProducts().size() != 0)
             for(Product p : model.getProducts()) if (p.getId() > max) max = p.getId();
@@ -81,11 +85,7 @@ public class ProductController {
         tableView.getSelectionModel().selectLast();
     }
 
-    public void closeAction(ActionEvent actionEvent) throws WrongProductDataException {
-
-        for(Product p : model.getProducts()) {
-            if (p.getAmount() == 0) throw new WrongProductDataException("Wrong info about product");
-        }
+    public void closeAction(ActionEvent actionEvent){
        Stage stage = (Stage) menuBar.getScene().getWindow();
        stage.close();
     }

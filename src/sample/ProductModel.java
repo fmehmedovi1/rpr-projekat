@@ -11,18 +11,17 @@ import java.io.IOException;
 public class ProductModel {
     private ObservableList<Product> products = FXCollections.observableArrayList();
     private SimpleObjectProperty<Product> currentProduct = new SimpleObjectProperty<>();
-    private String name;
+    private Warehouse warehouse;
     private WarehouseDAO warehouseDAO;
-    private int id;
 
-    public ProductModel(int id, String name, WarehouseDAO warehouseDAO) {
-        this.id = id;
-        this.name = name;
+    public ProductModel(Warehouse warehouse, WarehouseDAO warehouseDAO) {
+
+        this.warehouse = warehouse;
         this.warehouseDAO = warehouseDAO;
     }
 
     public void putData(){
-        for(Product p : warehouseDAO.products(name)) {
+        for(Product p : warehouseDAO.products(warehouse)) {
             products.add(p);
         }
         currentProduct.setValue(null);
@@ -39,7 +38,7 @@ public class ProductModel {
     public void addProduct(Product product){
         products.add(product);
         warehouseDAO.addProduct(product);
-        warehouseDAO.addProductsWarehouse(id, product.getId());
+        warehouseDAO.addProductsWarehouse(product.getWarehouse().getId(), product.getId());
         setCurrentProduct(product);
     }
 

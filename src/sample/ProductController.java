@@ -4,11 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 public class ProductController {
 
@@ -62,9 +66,8 @@ public class ProductController {
     }
 
     public void addAction(ActionEvent actionEvent) throws WrongProductDataException {
-        
-        if (fldName.getText().equals("") || fldWarranty.getText().equals(""))
-            throw new WrongProductDataException("Wrong info about product");
+
+        if (fldName.getText().equals("") || fldWarranty.getText().equals("")) exceptionDialog();
 
         int max = 0;
         if (model.getProducts().size() != 0)
@@ -96,5 +99,39 @@ public class ProductController {
         fileChooser.showSaveDialog(null);
         File file = fileChooser.getSelectedFile();
         model.writeFile(file);
+    }
+
+    private void exceptionDialog(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Exception Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Wrong info about product");
+
+        WrongProductDataException ex = new WrongProductDataException("Wrong info about product");
+
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        ex.printStackTrace(pw);
+        String exceptionText = sw.toString();
+
+        Label label = new Label("The exception stacktrace was:");
+
+        TextArea textArea = new TextArea(exceptionText);
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+
+        textArea.setMaxWidth(Double.MAX_VALUE);
+        textArea.setMaxHeight(Double.MAX_VALUE);
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+        GridPane expContent = new GridPane();
+        expContent.setMaxWidth(Double.MAX_VALUE);
+        expContent.add(label, 0, 0);
+        expContent.add(textArea, 0, 1);
+
+        alert.getDialogPane().setExpandableContent(expContent);
+
+        alert.showAndWait();
     }
 }

@@ -3,17 +3,19 @@ package sample;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Product   {
+public class Product {
     private int id;
     private SimpleStringProperty name, price, warranty;
     private SimpleIntegerProperty  amount;
+    private Warehouse warehouse;
 
-    public Product(int id, String name, String price, int amount, String warranty) {
+    public Product(int id, String name, String price, int amount, String warranty, Warehouse warehouse) {
         this.id = id;
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleStringProperty(price);
         this.amount = new SimpleIntegerProperty(amount);
         this.warranty = new SimpleStringProperty(warranty);
+        this.warehouse = warehouse;
     }
 
     public int getId() {
@@ -70,6 +72,14 @@ public class Product   {
 
     public void setAmount(int amount) {
         this.amount.set(amount);
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 
     @Override

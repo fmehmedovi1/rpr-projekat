@@ -64,11 +64,10 @@ public class ProductModel {
     }
 
     public void setCurrentProduct(Product currentProduct) {
-//        if (this.getCurrentProduct() != null) warehouseDAO.updateProducts(this.currentProduct.get());
         this.currentProduct.set(currentProduct);
     }
 
-    public void zapisiDatoteku(File file){
+    public void writeFile(File file){
         if (file == null) return;
         try {
             String text = "";

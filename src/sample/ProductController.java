@@ -93,6 +93,6 @@ public class ProductController {
         fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Text Files", "*.txt"));
         fileChooser.showSaveDialog(null);
         File file = fileChooser.getSelectedFile();
-        model.zapisiDatoteku(file);
+        model.writeFile(file);
     }
 }

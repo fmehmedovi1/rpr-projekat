@@ -1,10 +1,7 @@
 package sample;
 
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class WarehouseDAO {
 
@@ -15,10 +12,8 @@ public class WarehouseDAO {
             deleteProductsWarehouse, addProductsWarehouse, productIdStm, getWarehousesStm;
 
     public WarehouseDAO() {
-
         try {
             if (conn != null) conn.close();
-
             conn = DriverManager.getConnection("jdbc:sqlite:database.db");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -27,7 +22,6 @@ public class WarehouseDAO {
         try {
             getProductsStm = conn.prepareStatement("SELECT * FROM products p, warehouse_products wp, warehouses w " +
                     "WHERE w.warehouse_id = wp.warehouse_id AND wp.product_id = p.product_id AND w.name = ?");
-
 
             getUsersStm = conn.prepareStatement("SELECT * FROM users");
             getUserStm = conn.prepareStatement("SELECT * FROM users WHERE user_id=?");
@@ -38,7 +32,6 @@ public class WarehouseDAO {
             getWarehouseStm = conn.prepareStatement("SELECT * FROM warehouses w, users u WHERE w.responsible_preson_id = u.user_id AND u.username = ?");
             warehouseIdStm = conn.prepareStatement("SELECT MAX(warehouse_id)+1 FROM warehouses");
 
-
             addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?,?)");
             deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE product_id = ?");
             updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=?, warranty=? WHERE product_id=?");
@@ -46,8 +39,6 @@ public class WarehouseDAO {
 
             addProductsWarehouse = conn.prepareStatement("INSERT INTO warehouse_products VALUES(?,?)");
             deleteProductsWarehouse = conn.prepareStatement("DELETE FROM warehouse_products WHERE product_id=?");
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -122,6 +113,7 @@ public class WarehouseDAO {
         try {
             addProductsWarehouse.setInt(1, warehouseId);
             addProductsWarehouse.setInt(2, productId);
+            addProductsWarehouse.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -142,14 +134,14 @@ public class WarehouseDAO {
         return result;
     }
 
-    public ArrayList<Product> products(String name){
+    public ArrayList<Product> products(Warehouse warehouse){
         ArrayList<Product> result = new ArrayList<>();
         try {
-            getProductsStm.setString(1, name);
+            getProductsStm.setString(1, warehouse.getName());
             ResultSet rs = getProductsStm.executeQuery();
             while (rs.next()) {
                 Product product = new Product(rs.getInt(1), rs.getString(2),
-                        String.valueOf(rs.getInt(3)), rs.getInt(4), String.valueOf(rs.getInt(5)));
+                        String.valueOf(rs.getInt(3)), rs.getInt(4), String.valueOf(rs.getInt(5)), warehouse);
                 result.add(product);
             }
         } catch (SQLException e) {

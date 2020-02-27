@@ -69,6 +69,11 @@ public class ProductController {
         tableView.getSelectionModel().selectLast();
     }
 
+    public void alterAction(ActionEvent actionEvent){
+        model.alterProduct(model.getCurrentProduct());
+        tableView.getSelectionModel().select(model.getCurrentProduct());
+    }
+
     public void removeAction(ActionEvent actionEvent){
         model.removeProduct(model.getCurrentProduct());
         tableView.getSelectionModel().selectLast();

@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,12 +25,10 @@ public class HomepageController {
     @FXML
     public ListView<String> listView;
 
-
     public HomepageController(UserModel model, Locale currentLanguage) {
         this.model = model;
         this.currentLanguage = currentLanguage;
-        productModel = new ProductModel(model.getUserWarehouse().getId(), model.getUserWarehouse().getName(),
-                model.getWarehouseDAO());
+        productModel = new ProductModel(model.getUserWarehouse(), model.getWarehouseDAO());
         productModel.putData();
         warehouse = model.getUserWarehouse();
     }

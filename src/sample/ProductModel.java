@@ -42,6 +42,14 @@ public class ProductModel {
         setCurrentProduct(product);
     }
 
+    public void alterProduct(Product product){
+        products.remove(getCurrentProduct());
+        products.add(product);
+        setCurrentProduct(product);
+        warehouseDAO.updateProducts(product);
+    }
+
+
     public void removeProduct(Product product){
         products.remove(product);
         warehouseDAO.deleteProduct(product);

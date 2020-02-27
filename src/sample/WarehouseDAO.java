@@ -153,7 +153,7 @@ public class WarehouseDAO {
     public ArrayList<Warehouse> warehouses(){
         ArrayList<Warehouse> result = new ArrayList<>();
         try {
-            ResultSet rs = getWarehouseStm.executeQuery();
+            ResultSet rs = getWarehousesStm.executeQuery();
             while (rs.next()) {
                 Warehouse warehouse = null;
                 result.add(warehouse);

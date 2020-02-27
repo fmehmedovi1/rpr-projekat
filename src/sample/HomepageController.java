@@ -48,7 +48,7 @@ public class HomepageController {
 
     public void actionProducts(ActionEvent actionEvent) throws IOException {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
-        ProductController controller = new ProductController(productModel);
+        ProductController controller = new ProductController(productModel, warehouse);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/products.fxml"), resourceBundle);
         loader.setController(controller);
         Parent root = loader.load();

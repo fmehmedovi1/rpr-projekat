@@ -18,9 +18,11 @@ public class ProductController {
     public TableColumn colName, colPrice, colAmount, colWarranty;
     public MenuBar menuBar;
     private ProductModel model;
+    private Warehouse warehouse;
 
-    public ProductController(ProductModel productModel){
+    public ProductController(ProductModel productModel, Warehouse warehouse){
         this.model = productModel;
+        this.warehouse = warehouse;
     }
 
     @FXML
@@ -65,7 +67,7 @@ public class ProductController {
             for(Product p : model.getProducts()) if (p.getId() > max) max = p.getId();
 
         model.addProduct(new Product(max + 1, fldName.getText(), fldPrice.getText(), (int) sliderAmount.getValue(),
-                fldWarranty.getText(), model.getProducts().get(0).getWarehouse()));
+                fldWarranty.getText(), warehouse));
         tableView.getSelectionModel().selectLast();
     }
 

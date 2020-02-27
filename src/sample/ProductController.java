@@ -14,7 +14,7 @@ public class ProductController {
 
     public TableView<Product> tableView;
     public TextField fldName, fldPrice, fldWarranty;
-    public Slider sliderAmount, sliderPrice;
+    public Slider sliderAmount;
     public TableColumn colName, colPrice, colAmount, colWarranty;
     public MenuBar menuBar;
     private ProductModel model;
@@ -63,7 +63,9 @@ public class ProductController {
         int max = 0;
         if (model.getProducts().size() != 0)
             for(Product p : model.getProducts()) if (p.getId() > max) max = p.getId();
-        model.addProduct(new Product(max + 1, "", "0", 0,"0"));
+
+        model.addProduct(new Product(max + 1, fldName.getText(), fldPrice.getText(), (int) sliderAmount.getValue(),
+                fldWarranty.getText(), model.getProducts().get(0).getWarehouse()));
         tableView.getSelectionModel().selectLast();
     }
 

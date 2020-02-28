@@ -49,7 +49,7 @@ public class ProductController {
                 fldName.textProperty().unbindBidirectional(oldProduct.nameProperty());
                 sliderAmount.valueProperty().unbindBidirectional(oldProduct.amountProperty());
                 fldPrice.textProperty().unbindBidirectional(oldProduct.priceProperty());
-                fldWarranty.textProperty().unbindBidirectional((oldProduct.priceProperty()));
+                fldWarranty.textProperty().unbindBidirectional((oldProduct.warrantyProperty()));
             }
             if (newProduct == null){
                 fldName.setText("");
@@ -131,7 +131,6 @@ public class ProductController {
         expContent.add(textArea, 0, 1);
 
         alert.getDialogPane().setExpandableContent(expContent);
-
         alert.showAndWait();
     }
 }

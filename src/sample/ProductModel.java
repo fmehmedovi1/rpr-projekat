@@ -15,7 +15,6 @@ public class ProductModel {
     private WarehouseDAO warehouseDAO;
 
     public ProductModel(Warehouse warehouse, WarehouseDAO warehouseDAO) {
-
         this.warehouse = warehouse;
         this.warehouseDAO = warehouseDAO;
     }

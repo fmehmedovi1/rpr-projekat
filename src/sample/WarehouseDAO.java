@@ -219,6 +219,7 @@ public class WarehouseDAO {
             updateProductStm.setInt(2, Integer.parseInt(product.getPrice()));
             updateProductStm.setInt(3, product.getAmount());
             updateProductStm.setInt(4, Integer.parseInt(product.getWarranty()));
+            updateProductStm.setInt(5, product.getId());
             updateProductStm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

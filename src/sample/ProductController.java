@@ -23,6 +23,7 @@ public class ProductController {
     public MenuBar menuBar;
     private ProductModel model;
     private Warehouse warehouse;
+    public Label labelCounter;
 
     public ProductController(ProductModel productModel, Warehouse warehouse){
         this.model = productModel;
@@ -47,21 +48,28 @@ public class ProductController {
         model.currentProductProperty().addListener(((obs, oldProduct, newProduct) -> {
             if (oldProduct != null){
                 fldName.textProperty().unbindBidirectional(oldProduct.nameProperty());
-                sliderAmount.valueProperty().unbindBidirectional(oldProduct.amountProperty());
                 fldPrice.textProperty().unbindBidirectional(oldProduct.priceProperty());
+                sliderAmount.valueProperty().unbindBidirectional(oldProduct.amountProperty());
+                labelCounter.setText(String.valueOf((int) sliderAmount.getValue()));
                 fldWarranty.textProperty().unbindBidirectional((oldProduct.warrantyProperty()));
             }
             if (newProduct == null){
                 fldName.setText("");
                 fldPrice.setText("0");
                 fldWarranty.setText("0");
+                labelCounter.setText("1");
             }
             else {
                 fldName.textProperty().bindBidirectional(newProduct.nameProperty());
                 fldPrice.textProperty().bindBidirectional(newProduct.priceProperty());
                 sliderAmount.valueProperty().bindBidirectional(newProduct.amountProperty());
+                labelCounter.setText(String.valueOf((int) sliderAmount.getValue()));
                 fldWarranty.textProperty().bindBidirectional(newProduct.warrantyProperty());
             }
+        }));
+
+        sliderAmount.valueProperty().addListener(((obs, oldValue, newValue) -> {
+                if (oldValue != null) labelCounter.setText(String.valueOf(newValue.intValue()));
         }));
     }
 

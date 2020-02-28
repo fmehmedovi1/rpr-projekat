@@ -30,7 +30,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="335.0" prefHeight="25.0" prefWidth="70.0" text="%Amount" textFill="WHITE">
+      <Label layoutX="50.0" layoutY="336.0" prefHeight="25.0" prefWidth="70.0" text="%Amount" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -58,7 +58,7 @@
             <TableColumn fx:id="colWarranty" prefWidth="85.0" text="Warranty" />
         </columns>
       </TableView>
-      <Slider fx:id="sliderAmount" layoutX="150.0" layoutY="342.0" prefHeight="38.0" prefWidth="266.0" showTickLabels="true" showTickMarks="true" />
+      <Slider fx:id="sliderAmount" layoutX="151.0" layoutY="338.0" min="1.0" prefHeight="38.0" prefWidth="198.0" showTickLabels="true" showTickMarks="true" />
       <Label layoutX="50.0" layoutY="383.0" prefHeight="25.0" prefWidth="76.0" text="%Warranty" textFill="WHITE">
          <font>
             <Font size="15.0" />
@@ -71,5 +71,10 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <Label fx:id="labelCounter" alignment="CENTER" layoutX="365.0" layoutY="338.0" prefHeight="20.0" prefWidth="37.0" style="-fx-background-color: #3498db;" text="1" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

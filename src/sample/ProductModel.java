@@ -7,12 +7,15 @@ import javafx.collections.ObservableList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ProductModel {
     private ObservableList<Product> products = FXCollections.observableArrayList();
     private SimpleObjectProperty<Product> currentProduct = new SimpleObjectProperty<>();
     private Warehouse warehouse;
     private WarehouseDAO warehouseDAO;
+    private String infoAboutUpdates = "";
 
     public ProductModel(Warehouse warehouse, WarehouseDAO warehouseDAO) {
         this.warehouse = warehouse;
@@ -79,4 +82,7 @@ public class ProductModel {
             e.printStackTrace();
         }
     }
+
+
+
 }

@@ -88,4 +88,8 @@ public class ProductModel {
     private void addUpdates(String operation){
         infoAboutUpdates += warehouse.getName() + " + " + operation + " " + new SimpleDateFormat("dd.MM.yyyy").format(new Date()) + "\n";
     }
+
+    public String getInfoAboutUpdates() {
+        return infoAboutUpdates;
+    }
 }

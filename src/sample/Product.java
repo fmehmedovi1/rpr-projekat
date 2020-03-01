@@ -84,7 +84,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return name.getValue();
+        return getName() + ": " + getAmount() + "(" + getPrice() + ")";
     }
 
     public static int getTotalValue(Product product) {

@@ -36,7 +36,7 @@
       </Button>
       <PasswordField fx:id="fldPassword" layoutX="175.0" layoutY="212.0" />
       <PasswordField fx:id="fldRePassword" layoutX="175.0" layoutY="253.0" />
-      <Label layoutX="26.0" layoutY="253.0" prefHeight="25.0" prefWidth="118.0" text="%RetypePass" textFill="WHITE">
+      <Label layoutX="26.0" layoutY="253.0" prefHeight="25.0" prefWidth="140.0" text="%RetypePass" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>

@@ -38,6 +38,7 @@ public class ProductModel {
     }
 
     public void addProduct(Product product){
+        addUpdates("+");
         products.add(product);
         warehouseDAO.addProduct(product);
         warehouseDAO.addProductsWarehouse(product.getWarehouse().getId(), product.getId());
@@ -52,6 +53,7 @@ public class ProductModel {
     }
 
     public void removeProduct(Product product){
+        addUpdates("-");
         products.remove(product);
         warehouseDAO.deleteProduct(product);
         warehouseDAO.deleteProductWarehouse(product);
@@ -83,6 +85,7 @@ public class ProductModel {
         }
     }
 
-
-
+    private void addUpdates(String operation){
+        infoAboutUpdates += warehouse.getName() + " + " + operation + " " + new SimpleDateFormat("dd.MM.yyyy").format(new Date()) + "\n";
+    }
 }

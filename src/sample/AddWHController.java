@@ -40,7 +40,10 @@ public class AddWHController {
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
         userModel.getWarehouseDAO().addWarehouse(fldName.getText(), fldAddress.getText(), userModel.getCurrentUser().getId());
-        
+
+        progressBar.setVisible(true);
+        Thread thread = new Thread(new bgThread());
+        thread.start();
 
         HomepageController controller = new HomepageController(userModel, currentLanguage);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), resourceBundle);
@@ -63,4 +66,18 @@ public class AddWHController {
         alert.showAndWait();
     }
 
+    class bgThread implements Runnable{
+
+        @Override
+        public void run() {
+            for(int i = 0; i < 100; i++){
+                try {
+                    progressBar.setProgress(i / 100.00);
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

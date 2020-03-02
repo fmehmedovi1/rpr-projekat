@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+
 public class RegisterController {
     private UserModel userModel;
     private Locale currentLanguage;
@@ -40,6 +41,7 @@ public class RegisterController {
         checkFieldData(fldEMail);
         checkFieldData(fldPassword);
         checkPasswordData(fldRePassword, fldPassword);
+
     }
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
@@ -148,4 +150,7 @@ public class RegisterController {
             }
         }
 
+
 }
+
+

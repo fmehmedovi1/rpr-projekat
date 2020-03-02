@@ -74,7 +74,6 @@ public class ProductController {
     }
 
     public void addAction(ActionEvent actionEvent) throws WrongProductDataException {
-
         if (fldName.getText().equals("") || fldWarranty.getText().equals("")) exceptionDialog();
 
         int max = 0;

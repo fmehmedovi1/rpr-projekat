@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -93,7 +96,8 @@ public class HomepageController {
     }
 
     private void setUpdatesOnScreen(){
-   //     ObservableList<String> list = FXCollections.observableList(model.getWarehouseDAO().changesInProduct(warehouse.getName()));
         listView.setItems(null);
     }
+
+
 }

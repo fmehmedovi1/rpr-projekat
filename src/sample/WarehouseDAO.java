@@ -155,7 +155,9 @@ public class WarehouseDAO {
         try {
             ResultSet rs = getWarehousesStm.executeQuery();
             while (rs.next()) {
-                Warehouse warehouse = null;
+                Warehouse warehouse = new Warehouse(rs.getInt(1), rs.getString(2), rs.getString(3), null);
+                User user = getUser(rs.getInt(4));
+                warehouse.setResponsiblePerson(user);
                 result.add(warehouse);
             }
         } catch (SQLException e) {

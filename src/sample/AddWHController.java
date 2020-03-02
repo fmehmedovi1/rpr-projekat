@@ -1,14 +1,17 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -16,13 +19,20 @@ public class AddWHController {
     public TextField fldName, fldAddress;
     private UserModel userModel;
     private Locale currentLanguage;
+    public ProgressBar progressBar;
 
     public AddWHController(UserModel model, Locale currentLanguage) {
         this.userModel = model;
         this.currentLanguage = currentLanguage;
     }
 
+    @FXML
+    public void initialize() {
+        progressBar.setVisible(false);
+    }
+
     public void addWarehouse(ActionEvent actionEvent) throws IOException {
+
         for(Warehouse w : userModel.getWarehouseDAO().warehouses()) if (w.getName().equals(fldName.getText())){
             warningAlert("Warehouse with that names already exists");
             return;
@@ -30,6 +40,7 @@ public class AddWHController {
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
         userModel.getWarehouseDAO().addWarehouse(fldName.getText(), fldAddress.getText(), userModel.getCurrentUser().getId());
+        
 
         HomepageController controller = new HomepageController(userModel, currentLanguage);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), resourceBundle);
@@ -51,4 +62,5 @@ public class AddWHController {
         alert.setContentText(null);
         alert.showAndWait();
     }
+
 }

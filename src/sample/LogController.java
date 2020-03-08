@@ -21,7 +21,7 @@ public class LogController {
     private Locale currentLanguage;
     public TextField fldUsername;
     public PasswordField fldPassword;
-    public ChoiceBox<String> choiceBox;
+    public RadioButton englishButton, bosniaButton;
 
     public LogController(UserModel model) {
         this.model = model;
@@ -30,20 +30,31 @@ public class LogController {
 
     @FXML
     public void initialize() {
-        choiceBox.getItems().add("Bosanski");
-        choiceBox.getItems().add("English");
 
-        choiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+        if (currentLanguage == null) {
+            englishButton.setSelected(true);
+            bosniaButton.setSelected(false);
+        } else {
+            if (currentLanguage.getCountry().equals("EN")){
+                englishButton.setSelected(true);
+                bosniaButton.setSelected(false);
+            } else {
+                englishButton.setSelected(false);
+                bosniaButton.setSelected(true);
+            }
+        }
 
-            if (newValue.equals("English")){
-                currentLanguage = new Locale("en", "EN");
-                loadView();
-            }
-            if (newValue.equals("Bosanski")){
-                currentLanguage = new Locale("bs", "BA");
-                loadView();
-            }
-        });
+
+        englishButton.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+            if (newValue.equals(true)) bosniaButton.setSelected(false);
+            currentLanguage = new Locale("en", "EN");
+            loadView();
+        }));
+        bosniaButton.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+            if (newValue.equals(true)) englishButton.setSelected(false);
+            currentLanguage = new Locale("bs", "BA");
+            loadView();
+        }));
     }
 
     private void loadView() {

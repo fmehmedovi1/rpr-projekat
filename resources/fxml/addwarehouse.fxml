@@ -13,12 +13,12 @@
    <children>
       <TextField fx:id="fldName" layoutX="176.0" layoutY="152.0" />
       <TextField fx:id="fldAddress" layoutX="176.0" layoutY="193.0" />
-      <Label layoutX="81.0" layoutY="163.0" prefHeight="21.0" prefWidth="60.0" text="%Name" textFill="#f2f2f2">
+      <Label layoutX="81.0" layoutY="164.0" prefHeight="21.0" prefWidth="60.0" text="%Name" textFill="#f2f2f2">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="80.0" layoutY="202.0" prefHeight="21.0" prefWidth="79.0" text="%Address" textFill="#f2f2f2">
+      <Label layoutX="80.0" layoutY="203.0" prefHeight="21.0" prefWidth="79.0" text="%Address" textFill="#f2f2f2">
          <font>
             <Font size="15.0" />
          </font>
@@ -38,6 +38,6 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <ProgressBar fx:id="progressBar" layoutX="94.0" layoutY="134.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="progressBar" layoutX="94.0" layoutY="135.0" prefHeight="15.0" prefWidth="200.0" progress="0.0" />
    </children>
 </AnchorPane>

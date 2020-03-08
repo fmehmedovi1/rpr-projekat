@@ -31,19 +31,11 @@ public class LogController {
     @FXML
     public void initialize() {
 
-        if (currentLanguage == null) {
-            englishButton.setSelected(true);
-            bosniaButton.setSelected(false);
-        } else {
-            if (currentLanguage.getCountry().equals("EN")){
-                englishButton.setSelected(true);
-                bosniaButton.setSelected(false);
-            } else {
-                englishButton.setSelected(false);
-                bosniaButton.setSelected(true);
-            }
+        if (currentLanguage == null) setRadioButtons(true, false);
+         else {
+            if (currentLanguage.getCountry().equals("EN")) setRadioButtons(true, false);
+             else setRadioButtons(false, true);
         }
-
 
         englishButton.selectedProperty().addListener(((observable, oldValue, newValue) -> {
             if (newValue.equals(true)) bosniaButton.setSelected(false);
@@ -133,4 +125,8 @@ public class LogController {
         stage2.close();
     }
 
+    private void setRadioButtons(boolean value1, boolean value2){
+        englishButton.setSelected(value1);
+        bosniaButton.setSelected(value2);
+    }
 }

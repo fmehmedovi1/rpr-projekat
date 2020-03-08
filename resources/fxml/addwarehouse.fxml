@@ -11,14 +11,14 @@
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="385.0" style="-fx-background-color: #22313f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="fldName" layoutX="176.0" layoutY="152.0" />
-      <TextField fx:id="fldAddress" layoutX="176.0" layoutY="193.0" />
-      <Label layoutX="81.0" layoutY="164.0" prefHeight="21.0" prefWidth="60.0" text="%Name" textFill="#f2f2f2">
+      <TextField fx:id="fldName" layoutX="176.0" layoutY="138.0" />
+      <TextField fx:id="fldAddress" layoutX="176.0" layoutY="179.0" />
+      <Label layoutX="81.0" layoutY="150.0" prefHeight="21.0" prefWidth="60.0" text="%Name" textFill="#f2f2f2">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="80.0" layoutY="203.0" prefHeight="21.0" prefWidth="79.0" text="%Address" textFill="#f2f2f2">
+      <Label layoutX="81.0" layoutY="190.0" prefHeight="21.0" prefWidth="79.0" text="%Address" textFill="#f2f2f2">
          <font>
             <Font size="15.0" />
          </font>
@@ -33,11 +33,11 @@
             <Image url="@../icons/warehouse.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnAdd" layoutX="167.0" layoutY="243.0" mnemonicParsing="false" onAction="#addWarehouse" style="-fx-background-color: #4183d7;" text="%Add" textFill="#fcfcfc">
+      <Button fx:id="btnAdd" layoutX="167.0" layoutY="223.0" mnemonicParsing="false" onAction="#addWarehouse" style="-fx-background-color: #4183d7;" text="%Add" textFill="#fcfcfc">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <ProgressBar fx:id="progressBar" layoutX="94.0" layoutY="135.0" prefHeight="15.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="progressBar" layoutX="94.0" layoutY="265.0" prefHeight="15.0" prefWidth="200.0" progress="0.0" />
    </children>
 </AnchorPane>

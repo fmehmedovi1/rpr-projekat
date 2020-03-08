@@ -32,35 +32,38 @@ public class AddWHController {
         progressBar.setVisible(false);
     }
 
-    public void addWarehouse(ActionEvent actionEvent) throws IOException {
+    public void addWarehouse(ActionEvent actionEvent) {
 
         for(Warehouse w : userModel.getWarehouseDAO().warehouses()) if (w.getName().equals(fldName.getText())){
             warningAlert("Warehouse with that names already exists");
             return;
         }
 
-//        progressBar.setVisible(true);
-//        Thread thread = new Thread(new bgThread());
-//        thread.start();
         progressBar.setVisible(true);
         updateProgressBar();
 
-        if ((int) progressBar.getProgress() == 1) {
-            ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
-            userModel.getWarehouseDAO().addWarehouse(fldName.getText(), fldAddress.getText(), userModel.getCurrentUser().getId());
+        progressBar.progressProperty().addListener(((observable, oldValue, newValue) -> {
+            if (newValue.intValue() == 1) {
+                ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
+                userModel.getWarehouseDAO().addWarehouse(fldName.getText(), fldAddress.getText(), userModel.getCurrentUser().getId());
+                HomepageController controller = new HomepageController(userModel, currentLanguage);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), resourceBundle);
+                loader.setController(controller);
+                Parent root = null;
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Stage stage = new Stage();
+                stage.setTitle("Home Page");
+                stage.setScene(new Scene(root, 550, 550));
+                stage.show();
 
-            HomepageController controller = new HomepageController(userModel, currentLanguage);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), resourceBundle);
-            loader.setController(controller);
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Home Page");
-            stage.setScene(new Scene(root, 550, 550));
-            stage.show();
-
-            Stage stage2 = (Stage) fldName.getScene().getWindow();
-            stage2.close();
-        }
+                Stage stage2 = (Stage) fldName.getScene().getWindow();
+                stage2.close();
+            }
+        }));
     }
 
     private void warningAlert(String message) {
@@ -71,39 +74,21 @@ public class AddWHController {
         alert.showAndWait();
     }
 
-    class bgThread implements Runnable {
-        public bgThread() {}
-
-        @Override
-        public void run() {
-
-            for(int i = 1; i <= 100; i++){
-                try {
-                    progressBar.setProgress((double)i / 100.0);
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+    private void setProgressBar(int number){
+        progressBar.setProgress((double) number / 100.0);
     }
 
     private void updateProgressBar() {
         new Thread(() -> {
-
-            try {
-                for (int i = 0; i <= 100; i++) {
-                    progressBar.setProgress((double) i / 100.0);
-                    Thread.sleep(100);
+                for(int i = 0; i <= 100; i++) {
+                    try {
+                        int finalI = i;
+                        Platform.runLater(() -> setProgressBar(finalI));
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
         }).start();
     }
-
-
-
 }

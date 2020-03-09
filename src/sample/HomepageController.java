@@ -23,7 +23,7 @@ public class HomepageController {
     private ProductModel productModel;
     private Locale currentLanguage;
     private Warehouse warehouse;
-    public Label lblName, lblNameWH, lblAddress, lblNumber, lblValue;
+    public Label lblHeader, lblNameWH, lblAddress, lblNumber, lblValue;
     public Button btnExit;
     @FXML
     public ListView<String> listView;
@@ -38,7 +38,7 @@ public class HomepageController {
 
     @FXML
     public void initialize() {
-        lblName.setText(model.getCurrentUser().getFirstName());
+        lblHeader.setText(lblHeader.getText() + " " + model.getCurrentUser().getFirstName());
         lblNumber.setText(String.valueOf(productModel.getProducts().size()));
         lblAddress.setText(warehouse.getAddress());
         lblNameWH.setText(warehouse.getName());

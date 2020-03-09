@@ -42,7 +42,7 @@
             </Label>
             <Label layoutX="19.0" layoutY="383.0" prefHeight="21.0" prefWidth="109.0" text="%TOTALVALUE" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <Line endX="100.0" layoutX="93.0" layoutY="468.0" startX="-74.0" stroke="#eeeeee" />
@@ -58,7 +58,7 @@
             </ImageView>
             <Button fx:id="btnProducts" layoutX="-9.0" layoutY="334.0" mnemonicParsing="false" onAction="#actionProducts" prefHeight="31.0" prefWidth="153.0" style="-fx-background-color: #22313f;" text="%MYPRODUCTS" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font size="14.0" />
                </font>
             </Button>
             <Label fx:id="lblNumber" alignment="CENTER" layoutX="156.0" layoutY="337.0" prefHeight="25.0" prefWidth="36.0" style="-fx-background-color: #3498db;" text="0" textFill="#f2f2f2">
@@ -81,35 +81,30 @@
       </Pane>
       <Pane layoutX="212.0" prefHeight="46.0" prefWidth="339.0" style="-fx-background-color: #22313f;">
          <children>
-            <Label layoutX="58.0" layoutY="8.0" prefHeight="30.0" prefWidth="121.0" text="%Welcome" textFill="WHITE">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblName" layoutX="180.0" layoutY="8.0" text="UserName" textFill="WHITE">
+            <Label fx:id="lblHeader" alignment="CENTER" layoutX="57.0" layoutY="8.0" prefHeight="30.0" prefWidth="226.0" style="-fx-font-family: Verdana;" text="%Welcome" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <ListView fx:id="listView" layoutX="238.0" layoutY="178.0" prefHeight="290.0" prefWidth="289.0" />
-      <Label fx:id="lblNameWH" layoutX="238.0" layoutY="73.0" text="Name">
+      <ListView fx:id="listView" layoutX="238.0" layoutY="178.0" prefHeight="114.0" prefWidth="289.0" />
+      <Label fx:id="lblNameWH" layoutX="238.0" layoutY="73.0" style="-fx-font-family: Georgia;" text="Name" textFill="#22313f">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblAddress" layoutX="241.0" layoutY="107.0" text="Adress">
+      <Label fx:id="lblAddress" layoutX="241.0" layoutY="107.0" style="-fx-font-family: Georgia;" text="Adress" textFill="#22313f">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="241.0" layoutY="149.0" prefHeight="20.0" prefWidth="175.0" text="%Updates">
+      <Label layoutX="241.0" layoutY="149.0" prefHeight="20.0" prefWidth="175.0" text="%Updates" textFill="#22313f">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <Button fx:id="btnExit" layoutX="476.0" layoutY="480.0" mnemonicParsing="false" onAction="#actionExit" prefHeight="30.0" prefWidth="36.0" style="-fx-background-color: #22313f;" styleClass="exitButton" />
-      <Line endX="-23.0" layoutX="336.0" layoutY="98.0" startX="-100.0" stroke="#22313f" strokeWidth="2.0" />
+      <Line endX="192.0" layoutX="337.0" layoutY="97.0" startX="-100.0" stroke="#22313f" strokeWidth="2.0" />
    </children>
 </AnchorPane>

@@ -41,7 +41,7 @@ public class ProductController {
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldProduct, newProduct) -> {
             model.setCurrentProduct(newProduct);
-            model.getCurrentProduct().setAmount((int)sliderAmount.getValue());
+            if (model.getCurrentProduct() != null) model.getCurrentProduct().setAmount((int)sliderAmount.getValue());
             tableView.refresh();
         });
 
@@ -74,7 +74,10 @@ public class ProductController {
     }
 
     public void addAction(ActionEvent actionEvent) throws WrongProductDataException {
-        if (fldName.getText().equals("") || fldWarranty.getText().equals("")) exceptionDialog();
+        if (fldName.getText().equals("") || fldWarranty.getText().equals("")) {
+            exceptionDialog();
+            return;
+        }
 
         int max = 0;
         if (model.getProducts().size() != 0)

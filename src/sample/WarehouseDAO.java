@@ -10,7 +10,7 @@ public class WarehouseDAO {
     private PreparedStatement getProductsStm, getWarehouseStm, getUsersStm, deleteProductStm, updateProductStm,
             addUserStm, addProductStm, addWarehouseStm, warehouseIdStm, getUserStm,
             deleteProductsWarehouse, addProductsWarehouse, productIdStm, getWarehousesStm,
-            addUpdateOnProductStm, getUpdatesOnProductStm;
+            addUpdateOnProductStm, getUpdatesOnProductStm, productUpdatesIdStm;
 
     public WarehouseDAO() {
         try {
@@ -27,18 +27,19 @@ public class WarehouseDAO {
             getUsersStm = conn.prepareStatement("SELECT * FROM users");
             getUserStm = conn.prepareStatement("SELECT * FROM users WHERE user_id=?");
             addUserStm = conn.prepareStatement("INSERT INTO users VALUES(?,?,?,?,?,?)");
-            addUpdateOnProductStm = conn.prepareStatement("INSERT INTO product_updates VALUES(?,?,?)");
+            addUpdateOnProductStm = conn.prepareStatement("INSERT INTO product_updates VALUES(?,?,?,?)");
 
             addWarehouseStm = conn.prepareStatement("INSERT INTO warehouses VALUES(?,?,?,?)");
             getWarehousesStm = conn.prepareStatement("SELECT * FROM warehouses w");
             getWarehouseStm = conn.prepareStatement("SELECT * FROM warehouses w, users u WHERE w.responsible_preson_id = u.user_id AND u.username = ?");
             warehouseIdStm = conn.prepareStatement("SELECT MAX(warehouse_id)+1 FROM warehouses");
-            getUpdatesOnProductStm = conn.prepareStatement("SELECT product_updates_id, product_operation FROM product_updates WHERE product_id = ?");
+            getUpdatesOnProductStm = conn.prepareStatement("SELECT product_operation FROM product_updates WHERE warehouse_id = ?");
 
             addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?,?)");
             deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE product_id = ?");
             updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=?, warranty=? WHERE product_id=?");
             productIdStm = conn.prepareStatement("SELECT MAX(product_id)+1 FROM products");
+            productUpdatesIdStm = conn.prepareStatement("SELECT MAX(product_updates_id)+1 FROM product_updates");
 
             addProductsWarehouse = conn.prepareStatement("INSERT INTO warehouse_products VALUES(?,?)");
             deleteProductsWarehouse = conn.prepareStatement("DELETE FROM warehouse_products WHERE product_id=?");
@@ -87,8 +88,9 @@ public class WarehouseDAO {
     public void addProduct(Product product) {
         try {
             ResultSet rs = productIdStm.executeQuery();
-            product.setId(rs.getInt(1));
-            addProductStm.setInt(1, rs.getInt(1));
+            int id = rs.getInt(1);
+            if (id == 0) id++;
+            addProductStm.setInt(1, id);
             addProductStm.setString(2, product.getName());
             addProductStm.setInt(3, Integer.parseInt(product.getPrice()));
             addProductStm.setInt(4, product.getAmount());
@@ -231,9 +233,35 @@ public class WarehouseDAO {
         }
     }
 
- //   public void addUpdatesOnProduct(String updateOperation){}
+    public void addUpdatesOnProduct(String updateOperation, int productId, int warehouseId){
+        try {
+            ResultSet rs = productUpdatesIdStm.executeQuery();
+            int id = rs.getInt(1);
+            if (id == 0) id++;
 
-  //  public ArrayList<String> getUpdatesOnProduct(int id){}
+            addUpdateOnProductStm.setInt(1, id);
+            addUpdateOnProductStm.setString(2, updateOperation);
+            addUpdateOnProductStm.setInt(3, productId);
+            addUpdateOnProductStm.setInt(4, warehouseId);
+            addUpdateOnProductStm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+   public ArrayList<String> getUpdatesOnProduct(int warehouseId){
+       ArrayList<String> result = new ArrayList<>();
+       try {
+           getUpdatesOnProductStm.setInt(1, warehouseId);
+           ResultSet rs = getUpdatesOnProductStm.executeQuery();
+           while (rs.next()) {
+               result.add(rs.getString(1));
+           }
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+       return (result.size() == 0) ?  null : result;
+   }
 }
 
 

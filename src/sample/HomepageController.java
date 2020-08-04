@@ -1,5 +1,8 @@
 package sample;
 
+import com.sun.javafx.collections.ObservableListWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -123,7 +126,13 @@ public class HomepageController implements ProductOperations {
     }
 
     private void setUpdatesOnScreen(){
-        listView.setItems(null);
+
+        if (productModel.getUpdates() == null) listView.setItems(null);
+        else {
+            ObservableList<String> updates = FXCollections.observableArrayList();
+            for(String text : productModel.getUpdates()) updates.add(text);
+            listView.setItems(updates);
+        }
     }
 
 }

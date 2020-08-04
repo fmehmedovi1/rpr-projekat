@@ -7,7 +7,10 @@ import javafx.collections.ObservableList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class ProductModel {
@@ -37,7 +40,7 @@ public class ProductModel {
     }
 
     public void addProduct(Product product){
-    //    addUpdates("+");
+        warehouseDAO.addUpdatesOnProduct(updateOnProduct(product, "+"), product.getId(), warehouse.getId());
         products.add(product);
         warehouseDAO.addProduct(product);
         warehouseDAO.addProductsWarehouse(product.getWarehouse().getId(), product.getId());
@@ -45,6 +48,7 @@ public class ProductModel {
     }
 
     public void alterProduct(Product product){
+        warehouseDAO.addUpdatesOnProduct(updateOnProduct(product, "~"), product.getId(), warehouse.getId());
         products.remove(getCurrentProduct());
         products.add(product);
         setCurrentProduct(product);
@@ -52,7 +56,7 @@ public class ProductModel {
     }
 
     public void removeProduct(Product product){
-    ///    addUpdates("-");
+        warehouseDAO.addUpdatesOnProduct(updateOnProduct(product, "-"), product.getId(), warehouse.getId());
         products.remove(product);
         warehouseDAO.deleteProduct(product);
         warehouseDAO.deleteProductWarehouse(product);
@@ -84,4 +88,13 @@ public class ProductModel {
         }
     }
 
+    public ArrayList<String> getUpdates(){
+        return warehouseDAO.getUpdatesOnProduct(warehouse.getId());
+    }
+
+    private String updateOnProduct(Product product, String operation){
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        return operation + product.getName() + ": " + product.getAmount() + "(" + product.getPrice() + " BAM), " + dateFormat.format(date);
+    }
 }

@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 
+import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
 import java.util.Locale;
@@ -123,10 +124,22 @@ public class HomepageController implements ProductOperations {
         }
     }
 
-    public void loadBinary(ActionEvent actionEvent){
+    public void loadBinaryFile(ActionEvent actionEvent){
         ProductUpdates productUpdates = null;
         try {
             ObjectInputStream ulaz = new ObjectInputStream(new FileInputStream("updatesOnUserProduct.dat"));
+            productUpdates = (ProductUpdates) ulaz.readObject();
+            ulaz.close();
+        } catch(Exception e) {
+            System.out.println("Greška: "+e);
+        }
+        if (productUpdates != null) listView.setItems((ObservableList<String>) productUpdates);
+    }
+
+    public void loadXmlFile(ActionEvent actionEvent){
+        ProductUpdates productUpdates = null;
+        try {
+            XMLDecoder ulaz = new XMLDecoder(new FileInputStream("updatesOnUserProduct.xml"));
             productUpdates = (ProductUpdates) ulaz.readObject();
             ulaz.close();
         } catch(Exception e) {

@@ -227,6 +227,10 @@ public class WarehouseDAO {
             e.printStackTrace();
         }
     }
+
+ //   public void addUpdatesOnProduct(String updateOperation){}
+
+  //  public ArrayList<String> getUpdatesOnProduct(int id){}
 }
 
 

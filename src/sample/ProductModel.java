@@ -15,7 +15,6 @@ public class ProductModel {
     private SimpleObjectProperty<Product> currentProduct = new SimpleObjectProperty<>();
     private Warehouse warehouse;
     private WarehouseDAO warehouseDAO;
-    private String infoAboutUpdates = "";
 
     public ProductModel(Warehouse warehouse, WarehouseDAO warehouseDAO) {
         this.warehouse = warehouse;
@@ -38,7 +37,7 @@ public class ProductModel {
     }
 
     public void addProduct(Product product){
-        addUpdates("+");
+    //    addUpdates("+");
         products.add(product);
         warehouseDAO.addProduct(product);
         warehouseDAO.addProductsWarehouse(product.getWarehouse().getId(), product.getId());
@@ -53,7 +52,7 @@ public class ProductModel {
     }
 
     public void removeProduct(Product product){
-        addUpdates("-");
+    ///    addUpdates("-");
         products.remove(product);
         warehouseDAO.deleteProduct(product);
         warehouseDAO.deleteProductWarehouse(product);
@@ -85,11 +84,4 @@ public class ProductModel {
         }
     }
 
-    private void addUpdates(String operation){
-        infoAboutUpdates += warehouse.getName() + " + " + operation + " " + new SimpleDateFormat("dd.MM.yyyy").format(new Date()) + "\n";
-    }
-
-    public String getInfoAboutUpdates() {
-        return infoAboutUpdates;
-    }
 }

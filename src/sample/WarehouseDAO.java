@@ -9,7 +9,8 @@ public class WarehouseDAO {
     private static Connection conn = null;
     private PreparedStatement getProductsStm, getWarehouseStm, getUsersStm, deleteProductStm, updateProductStm,
             addUserStm, addProductStm, addWarehouseStm, warehouseIdStm, getUserStm,
-            deleteProductsWarehouse, addProductsWarehouse, productIdStm, getWarehousesStm;
+            deleteProductsWarehouse, addProductsWarehouse, productIdStm, getWarehousesStm,
+            addUpdateOnProductStm, getUpdatesOnProductStm;
 
     public WarehouseDAO() {
         try {
@@ -26,11 +27,13 @@ public class WarehouseDAO {
             getUsersStm = conn.prepareStatement("SELECT * FROM users");
             getUserStm = conn.prepareStatement("SELECT * FROM users WHERE user_id=?");
             addUserStm = conn.prepareStatement("INSERT INTO users VALUES(?,?,?,?,?,?)");
+            addUpdateOnProductStm = conn.prepareStatement("INSERT INTO product_updates VALUES(?,?,?)");
 
             addWarehouseStm = conn.prepareStatement("INSERT INTO warehouses VALUES(?,?,?,?)");
             getWarehousesStm = conn.prepareStatement("SELECT * FROM warehouses w");
             getWarehouseStm = conn.prepareStatement("SELECT * FROM warehouses w, users u WHERE w.responsible_preson_id = u.user_id AND u.username = ?");
             warehouseIdStm = conn.prepareStatement("SELECT MAX(warehouse_id)+1 FROM warehouses");
+            getUpdatesOnProductStm = conn.prepareStatement("SELECT product_updates_id, product_operation FROM product_updates WHERE product_id = ?");
 
             addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?,?)");
             deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE product_id = ?");

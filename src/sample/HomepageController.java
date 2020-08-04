@@ -123,6 +123,18 @@ public class HomepageController implements ProductOperations {
         }
     }
 
+    public void loadBinary(ActionEvent actionEvent){
+        ProductUpdates productUpdates = null;
+        try {
+            ObjectInputStream ulaz = new ObjectInputStream(new FileInputStream("updatesOnUserProduct.dat"));
+            productUpdates = (ProductUpdates) ulaz.readObject();
+            ulaz.close();
+        } catch(Exception e) {
+            System.out.println("Greška: "+e);
+        }
+        if (productUpdates != null) listView.setItems((ObservableList<String>) productUpdates);
+    }
+
     @Override
     public void addGrossValue(){
         if (productModel.getProducts().size() == 0) return;

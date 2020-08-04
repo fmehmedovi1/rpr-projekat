@@ -1,6 +1,5 @@
 package sample;
 
-import com.sun.javafx.collections.ObservableListWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 
+import java.beans.XMLEncoder;
 import java.io.*;
 import java.util.Locale;
 import java.util.Optional;
@@ -26,8 +26,7 @@ public class HomepageController implements ProductOperations {
     private Warehouse warehouse;
     public Label lblHeader, lblNameWH, lblAddress, lblNumber, lblValue, lblBest, lblWorst;
     public Button btnExit;
-    public MenuButton saveMenu;
-    public MenuItem menuItem1, menuItem2;
+    public MenuItem menuItem1, menuItem2, menuItem3, menuItem4;
     @FXML
     public ListView<String> listView;
 
@@ -48,6 +47,8 @@ public class HomepageController implements ProductOperations {
         btnExit.setGraphic(new ImageView(new Image("icons/door.png")));
         menuItem1.setGraphic(new ImageView("icons/binaryFileIcon.png"));
         menuItem2.setGraphic(new ImageView("icons/xmlFileIcon.jpg"));
+        menuItem3.setGraphic(new ImageView("icons/binaryFileIcon.png"));
+        menuItem4.setGraphic(new ImageView("icons/xmlFileIcon.jpg"));
 
         setUpdatesOnScreen();
         addGrossValue();
@@ -72,6 +73,8 @@ public class HomepageController implements ProductOperations {
             lblNumber.setText(String.valueOf(productModel.getProducts().size()));
             addGrossValue();
             setUpdatesOnScreen();
+            addBestValue();
+            addWorstValue();
         });
     }
 
@@ -110,6 +113,14 @@ public class HomepageController implements ProductOperations {
     }
 
     public void saveAsXml(ActionEvent actionEvent){
+        try {
+            XMLEncoder izlaz = new XMLEncoder(new FileOutputStream("updatesOnUserProduct.xml"));
+            ProductUpdates productUpdates = new ProductUpdates(productModel.getUpdates());
+            izlaz.writeObject(productUpdates);
+            izlaz.close();
+        } catch(Exception e) {
+            System.out.println("Greška: "+e);
+        }
     }
 
     @Override

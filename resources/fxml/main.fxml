@@ -138,5 +138,11 @@
             <MenuItem fx:id="menuItem2" mnemonicParsing="false" onAction="#saveAsXml" text="Save as XML file" />
          </items></MenuButton>
       <ListView fx:id="listView" layoutX="243.0" layoutY="176.0" prefHeight="264.0" prefWidth="328.0" />
+      <MenuButton fx:id="saveMenu1" layoutX="442.0" layoutY="451.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" text="%LOADFROMCOM">
+         <items>
+            <MenuItem fx:id="menuItem3" mnemonicParsing="false" onAction="#saveAsBinary" text="Load binary file" />
+            <MenuItem fx:id="menuItem4" mnemonicParsing="false" onAction="#saveAsXml" text="Load XML file" />
+         </items>
+      </MenuButton>
    </children>
 </AnchorPane>

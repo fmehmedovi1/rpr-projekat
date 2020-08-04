@@ -1,22 +1,13 @@
 package sample;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ProductUpdates {
-    private int id;
+public class ProductUpdates implements Serializable {
     private ArrayList<String> updatesOnProduct = new ArrayList<>();
 
-    public ProductUpdates(int id, ArrayList<String> updatesOnProduct) {
-        this.id = id;
+    public ProductUpdates(ArrayList<String> updatesOnProduct) {
         this.updatesOnProduct = updatesOnProduct;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public ArrayList<String> getUpdatesOnProduct() {

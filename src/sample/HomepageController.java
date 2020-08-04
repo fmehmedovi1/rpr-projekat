@@ -99,6 +99,14 @@ public class HomepageController implements ProductOperations {
     }
 
     public void saveAsBinary(ActionEvent actionEvent){
+        try {
+            ObjectOutputStream izlaz = new ObjectOutputStream(new FileOutputStream("updatesOnUserProduct.dat"));
+            ProductUpdates productUpdates = new ProductUpdates(productModel.getUpdates());
+            izlaz.writeObject(productUpdates);
+            izlaz.close();
+        } catch(Exception e) {
+            System.out.println("Greška: "+e);
+        }
     }
 
     public void saveAsXml(ActionEvent actionEvent){
@@ -126,7 +134,6 @@ public class HomepageController implements ProductOperations {
     }
 
     private void setUpdatesOnScreen(){
-
         if (productModel.getUpdates() == null) listView.setItems(null);
         else {
             ObservableList<String> updates = FXCollections.observableArrayList();

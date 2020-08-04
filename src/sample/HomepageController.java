@@ -21,7 +21,7 @@ public class HomepageController implements ProductOperations {
     private ProductModel productModel;
     private Locale currentLanguage;
     private Warehouse warehouse;
-    public Label lblHeader, lblNameWH, lblAddress, lblNumber, lblValue;
+    public Label lblHeader, lblNameWH, lblAddress, lblNumber, lblValue, lblBest, lblWorst;
     public Button btnExit;
     public MenuButton saveMenu;
     public MenuItem menuItem1, menuItem2;
@@ -55,6 +55,8 @@ public class HomepageController implements ProductOperations {
 
         setUpdatesOnScreen();
         addGrossValue();
+        addBestValue();
+        addWorstValue();
     }
 
     public void actionPrint(ActionEvent actionEvent){}
@@ -102,18 +104,23 @@ public class HomepageController implements ProductOperations {
 
     @Override
     public void addGrossValue(){
+        if (productModel.getProducts().size() == 0) return;
         int sum = productModel.getProducts().stream().mapToInt(Product::getTotalValue).sum();
         lblValue.setText(String.valueOf(sum));
     }
 
     @Override
-    public void addCheapestProduct() {
+    public void addWorstValue() {
+        if (productModel.getProducts().size() == 0) return;
         Optional<Product> min = productModel.getProducts().stream().min(Product::compareTo);
+        lblWorst.setText(String.valueOf(min.get().getTotalValue()));
     }
 
     @Override
-    public void addMostExpensiveProduct() {
+    public void addBestValue() {
+        if (productModel.getProducts().size() == 0) return;
         Optional<Product> max = productModel.getProducts().stream().max(Product::compareTo);
+        lblBest.setText(String.valueOf(max.get().getTotalValue()));
     }
 
     private void setUpdatesOnScreen(){

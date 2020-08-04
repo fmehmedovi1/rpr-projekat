@@ -87,14 +87,16 @@ public class Product implements Comparable<Product> {
         return getName() + ": " + getAmount() + "(" + getPrice() + ")";
     }
 
-    public static int getTotalValue(Product product) {
-        return product.getAmount() * Integer.parseInt(product.getPrice());
+    public int getTotalValue() {
+        return getAmount() * Integer.parseInt(getPrice());
     }
 
     @Override
     public int compareTo(Product o) {
-        if (Integer.parseInt(getPrice()) * getAmount() > Integer.parseInt(o.getPrice()) * o.getAmount()) return  1;
-        if (Integer.parseInt(getPrice()) * getAmount() == Integer.parseInt(o.getPrice()) * o.getAmount()) return  0;
+        if (getAmount() > o.getAmount() && getTotalValue() < o.getTotalValue()) return 1;
+        if (getAmount() == o.getAmount() && getTotalValue() == o.getTotalValue()) return 1;
+
+
         return -1;
     }
 }

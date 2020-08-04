@@ -57,7 +57,7 @@ public class AddWHController {
                 }
                 Stage stage = new Stage();
                 stage.setTitle("Home Page");
-                stage.setScene(new Scene(root, 550, 550));
+                stage.setScene(new Scene(root, 590, 550));
                 stage.show();
 
                 Stage stage2 = (Stage) fldName.getScene().getWindow();

@@ -82,7 +82,7 @@ public class LogController {
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 stage.setTitle("Home Page");
-                stage.setScene(new Scene(root, 550, 550));
+                stage.setScene(new Scene(root, 590, 550));
                 stage.show();
 
                 Stage stage2 = (Stage) fldUsername.getScene().getWindow();

@@ -43,15 +43,8 @@ public class HomepageController implements ProductOperations {
         lblAddress.setText(warehouse.getAddress());
         lblNameWH.setText(warehouse.getName());
         btnExit.setGraphic(new ImageView(new Image("icons/door.png")));
-
-        menuItem1 = new MenuItem("Save as binary file");
         menuItem1.setGraphic(new ImageView("icons/binaryFileIcon.png"));
-
-        menuItem2 = new MenuItem("Save as XML file");
         menuItem2.setGraphic(new ImageView("icons/xmlFileIcon.jpg"));
-
-        saveMenu.getItems().add(menuItem1);
-        saveMenu.getItems().add(menuItem2);
 
         setUpdatesOnScreen();
         addGrossValue();
@@ -100,6 +93,12 @@ public class HomepageController implements ProductOperations {
         } catch (JRException e) {
             e.printStackTrace();
         }
+    }
+
+    public void saveAsBinary(ActionEvent actionEvent){
+    }
+
+    public void saveAsXml(ActionEvent actionEvent){
     }
 
     @Override

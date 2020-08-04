@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +12,6 @@ import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -25,6 +22,8 @@ public class HomepageController {
     private Warehouse warehouse;
     public Label lblHeader, lblNameWH, lblAddress, lblNumber, lblValue;
     public Button btnExit;
+    public MenuButton saveMenu;
+    public MenuItem menuItem1, menuItem2;
     @FXML
     public ListView<String> listView;
 
@@ -43,6 +42,16 @@ public class HomepageController {
         lblAddress.setText(warehouse.getAddress());
         lblNameWH.setText(warehouse.getName());
         btnExit.setGraphic(new ImageView(new Image("icons/door.png")));
+
+        menuItem1 = new MenuItem("Save as binary file");
+        menuItem1.setGraphic(new ImageView("icons/binaryFileIcon.png"));
+
+        menuItem2 = new MenuItem("Save as XML file");
+        menuItem2.setGraphic(new ImageView("icons/xmlFileIcon.jpg"));
+
+        saveMenu.getItems().add(menuItem1);
+        saveMenu.getItems().add(menuItem2);
+
         setUpdatesOnScreen();
         addGrossValue();
     }
@@ -98,6 +107,5 @@ public class HomepageController {
     private void setUpdatesOnScreen(){
         listView.setItems(null);
     }
-
 
 }

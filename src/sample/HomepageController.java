@@ -13,9 +13,10 @@ import net.sf.jasperreports.engine.JRException;
 
 import java.io.*;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class HomepageController {
+public class HomepageController implements ProductOperations {
     private UserModel model;
     private ProductModel productModel;
     private Locale currentLanguage;
@@ -99,9 +100,20 @@ public class HomepageController {
         }
     }
 
-    private void addGrossValue(){
+    @Override
+    public void addGrossValue(){
         int sum = productModel.getProducts().stream().mapToInt(Product::getTotalValue).sum();
         lblValue.setText(String.valueOf(sum));
+    }
+
+    @Override
+    public void addCheapestProduct() {
+        Optional<Product> min = productModel.getProducts().stream().min(Product::compareTo);
+    }
+
+    @Override
+    public void addMostExpensiveProduct() {
+        Optional<Product> max = productModel.getProducts().stream().max(Product::compareTo);
     }
 
     private void setUpdatesOnScreen(){

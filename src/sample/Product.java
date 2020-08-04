@@ -3,7 +3,7 @@ package sample;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Product {
+public class Product implements Comparable<Product> {
     private int id;
     private SimpleStringProperty name, price, warranty;
     private SimpleIntegerProperty  amount;
@@ -89,5 +89,12 @@ public class Product {
 
     public static int getTotalValue(Product product) {
         return product.getAmount() * Integer.parseInt(product.getPrice());
+    }
+
+    @Override
+    public int compareTo(Product o) {
+        if (Integer.parseInt(getPrice()) * getAmount() > Integer.parseInt(o.getPrice()) * o.getAmount()) return  1;
+        if (Integer.parseInt(getPrice()) * getAmount() == Integer.parseInt(o.getPrice()) * o.getAmount()) return  0;
+        return -1;
     }
 }

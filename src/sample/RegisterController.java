@@ -44,7 +44,7 @@ public class RegisterController {
 
     }
 
-    public void loginAction(ActionEvent actionEvent) throws IOException {
+    public void registerAction(ActionEvent actionEvent) throws IOException {
 
         if (userModel.getUsers().containsKey(fldUsername.getText())) {
             infoAlert("Username is already taken by another user");
@@ -56,7 +56,7 @@ public class RegisterController {
             return;
         }
 
-        if (passwordValidation(fldPassword.getText())){
+        if (!passwordValidation(fldPassword.getText())){
             infoAlert("Password must contain at least 9 characters with one number at least");
             return;
         }
@@ -97,7 +97,7 @@ public class RegisterController {
     }
 
     private boolean passwordValidation(String password){
-        return password.contains("[0-9]+") && password.length() > 9;
+        return password.contains("[0-9]+") && password.length() >= 9;
     }
 
     private void infoAlert(String message) {

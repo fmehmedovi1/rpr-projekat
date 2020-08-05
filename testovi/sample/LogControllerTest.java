@@ -1,5 +1,5 @@
 package sample;
-import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import javafx.fxml.FXMLLoader;
@@ -17,11 +17,9 @@ import java.util.ResourceBundle;
 
 @ExtendWith(ApplicationExtension.class)
 class LogControllerTest {
-    Stage classStage;
 
     @Start
     public void start (Stage stage) throws Exception {
-        classStage = stage;
         UserModel model = new UserModel();
         model.putData();
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation");
@@ -35,7 +33,7 @@ class LogControllerTest {
         stage.show();
     }
 
-@Test
+    @Test
     void logCancel(FxRobot robot){
         TextField fldUsername = robot.lookup("#fldUsername").queryAs(TextField.class);
         robot.clickOn("#fldUsername").write("korisnik1");
@@ -66,6 +64,5 @@ class LogControllerTest {
         RadioButton englishButton = robot.lookup("#englishButton").queryAs(RadioButton.class);
         assertEquals(false, englishButton.isSelected());
         robot.clickOn("#btnLogCancel");
-
     }
 }

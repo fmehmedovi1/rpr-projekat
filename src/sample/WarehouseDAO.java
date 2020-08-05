@@ -1,7 +1,10 @@
 package sample;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class WarehouseDAO {
 
@@ -262,6 +265,29 @@ public class WarehouseDAO {
        }
        return (result.size() == 0) ?  null : result;
    }
+
+    private void regenrateDatabes() {
+        Scanner ulaz = null;
+        try {
+            ulaz = new Scanner(new FileInputStream("database.db.sql"));
+            String sqlUpit = "";
+            while (ulaz.hasNext()) {
+                sqlUpit += ulaz.nextLine();
+                if (sqlUpit.length()>1 && sqlUpit.charAt(sqlUpit.length()-1)==';') {
+                    try {
+                        Statement stmt = conn.createStatement();
+                        stmt.execute(sqlUpit);
+                        sqlUpit = "";
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            ulaz.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

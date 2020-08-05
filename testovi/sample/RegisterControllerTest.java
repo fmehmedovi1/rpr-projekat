@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -65,7 +66,6 @@ class RegisterControllerTest {
         robot.clickOn("#fldRePassword").write("macca1233");
         robot.clickOn("#btnRegister");
 
-        dealWithDialog(robot);
         PasswordField fldRePassword = robot.lookup("#fldRePassword").queryAs(PasswordField.class);
         fldRePassword.setText("");
 
@@ -73,9 +73,34 @@ class RegisterControllerTest {
 
         robot.clickOn("#fldPassword");
         assertEquals("text-input text-field password-field rightData", fldRePassword.getStyleClass().toString());
+        robot.clickOn("#btnRegister");
 
+        robot.clickOn("#fldName").write("The Beatles");
+        robot.clickOn("#fldAddress").write("Liverpool");
+        robot.clickOn("#btnAdd");
+
+        ProgressBar progressBar = robot.lookup("#progressBar").queryAs(ProgressBar.class);
+
+        for (int i = 0; i < 100; i++) {
+            try {
+                // thread to sleep for 1000 milliseconds
+                Thread.sleep(50);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
     }
 
+    @Test
+    void registeredInDatabase(FxRobot robot) {
+     WarehouseDAO warehouseDAO = new WarehouseDAO();
+     User Paul = null;
+     for (User user : warehouseDAO.users()) if (user.getUsername().equals("Macca1")) Paul = user;
+     Warehouse warehouse = warehouseDAO.getWarehouse("Liverpool");
+     assertEquals(warehouse.getResponsiblePerson().getId(), Paul.getId());
+
+     warehouseDAO.removeInstance();
+    }
 
     private void dealWithDialog(FxRobot robot) {
         robot.lookup(".dialog-pane").tryQuery().isPresent();

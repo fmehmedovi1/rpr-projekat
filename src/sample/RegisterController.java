@@ -97,7 +97,10 @@ public class RegisterController {
     }
 
     private boolean passwordValidation(String password){
-        return password.contains("[0-9]+") && password.length() >= 9;
+        if (password.length() < 9) return false;
+        int numOfDigits = 0;
+        for(int i = 0; i < password.length(); i++) if (Character.isDigit(password.charAt(i))) numOfDigits++;
+        return numOfDigits > 0;
     }
 
     private void infoAlert(String message) {

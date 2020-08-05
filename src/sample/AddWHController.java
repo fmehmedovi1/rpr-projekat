@@ -84,7 +84,7 @@ public class AddWHController {
                     try {
                         int finalI = i;
                         Platform.runLater(() -> setProgressBar(finalI));
-                        Thread.sleep(100);
+                        Thread.sleep(50);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

@@ -29,7 +29,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnCnancel" alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="317.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="38.0" prefWidth="105.0" text="%Cancel">
+      <Button fx:id="btnCancel" alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="317.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="38.0" prefWidth="105.0" text="%Cancel">
          <font>
             <Font size="14.0" />
          </font>

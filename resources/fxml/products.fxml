@@ -24,18 +24,18 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="fldName" layoutX="151.0" layoutY="256.0" prefHeight="25.0" prefWidth="198.0" />
-      <Label layoutX="51.0" layoutY="298.0" prefHeight="20.0" prefWidth="48.0" text="%Price" textFill="WHITE">
+      <TextField fx:id="fldName" layoutX="176.0" layoutY="256.0" prefHeight="25.0" prefWidth="198.0" />
+      <Label layoutX="41.0" layoutY="298.0" prefHeight="20.0" prefWidth="48.0" text="%Price" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="336.0" prefHeight="25.0" prefWidth="70.0" text="%Amount" textFill="WHITE">
+      <Label layoutX="40.0" layoutY="336.0" prefHeight="25.0" prefWidth="70.0" text="%Amount" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="52.0" layoutY="257.0" prefHeight="21.0" prefWidth="65.0" text="%Name" textFill="#f2f2f2">
+      <Label layoutX="42.0" layoutY="257.0" prefHeight="21.0" prefWidth="65.0" text="%Name" textFill="#f2f2f2">
          <font>
             <Font size="15.0" />
          </font>
@@ -44,8 +44,8 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem fx:id="menuItemSave" mnemonicParsing="false" onAction="#saveAction" text="Save" />
-              <MenuItem fx:id="menuItemClose" mnemonicParsing="false" onAction="#closeAction" text="Close" />
+                  <MenuItem fx:id="menuItemSave" mnemonicParsing="false" onAction="#saveAction" text="%Save" />
+              <MenuItem fx:id="menuItemClose" mnemonicParsing="false" onAction="#closeAction" text="%Close" />
             </items>
           </Menu>
         </menus>
@@ -55,23 +55,23 @@
           <TableColumn fx:id="colName" prefWidth="115.0" text="%Name" />
           <TableColumn fx:id="colPrice" prefWidth="85.0" text="%Price" />
             <TableColumn fx:id="colAmount" prefWidth="92.0" text="%Amount" />
-            <TableColumn fx:id="colWarranty" prefWidth="85.0" text="Warranty" />
+            <TableColumn fx:id="colExpirationDate" prefWidth="85.0" text="%Expiration" />
         </columns>
       </TableView>
-      <Slider fx:id="sliderAmount" layoutX="151.0" layoutY="338.0" min="1.0" prefHeight="38.0" prefWidth="198.0" showTickLabels="true" showTickMarks="true" />
-      <Label layoutX="50.0" layoutY="383.0" prefHeight="25.0" prefWidth="76.0" text="%Warranty" textFill="WHITE">
+      <Slider fx:id="sliderAmount" layoutX="176.0" layoutY="338.0" min="1.0" prefHeight="38.0" prefWidth="198.0" showTickLabels="true" showTickMarks="true" />
+      <Label layoutX="40.0" layoutY="383.0" prefHeight="25.0" prefWidth="76.0" text="%Expiration" textFill="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="fldWarranty" layoutX="151.0" layoutY="383.0" prefHeight="25.0" prefWidth="198.0" />
-      <TextField fx:id="fldPrice" layoutX="151.0" layoutY="296.0" prefHeight="25.0" prefWidth="198.0" />
+      <TextField fx:id="fldWarranty" layoutX="176.0" layoutY="383.0" prefHeight="25.0" prefWidth="198.0" />
+      <TextField fx:id="fldPrice" layoutX="176.0" layoutY="296.0" prefHeight="25.0" prefWidth="198.0" />
       <Button fx:id="btnAlter" layoutX="153.0" layoutY="434.0" mnemonicParsing="false" onAction="#alterAction" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #22313f;" text="%Alter" textFill="#ebebeb">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Label fx:id="labelCounter" alignment="CENTER" layoutX="365.0" layoutY="338.0" prefHeight="20.0" prefWidth="37.0" style="-fx-background-color: #3498db;" text="1" textFill="WHITE">
+      <Label fx:id="labelCounter" alignment="CENTER" layoutX="390.0" layoutY="338.0" prefHeight="20.0" prefWidth="37.0" style="-fx-background-color: #3498db;" text="1" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>

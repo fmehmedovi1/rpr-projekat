@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -19,7 +20,7 @@ public class ProductController {
     public TableView<Product> tableView;
     public TextField fldName, fldPrice, fldWarranty;
     public Slider sliderAmount;
-    public TableColumn colName, colPrice, colAmount, colWarranty;
+    public TableColumn colName, colPrice, colAmount, colExpirationDate;
     public MenuBar menuBar;
     private ProductModel model;
     private Warehouse warehouse;
@@ -32,12 +33,11 @@ public class ProductController {
 
     @FXML
     public void initialize() {
-
         tableView.setItems(model.getProducts());
         colName.setCellValueFactory(new PropertyValueFactory("Name"));
         colPrice.setCellValueFactory(new PropertyValueFactory("Price"));
         colAmount.setCellValueFactory(new PropertyValueFactory("Amount"));
-        colWarranty.setCellValueFactory(new PropertyValueFactory("Warranty"));
+        colExpirationDate.setCellValueFactory(new PropertyValueFactory("expirationDate"));
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldProduct, newProduct) -> {
             model.setCurrentProduct(newProduct);
@@ -51,7 +51,7 @@ public class ProductController {
                 fldPrice.textProperty().unbindBidirectional(oldProduct.priceProperty());
                 sliderAmount.valueProperty().unbindBidirectional(oldProduct.amountProperty());
                 labelCounter.setText(String.valueOf((int) sliderAmount.getValue()));
-                fldWarranty.textProperty().unbindBidirectional((oldProduct.warrantyProperty()));
+                fldWarranty.textProperty().unbindBidirectional((oldProduct.expirationDateProperty()));
             }
             if (newProduct == null){
                 fldName.setText("");
@@ -64,7 +64,7 @@ public class ProductController {
                 fldPrice.textProperty().bindBidirectional(newProduct.priceProperty());
                 sliderAmount.valueProperty().bindBidirectional(newProduct.amountProperty());
                 labelCounter.setText(String.valueOf((int) sliderAmount.getValue()));
-                fldWarranty.textProperty().bindBidirectional(newProduct.warrantyProperty());
+                fldWarranty.textProperty().bindBidirectional(newProduct.expirationDateProperty());
             }
         }));
 

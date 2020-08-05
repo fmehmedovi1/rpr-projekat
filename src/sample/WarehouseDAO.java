@@ -37,7 +37,7 @@ public class WarehouseDAO {
 
             addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?,?)");
             deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE product_id = ?");
-            updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=?, warranty=? WHERE product_id=?");
+            updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=?, expiration_date=? WHERE product_id=?");
             productIdStm = conn.prepareStatement("SELECT MAX(product_id)+1 FROM products");
             productUpdatesIdStm = conn.prepareStatement("SELECT MAX(product_updates_id)+1 FROM product_updates");
 
@@ -94,7 +94,7 @@ public class WarehouseDAO {
             addProductStm.setString(2, product.getName());
             addProductStm.setInt(3, Integer.parseInt(product.getPrice()));
             addProductStm.setInt(4, product.getAmount());
-            addProductStm.setInt(5, Integer.parseInt(product.getWarranty()));
+            addProductStm.setInt(5, Integer.parseInt(product.getExpirationDate()));
             addProductStm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -225,7 +225,7 @@ public class WarehouseDAO {
             updateProductStm.setString(1, product.getName());
             updateProductStm.setInt(2, Integer.parseInt(product.getPrice()));
             updateProductStm.setInt(3, product.getAmount());
-            updateProductStm.setInt(4, Integer.parseInt(product.getWarranty()));
+            updateProductStm.setInt(4, Integer.parseInt(product.getExpirationDate()));
             updateProductStm.setInt(5, product.getId());
             updateProductStm.executeUpdate();
         } catch (SQLException e) {

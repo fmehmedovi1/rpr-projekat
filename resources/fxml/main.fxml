@@ -74,7 +74,7 @@
                </font>
             </Button>
             <Button fx:id="btnAbout1" layoutX="7.0" layoutY="503.0" mnemonicParsing="false" onAction="#otherUsersAction" prefHeight="31.0" prefWidth="198.0" style="-fx-background-color: #22313f;" text="%CONTACT" textFill="WHITE" />
-            <Label fx:id="lblValue" alignment="CENTER" layoutX="164.0" layoutY="424.0" prefHeight="25.0" prefWidth="36.0" style="-fx-background-color: #3498db;" text="0" textFill="#f2f2f2">
+            <Label fx:id="lblValue" alignment="CENTER" layoutX="152.0" layoutY="424.0" prefHeight="25.0" prefWidth="48.0" style="-fx-background-color: #3498db;" text="0" textFill="#f2f2f2">
                <font>
                   <Font size="15.0" />
                </font>
@@ -89,12 +89,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblBest" alignment="CENTER" layoutX="164.0" layoutY="352.0" prefHeight="25.0" prefWidth="36.0" style="-fx-background-color: #3498db;" text="0" textFill="#f2f2f2">
+            <Label fx:id="lblBest" alignment="CENTER" layoutX="152.0" layoutY="352.0" prefHeight="25.0" prefWidth="48.0" style="-fx-background-color: #3498db;" text="0" textFill="#f2f2f2">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="lblWorst" alignment="CENTER" layoutX="164.0" layoutY="388.0" prefHeight="25.0" prefWidth="36.0" style="-fx-background-color: #3498db;" text="0" textFill="#f2f2f2">
+            <Label fx:id="lblWorst" alignment="CENTER" layoutX="152.0" layoutY="388.0" prefHeight="25.0" prefWidth="48.0" style="-fx-background-color: #3498db;" text="0" textFill="#f2f2f2">
                <font>
                   <Font size="15.0" />
                </font>

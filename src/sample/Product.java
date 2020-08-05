@@ -5,16 +5,16 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Product implements Comparable<Product> {
     private int id;
-    private SimpleStringProperty name, price, warranty;
+    private SimpleStringProperty name, price, expirationDate;
     private SimpleIntegerProperty  amount;
     private Warehouse warehouse;
 
-    public Product(int id, String name, String price, int amount, String warranty, Warehouse warehouse) {
+    public Product(int id, String name, String price, int amount, String expirationDate, Warehouse warehouse) {
         this.id = id;
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleStringProperty(price);
         this.amount = new SimpleIntegerProperty(amount);
-        this.warranty = new SimpleStringProperty(warranty);
+        this.expirationDate = new SimpleStringProperty(expirationDate);
         this.warehouse = warehouse;
     }
 
@@ -50,16 +50,16 @@ public class Product implements Comparable<Product> {
         this.price.set(price);
     }
 
-    public String getWarranty() {
-        return warranty.get();
+    public String getExpirationDate() {
+        return expirationDate.get();
     }
 
-    public SimpleStringProperty warrantyProperty() {
-        return warranty;
+    public SimpleStringProperty expirationDateProperty() {
+        return expirationDate;
     }
 
-    public void setWarranty(String warranty) {
-        this.warranty.set(warranty);
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate.set(expirationDate);
     }
 
     public int getAmount() {
@@ -95,8 +95,6 @@ public class Product implements Comparable<Product> {
     public int compareTo(Product o) {
         if (getAmount() > o.getAmount() && getTotalValue() < o.getTotalValue()) return 1;
         if (getAmount() == o.getAmount() && getTotalValue() == o.getTotalValue()) return 1;
-
-
         return -1;
     }
 }

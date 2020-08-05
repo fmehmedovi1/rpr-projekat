@@ -16,6 +16,7 @@ import net.sf.jasperreports.engine.JRException;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -133,7 +134,7 @@ public class HomepageController implements ProductOperations {
         } catch(Exception e) {
             System.out.println("Greška: "+e);
         }
-        if (productUpdates != null) listView.setItems((ObservableList<String>) productUpdates);
+        if (productUpdates != null) putUpdatesInList(productUpdates.getUpdatesOnProduct());
     }
 
     public void loadXmlFile(ActionEvent actionEvent){
@@ -145,7 +146,7 @@ public class HomepageController implements ProductOperations {
         } catch(Exception e) {
             System.out.println("Greška: "+e);
         }
-        if (productUpdates != null) listView.setItems((ObservableList<String>) productUpdates);
+        if (productUpdates != null) putUpdatesInList(productUpdates.getUpdatesOnProduct());
     }
 
     @Override
@@ -169,13 +170,14 @@ public class HomepageController implements ProductOperations {
         lblBest.setText(String.valueOf(max.get().getTotalValue()));
     }
 
-    private void setUpdatesOnScreen(){
-        if (productModel.getUpdates() == null) listView.setItems(null);
-        else {
-            ObservableList<String> updates = FXCollections.observableArrayList();
-            for(String text : productModel.getUpdates()) updates.add(text);
-            listView.setItems(updates);
-        }
+    private void putUpdatesInList(ArrayList<String> arrayList){
+        ObservableList<String> updates = FXCollections.observableArrayList();
+        for(String text : arrayList) updates.add(text);
+        listView.setItems(updates);
     }
 
+    private void setUpdatesOnScreen(){
+        if (productModel.getUpdates() == null) listView.setItems(null);
+        else putUpdatesInList(productModel.getUpdates());
+    }
 }

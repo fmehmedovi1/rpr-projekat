@@ -74,10 +74,7 @@ public class ProductController {
     }
 
     public void addAction(ActionEvent actionEvent) throws WrongProductDataException {
-        if (fldName.getText().equals("") || fldWarranty.getText().equals("")) {
-            exceptionDialog();
-            return;
-        }
+        if (!checkFields()) return;;
 
         int max = 0;
         if (model.getProducts().size() != 0)
@@ -89,11 +86,13 @@ public class ProductController {
     }
 
     public void alterAction(ActionEvent actionEvent){
+        if (!checkFields()) return;
         model.alterProduct(model.getCurrentProduct());
         tableView.getSelectionModel().select(model.getCurrentProduct());
     }
 
     public void removeAction(ActionEvent actionEvent){
+        if (!checkFields()) return;
         model.removeProduct(model.getCurrentProduct());
         tableView.getSelectionModel().selectLast();
     }
@@ -109,6 +108,14 @@ public class ProductController {
         fileChooser.showSaveDialog(null);
         File file = fileChooser.getSelectedFile();
         model.writeFile(file);
+    }
+
+    private boolean checkFields(){
+        if (fldName.getText().equals("") || fldWarranty.getText().equals("") || !fldWarranty.getText().matches(".*\\d.*")) {
+            exceptionDialog();
+            return false;
+        }
+        return true;
     }
 
     private void exceptionDialog(){

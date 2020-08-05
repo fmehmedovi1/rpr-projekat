@@ -65,6 +65,7 @@ class LogControllerTest {
         robot.clickOn("#bosniaButton");
         RadioButton englishButton = robot.lookup("#englishButton").queryAs(RadioButton.class);
         assertEquals(false, englishButton.isSelected());
+        robot.clickOn("#btnLogCancel");
 
     }
 }

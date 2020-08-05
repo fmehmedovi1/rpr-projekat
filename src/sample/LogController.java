@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -108,7 +107,8 @@ public class LogController {
 
     public void cancelAction(ActionEvent actionEvent){
         model.disconnect();
-        Platform.exit();
+        Stage stage = (Stage) fldUsername.getScene().getWindow();
+        stage.close();
     }
 
     public void addUserAction(MouseEvent mouseEvent) throws IOException {

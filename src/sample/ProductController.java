@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -18,7 +17,7 @@ import java.io.StringWriter;
 public class ProductController {
 
     public TableView<Product> tableView;
-    public TextField fldName, fldPrice, fldWarranty;
+    public TextField fldName, fldPrice, fldExpiration;
     public Slider sliderAmount;
     public TableColumn colName, colPrice, colAmount, colExpirationDate;
     public MenuBar menuBar;
@@ -51,12 +50,12 @@ public class ProductController {
                 fldPrice.textProperty().unbindBidirectional(oldProduct.priceProperty());
                 sliderAmount.valueProperty().unbindBidirectional(oldProduct.amountProperty());
                 labelCounter.setText(String.valueOf((int) sliderAmount.getValue()));
-                fldWarranty.textProperty().unbindBidirectional((oldProduct.expirationDateProperty()));
+                fldExpiration.textProperty().unbindBidirectional((oldProduct.expirationDateProperty()));
             }
             if (newProduct == null){
                 fldName.setText("");
                 fldPrice.setText("0");
-                fldWarranty.setText("0");
+                fldExpiration.setText("0");
                 labelCounter.setText("1");
             }
             else {
@@ -64,7 +63,7 @@ public class ProductController {
                 fldPrice.textProperty().bindBidirectional(newProduct.priceProperty());
                 sliderAmount.valueProperty().bindBidirectional(newProduct.amountProperty());
                 labelCounter.setText(String.valueOf((int) sliderAmount.getValue()));
-                fldWarranty.textProperty().bindBidirectional(newProduct.expirationDateProperty());
+                fldExpiration.textProperty().bindBidirectional(newProduct.expirationDateProperty());
             }
         }));
 
@@ -74,14 +73,10 @@ public class ProductController {
     }
 
     public void addAction(ActionEvent actionEvent) throws WrongProductDataException {
-        if (!checkFields()) return;;
+        if (!checkFields()) throw new WrongProductDataException("");
 
-        int max = 0;
-        if (model.getProducts().size() != 0)
-            for(Product p : model.getProducts()) if (p.getId() > max) max = p.getId();
-
-        model.addProduct(new Product(max + 1, fldName.getText(), fldPrice.getText(), (int) sliderAmount.getValue(),
-                fldWarranty.getText(), warehouse));
+        model.addProduct(new Product(0, fldName.getText(), fldPrice.getText(), (int) sliderAmount.getValue(),
+                fldExpiration.getText(), warehouse));
         tableView.getSelectionModel().selectLast();
     }
 
@@ -111,7 +106,7 @@ public class ProductController {
     }
 
     private boolean checkFields(){
-        if (fldName.getText().equals("") || fldWarranty.getText().equals("") || !fldWarranty.getText().matches(".*\\d.*")) {
+        if (fldName.getText().equals("") || fldExpiration.getText().equals("") || !fldExpiration.getText().matches(".*\\d.*")) {
             exceptionDialog();
             return false;
         }

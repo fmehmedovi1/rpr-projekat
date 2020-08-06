@@ -54,8 +54,9 @@ class LogControllerTest {
         okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
         robot.clickOn(okButton);
 
-    robot.clickOn("#lblNewAcc") ;
-    robot.clickOn("#btnCancel");
+        robot.clickOn("#fldPassword").write("23");
+        robot.clickOn("#btnLogin");
+        robot.clickOn("#btnExit");
     }
 
     @Test

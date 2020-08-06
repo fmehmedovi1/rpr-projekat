@@ -92,7 +92,7 @@ public class WarehouseDAO {
         }
     }
 
-    public void addProduct(Product product) {
+    public int addProduct(Product product) {
         try {
             ResultSet rs = productIdStm.executeQuery();
             int id = rs.getInt(1);
@@ -103,8 +103,10 @@ public class WarehouseDAO {
             addProductStm.setInt(4, product.getAmount());
             addProductStm.setInt(5, Integer.parseInt(product.getExpirationDate()));
             addProductStm.executeUpdate();
+            return id;
         } catch (SQLException e) {
             e.printStackTrace();
+            return 0;
         }
     }
 
@@ -121,8 +123,9 @@ public class WarehouseDAO {
         }
     }
 
-    public void addProductsWarehouse(int warehouseId, int productId){
+    public void addProductsWarehouse(int warehouseId, Product product){
         try {
+            int productId = addProduct(product);
             addProductsWarehouse.setInt(1, warehouseId);
             addProductsWarehouse.setInt(2, productId);
             addProductsWarehouse.executeUpdate();
@@ -187,8 +190,8 @@ public class WarehouseDAO {
         try {
             getUserStm.setInt(1, id);
             ResultSet rs = getUserStm.executeQuery();
+
             if (!rs.next()) return null;
-//            return getUserFromResultSet(rs);
             return new User(rs.getInt(1), rs.getString(2), rs.getString(3),
                     rs.getString(4), rs.getString(5), rs.getString(6));
         } catch (SQLException e) {
@@ -273,29 +276,6 @@ public class WarehouseDAO {
        }
        return (result.size() == 0) ?  null : result;
    }
-
-    private void regenrateDatabase() {
-        Scanner ulaz = null;
-        try {
-            ulaz = new Scanner(new FileInputStream("database.db.sql"));
-            String sqlUpit = "";
-            while (ulaz.hasNext()) {
-                sqlUpit += ulaz.nextLine();
-                if (sqlUpit.length()>1 && sqlUpit.charAt(sqlUpit.length()-1)==';') {
-                    try {
-                        Statement stmt = conn.createStatement();
-                        stmt.execute(sqlUpit);
-                        sqlUpit = "";
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            ulaz.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 }
 
 

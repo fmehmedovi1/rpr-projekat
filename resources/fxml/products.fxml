@@ -19,7 +19,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="addRemove" layoutX="232.0" layoutY="434.0" mnemonicParsing="false" onAction="#removeAction" style="-fx-background-color: #22313f;" text="%Remove" textFill="#fcfcfc">
+      <Button fx:id="btnRemove" layoutX="232.0" layoutY="434.0" mnemonicParsing="false" onAction="#removeAction" style="-fx-background-color: #22313f;" text="%Remove" textFill="#fcfcfc">
          <font>
             <Font size="14.0" />
          </font>
@@ -42,7 +42,7 @@
       </Label>
       <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="451.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
             <items>
                   <MenuItem fx:id="menuItemSave" mnemonicParsing="false" onAction="#saveAction" text="%Save" />
               <MenuItem fx:id="menuItemClose" mnemonicParsing="false" onAction="#closeAction" text="%Close" />
@@ -64,7 +64,7 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="fldWarranty" layoutX="176.0" layoutY="383.0" prefHeight="25.0" prefWidth="198.0" />
+      <TextField fx:id="fldExpiration" layoutX="176.0" layoutY="383.0" prefHeight="25.0" prefWidth="198.0" />
       <TextField fx:id="fldPrice" layoutX="176.0" layoutY="296.0" prefHeight="25.0" prefWidth="198.0" />
       <Button fx:id="btnAlter" layoutX="153.0" layoutY="434.0" mnemonicParsing="false" onAction="#alterAction" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #22313f;" text="%Alter" textFill="#ebebeb">
          <font>

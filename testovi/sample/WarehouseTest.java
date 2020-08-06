@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class WarehouseTest {
     User exKapiten = new User(1, "Emir", "Spahić", "spaha", "spaha@hotmail.com", "spaha123");
 
-
     @org.junit.jupiter.api.Test
     void testConstructor() {
         Warehouse warehouse = new Warehouse(1, "Bayer WH", "Gacko", null);

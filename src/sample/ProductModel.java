@@ -42,8 +42,7 @@ public class ProductModel {
     public void addProduct(Product product){
         warehouseDAO.addUpdatesOnProduct(updateOnProduct(product, "+"), product.getId(), warehouse.getId());
         products.add(product);
-        warehouseDAO.addProduct(product);
-        warehouseDAO.addProductsWarehouse(product.getWarehouse().getId(), product.getId());
+        warehouseDAO.addProductsWarehouse(product.getWarehouse().getId(), product);
         setCurrentProduct(product);
     }
 

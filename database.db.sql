@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS "product_updates" (
 	FOREIGN KEY("product_id") REFERENCES "products"("product_id"),
 	FOREIGN KEY("warehouse_id") REFERENCES "warehouses"("warehouse_id")
 );
-INSERT INTO "users" VALUES (1,'Mujo','Mujić','mmujic1','mmujic1@etf.unsa.ba','mujo123');
+INSERT INTO "users" VALUES (1,'Korisnik','Korisnić','korisnik1','korisnik@hotmail.com','sifra123');
 INSERT INTO "users" VALUES (2,'Faris','Mehmedović','fmehmedovi1','fmehmedovi1@etf.unsa.ba','faris123');
 
 INSERT INTO "warehouses" VALUES (1,'FarisWH','Tuzla',1);

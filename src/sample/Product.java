@@ -9,7 +9,9 @@ public class Product implements Comparable<Product> {
     private SimpleIntegerProperty  amount;
     private Warehouse warehouse;
 
-    public Product(int id, String name, String price, int amount, String expirationDate, Warehouse warehouse) {
+    public Product(int id, String name, String price, int amount, String expirationDate, Warehouse warehouse) throws WrongProductDataException {
+        if (id == 0 || name.equals("") || amount == 0 ||expirationDate.equals(""))
+            throw new WrongProductDataException("Wrong info about product");
         this.id = id;
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleStringProperty(price);
@@ -22,7 +24,8 @@ public class Product implements Comparable<Product> {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id) throws WrongProductDataException {
+        if (id == 0) throw new WrongProductDataException("Wrong info about product");
         this.id = id;
     }
 
@@ -34,7 +37,8 @@ public class Product implements Comparable<Product> {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws WrongProductDataException {
+        if (name.equals("")) throw new WrongProductDataException("Wrong info about product");
         this.name.set(name);
     }
 
@@ -58,7 +62,8 @@ public class Product implements Comparable<Product> {
         return expirationDate;
     }
 
-    public void setExpirationDate(String expirationDate) {
+    public void setExpirationDate(String expirationDate) throws WrongProductDataException {
+        if (expirationDate.equals("")) throw new WrongProductDataException("Wrong info about product");
         this.expirationDate.set(expirationDate);
     }
 
@@ -70,7 +75,8 @@ public class Product implements Comparable<Product> {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(int amount) throws WrongProductDataException {
+        if (amount == 0) throw new WrongProductDataException("Wrong info about product");
         this.amount.set(amount);
     }
 

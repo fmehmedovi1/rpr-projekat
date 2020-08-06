@@ -3,9 +3,7 @@ package sample;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,9 +36,8 @@ class HomepageControllerTest {
         stage.show();
     }
 
-
     @Test
-    void actionPrint(FxRobot robot) {
+    void otherUsersAction(FxRobot robot) {
         File dbfile = new File("database.db");
         dbfile.delete();
 
@@ -53,29 +50,75 @@ class HomepageControllerTest {
         robot.clickOn("#btnLogin");
         robot.clickOn("#btnOtherUsers");
 
+        robot.clickOn("#btnAbout");
+
         robot.clickOn("#btnExit");
     }
 
     @Test
-    void actionAbout(FxRobot robot) {
-    }
-
-    @Test
-    void otherUsersAction(FxRobot robot) {
-    }
-
-    @Test
     void saveAsBinary(FxRobot robot) {
+        File dbfile = new File("database.db");
+        dbfile.delete();
+
+        model = new UserModel();
+        model.regenerate();
+        model.putData();
+
+        robot.clickOn("#fldUsername").write("korisnik1");
+        robot.clickOn("#fldPassword").write("sifra123");
+        robot.clickOn("#btnLogin");
+
+        robot.clickOn("#saveMenu");
+        robot.clickOn("#menuItem1");
+
+        ListView listView = robot.lookup("#listView").queryAs(ListView.class);
+        int size1 =  listView.getItems().size();
+
+        robot.clickOn("#btnProducts");
+        robot.clickOn("Šibice");
+        robot.clickOn("#btnRemove");
+        robot.clickOn("#exitBtn");
+
+        robot.clickOn("#loadMenu");
+        robot.clickOn("#menuItem3");
+
+        ListView listView2 = robot.lookup("#listView").queryAs(ListView.class);
+        int size2 =  listView2.getItems().size();
+        assertEquals(size1, size2 );
+        robot.clickOn("#btnExit");
     }
 
     @Test
-    void saveAsXml() {
+    void saveAsXml(FxRobot robot) {
+        File dbfile = new File("database.db");
+        dbfile.delete();
+
+        model = new UserModel();
+        model.regenerate();
+        model.putData();
+
+        robot.clickOn("#fldUsername").write("korisnik1");
+        robot.clickOn("#fldPassword").write("sifra123");
+        robot.clickOn("#btnLogin");
+
+        robot.clickOn("#saveMenu");
+        robot.clickOn("#menuItem2");
+
+        ListView listView = robot.lookup("#listView").queryAs(ListView.class);
+        int size1 =  listView.getItems().size();
+
+        robot.clickOn("#btnProducts");
+        robot.clickOn("Šibice");
+        robot.clickOn("#btnRemove");
+        robot.clickOn("#exitBtn");
+
+        robot.clickOn("#loadMenu");
+        robot.clickOn("#menuItem4");
+
+        ListView listView2 = robot.lookup("#listView").queryAs(ListView.class);
+        int size2 =  listView2.getItems().size();
+        assertEquals(size1, size2 );
+        robot.clickOn("#btnExit");
     }
 
-    private void dealWithDialog(FxRobot robot) {
-        robot.lookup(".dialog-pane").tryQuery().isPresent();
-        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
-        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-        robot.clickOn(okButton);
-    }
 }

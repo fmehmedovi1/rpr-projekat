@@ -58,8 +58,6 @@ public class HomepageController implements ProductOperations {
         addWorstValue();
     }
 
-    public void actionPrint(ActionEvent actionEvent){}
-
     public void actionProducts(ActionEvent actionEvent) throws IOException {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
         ProductController controller = new ProductController(productModel, warehouse);

@@ -40,7 +40,13 @@ public class ProductController {
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldProduct, newProduct) -> {
             model.setCurrentProduct(newProduct);
-            if (model.getCurrentProduct() != null) model.getCurrentProduct().setAmount((int)sliderAmount.getValue());
+            if (model.getCurrentProduct() != null) {
+                try {
+                    model.getCurrentProduct().setAmount((int)sliderAmount.getValue());
+                } catch (WrongProductDataException e) {
+                    e.printStackTrace();
+                }
+            }
             tableView.refresh();
         });
 
@@ -73,9 +79,9 @@ public class ProductController {
     }
 
     public void addAction(ActionEvent actionEvent) throws WrongProductDataException {
-        if (!checkFields()) throw new WrongProductDataException("");
+        if (!checkFields()) throw new WrongProductDataException("Wrong info about product");
 
-        model.addProduct(new Product(0, fldName.getText(), fldPrice.getText(), (int) sliderAmount.getValue(),
+        model.addProduct(new Product(1, fldName.getText(), fldPrice.getText(), (int) sliderAmount.getValue(),
                 fldExpiration.getText(), warehouse));
         tableView.getSelectionModel().selectLast();
     }

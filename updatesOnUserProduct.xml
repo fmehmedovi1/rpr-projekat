@@ -4,40 +4,10 @@
   <void property="updatesOnProduct">
    <object class="java.util.ArrayList">
     <void method="add">
-     <string>+Kukuruzi: 4(10BAM), 2020-35-04 07:35:46</string>
+     <string>+Cigle: 5(10 BAM), 2020-19-05 03:19:59</string>
     </void>
     <void method="add">
-     <string>~Kukuruzi: 1(10BAM), 2020-11-04 08:11:43</string>
-    </void>
-    <void method="add">
-     <string>~Kukuruzi: 1(12BAM), 2020-11-04 08:11:57</string>
-    </void>
-    <void method="add">
-     <string>+Keks: 50(9 BAM), 2020-20-04 08:20:33</string>
-    </void>
-    <void method="add">
-     <string>-Keks: 1(9 BAM), 2020-21-04 08:21:37</string>
-    </void>
-    <void method="add">
-     <string>+Brasno: 27(3 BAM), 2020-21-04 09:21:57</string>
-    </void>
-    <void method="add">
-     <string>+Brasno: 27(3 BAM), 2020-22-04 09:22:18</string>
-    </void>
-    <void method="add">
-     <string>-Brasno: 27(3 BAM), 2020-22-04 09:22:23</string>
-    </void>
-    <void method="add">
-     <string>+brasno: 52(4 BAM), 2020-24-04 09:24:02</string>
-    </void>
-    <void method="add">
-     <string>+kisela: 93(1 BAM), 2020-24-04 09:24:41</string>
-    </void>
-    <void method="add">
-     <string>+suknja: 54(123 BAM), 2020-25-04 09:25:22</string>
-    </void>
-    <void method="add">
-     <string>~kisela: 90(1 BAM), 2020-49-05 01:49:59</string>
+     <string>+Šibice: 1(20 BAM), 2020-19-05 03:29:00</string>
     </void>
    </object>
   </void>

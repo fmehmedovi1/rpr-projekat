@@ -1,10 +1,7 @@
 package sample;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class WarehouseDAO {
 
@@ -159,7 +156,7 @@ public class WarehouseDAO {
                         String.valueOf(rs.getInt(3)), rs.getInt(4), String.valueOf(rs.getInt(5)), warehouse);
                 result.add(product);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | WrongProductDataException e) {
             e.printStackTrace();
         }
         return result;
@@ -205,8 +202,7 @@ public class WarehouseDAO {
         try {
             getWarehouseStm.setInt(1, id);
             ResultSet rs = getWarehouseStm.executeQuery();
-            boolean ja = true;
-            if (rs.isClosed()) ja = false;
+
             w = new Warehouse(rs.getInt(1), rs.getString(2), rs.getString(3), null);
             User user = getUser(rs.getInt(4));
             w.setResponsiblePerson(user);

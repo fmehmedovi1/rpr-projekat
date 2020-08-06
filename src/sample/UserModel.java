@@ -3,7 +3,6 @@ package sample;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -56,7 +55,7 @@ public class UserModel {
     }
 
     public Warehouse getUserWarehouse(){
-        return warehouseDAO.getWarehouse(currentUser.getUsername());
+        return warehouseDAO.getWarehouse(currentUser.getId());
     }
 
     public WarehouseDAO getWarehouseDAO(){return warehouseDAO;}

@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 
@@ -41,7 +42,6 @@ public class RegisterController {
         checkFieldData(fldEMail);
         checkFieldData(fldPassword);
         checkPasswordData(fldRePassword, fldPassword);
-
     }
 
     public void registerAction(ActionEvent actionEvent) throws IOException {
@@ -51,7 +51,7 @@ public class RegisterController {
             return;
         }
 
-        if (!emailValidation()){
+        if (!emailValidation()) {
             warningAlert("Invalid e-mail");
             return;
         }
@@ -63,7 +63,7 @@ public class RegisterController {
 
         if (!fldPassword.getText().equals(fldRePassword.getText())) return;
 
-        User user = new User(userModel.getUsers().size() + 1, fldFirstName.getText(), fldLastName.getText(),
+        User user = new User(0, fldFirstName.getText(), fldLastName.getText(),
                 fldUsername.getText(), fldEMail.getText(), fldPassword.getText());
 
         userModel.getUsers().put(fldUsername.getText(), user);
@@ -79,10 +79,17 @@ public class RegisterController {
         });
     }
 
-    private void checkPasswordData(TextField textField1, TextField textField2){
-        textField1.textProperty().addListener((obs, oldName, newName) -> {
-            if (!newName.isEmpty() && textField1.getText().equals(textField2.getText())) rightInfo(textField1);
-            else wrongInfo(textField1);
+    private void checkPasswordData(PasswordField passwordField1, PasswordField passwordField2){
+        passwordField1.textProperty().addListener((obs, oldName, newName) -> {
+            if (!newName.isEmpty() && passwordField1.getText().equals(passwordField2.getText())) {
+                rightInfo(passwordField1);
+                rightInfo(passwordField2);
+            }
+            else
+            {
+                wrongInfo(passwordField1);
+                wrongInfo(passwordField2);
+            }
         });
     }
 
@@ -147,13 +154,13 @@ public class RegisterController {
 
         try {
             URL url = new URL("https://www." + text);
+            rightInfo(fldEMail);
             return true;
         } catch (MalformedURLException e) {
+                wrongInfo(fldEMail);
                 return false;
             }
         }
-
-
 }
 
 

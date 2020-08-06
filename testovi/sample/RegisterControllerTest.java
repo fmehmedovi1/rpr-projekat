@@ -25,11 +25,12 @@ class RegisterControllerTest {
 
     @Start
     public void start (Stage stage) throws Exception {
-        File dbfile = new File("database.db");
-        dbfile.delete();
+//        File dbfile = new File("database.db");
+//        dbfile.delete();
 
         model = new UserModel();
-        model.putData();
+//        model.regenerate();
+//        model.putData();
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation");
         LogController controller = new LogController(model);
@@ -84,7 +85,7 @@ class RegisterControllerTest {
         robot.clickOn("#fldRePassword").write("macca1234");
 
         robot.clickOn("#fldPassword");
-        assertEquals("text-input text-field password-field rightData", fldRePassword.getStyleClass().toString());
+        assertEquals("text-input text-field password-field rightData rightData", fldRePassword.getStyleClass().toString());
         robot.clickOn("#btnRegister");
 
         robot.clickOn("#fldName").write("The Beatles");

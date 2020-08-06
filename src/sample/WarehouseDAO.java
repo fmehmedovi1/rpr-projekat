@@ -13,7 +13,7 @@ public class WarehouseDAO {
     private PreparedStatement getProductsStm, getWarehouseStm, getUsersStm, deleteProductStm, updateProductStm,
             addUserStm, addProductStm, addWarehouseStm, warehouseIdStm, getUserStm,
             deleteProductsWarehouse, addProductsWarehouse, productIdStm, getWarehousesStm,
-            addUpdateOnProductStm, getUpdatesOnProductStm, productUpdatesIdStm;
+            addUpdateOnProductStm, getUpdatesOnProductStm, productUpdatesIdStm, userIdStm;
 
     public WarehouseDAO() {
         try {
@@ -34,7 +34,7 @@ public class WarehouseDAO {
 
             addWarehouseStm = conn.prepareStatement("INSERT INTO warehouses VALUES(?,?,?,?)");
             getWarehousesStm = conn.prepareStatement("SELECT * FROM warehouses w");
-            getWarehouseStm = conn.prepareStatement("SELECT * FROM warehouses w, users u WHERE w.responsible_preson_id = u.user_id AND u.username = ?");
+            getWarehouseStm = conn.prepareStatement("SELECT * FROM warehouses WHERE responsible_preson_id=?");
             warehouseIdStm = conn.prepareStatement("SELECT MAX(warehouse_id)+1 FROM warehouses");
             getUpdatesOnProductStm = conn.prepareStatement("SELECT product_operation FROM product_updates WHERE warehouse_id = ?");
 
@@ -43,6 +43,7 @@ public class WarehouseDAO {
             updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=?, expiration_date=? WHERE product_id=?");
             productIdStm = conn.prepareStatement("SELECT MAX(product_id)+1 FROM products");
             productUpdatesIdStm = conn.prepareStatement("SELECT MAX(product_updates_id)+1 FROM product_updates");
+            userIdStm = conn.prepareStatement("SELECT MAX(user_id)+1 FROM users");
 
             addProductsWarehouse = conn.prepareStatement("INSERT INTO warehouse_products VALUES(?,?)");
             deleteProductsWarehouse = conn.prepareStatement("DELETE FROM warehouse_products WHERE product_id=?");
@@ -76,7 +77,10 @@ public class WarehouseDAO {
 
     public void addUser(User user) {
         try {
-            addUserStm.setInt(1, user.getId());
+            ResultSet rs = userIdStm.executeQuery();
+            int id = rs.getInt(1);
+            if (id == 0) id++;
+            addUserStm.setInt(1, id);
             addUserStm.setString(2, user.getFirstName());
             addUserStm.setString(3, user.getLastName());
             addUserStm.setString(4, user.getUsername());
@@ -184,18 +188,22 @@ public class WarehouseDAO {
             getUserStm.setInt(1, id);
             ResultSet rs = getUserStm.executeQuery();
             if (!rs.next()) return null;
-            return getUserFromResultSet(rs);
+//            return getUserFromResultSet(rs);
+            return new User(rs.getInt(1), rs.getString(2), rs.getString(3),
+                    rs.getString(4), rs.getString(5), rs.getString(6));
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public Warehouse getWarehouse(String username){
+    public Warehouse getWarehouse(int id){
         Warehouse w = null;
         try {
-            getWarehouseStm.setString(1, username);
+            getWarehouseStm.setInt(1, id);
             ResultSet rs = getWarehouseStm.executeQuery();
+            boolean ja = true;
+            if (rs.isClosed()) ja = false;
             w = new Warehouse(rs.getInt(1), rs.getString(2), rs.getString(3), null);
             User user = getUser(rs.getInt(4));
             w.setResponsiblePerson(user);

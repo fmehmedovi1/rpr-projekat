@@ -1,11 +1,9 @@
 package sample;
 
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +16,6 @@ import org.testfx.framework.junit5.Start;
 
 import java.io.File;
 import java.sql.*;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 
@@ -47,6 +44,13 @@ class RegisterControllerTest {
 
     @Test
     void registerAction(FxRobot robot) {
+        File dbfile = new File("database.db");
+        dbfile.delete();
+
+        model = new UserModel();
+        model.regenerate();
+        model.putData();
+
         robot.clickOn("#lblNewAcc") ;
         robot.clickOn("#btnRegister");
         dealWithDialog(robot);

@@ -17,10 +17,10 @@ import java.util.ResourceBundle;
 
 @ExtendWith(ApplicationExtension.class)
 class LogControllerTest {
+    UserModel model = new UserModel();
 
     @Start
     public void start (Stage stage) throws Exception {
-        UserModel model = new UserModel();
         model.putData();
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation");
         LogController controller = new LogController(model);

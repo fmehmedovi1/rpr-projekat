@@ -1,7 +1,14 @@
 package sample;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class UserModel {
     private Map<String, User> users = new HashMap<>();
@@ -53,4 +60,40 @@ public class UserModel {
     }
 
     public WarehouseDAO getWarehouseDAO(){return warehouseDAO;}
+
+    public void regenerate() {
+
+        Connection conn = warehouseDAO.getConn();
+        try {
+            PreparedStatement deleteWarehouseProducts = conn.prepareStatement("drop table warehouse_products");
+            deleteWarehouseProducts.executeUpdate();
+            PreparedStatement deleteProductUpdates = conn.prepareStatement("drop table product_updates");
+            deleteProductUpdates.executeUpdate();
+            PreparedStatement deleteWarehouses = conn.prepareStatement("drop table warehouses");
+            deleteWarehouses.executeUpdate();
+            PreparedStatement deleteProducts = conn.prepareStatement("drop table products");
+            deleteProducts.executeUpdate();
+            PreparedStatement deleteUsers = conn.prepareStatement("drop table users");
+            deleteUsers.executeUpdate();
+
+
+            Scanner ulaz = new Scanner(new FileInputStream("database.db.sql"));
+            StringBuilder upit = new StringBuilder();
+            while (ulaz.hasNext()) {
+                upit.append(ulaz.nextLine());
+                if (upit.length() > 1) {
+                    if (upit.charAt(upit.length() - 1) == ';') {
+                        PreparedStatement stmt = conn.prepareStatement(upit.toString());
+                        stmt.execute();
+                        upit = new StringBuilder();
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

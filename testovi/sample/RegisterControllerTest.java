@@ -16,16 +16,24 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
+import java.io.File;
+import java.sql.*;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 
 @ExtendWith(ApplicationExtension.class)
 class RegisterControllerTest {
+    UserModel model;
 
     @Start
     public void start (Stage stage) throws Exception {
-        UserModel model = new UserModel();
+        File dbfile = new File("database.db");
+        dbfile.delete();
+
+        model = new UserModel();
         model.putData();
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation");
         LogController controller = new LogController(model);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"), resourceBundle);
@@ -79,8 +87,6 @@ class RegisterControllerTest {
         robot.clickOn("#fldAddress").write("Liverpool");
         robot.clickOn("#btnAdd");
 
-        ProgressBar progressBar = robot.lookup("#progressBar").queryAs(ProgressBar.class);
-
         for (int i = 0; i < 100; i++) {
             try {
                 // thread to sleep for 1000 milliseconds
@@ -93,13 +99,23 @@ class RegisterControllerTest {
 
     @Test
     void registeredInDatabase(FxRobot robot) {
-     WarehouseDAO warehouseDAO = new WarehouseDAO();
-     User Paul = null;
-     for (User user : warehouseDAO.users()) if (user.getUsername().equals("Macca1")) Paul = user;
-     Warehouse warehouse = warehouseDAO.getWarehouse("Liverpool");
-     assertEquals(warehouse.getResponsiblePerson().getId(), Paul.getId());
-
-     warehouseDAO.removeInstance();
+        model.disconnect();
+        Connection conn;
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:database.db");
+            try {
+                PreparedStatement findPaul = conn.prepareStatement("SELECT first_name FROM users WHERE last_name='McCartney'");
+                ResultSet rs = findPaul.executeQuery();
+                rs.next();
+                String name = rs.getString(1);
+                assertEquals("Paul", name);
+                conn.close();
+            } catch (SQLException e) {
+                fail("No user such as McCartney");
+            }
+        } catch (SQLException e) {
+            fail("jdbc:sqlite:korisnici.db doesn't exist or unavailable ");
+        }
     }
 
     private void dealWithDialog(FxRobot robot) {

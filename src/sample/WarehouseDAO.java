@@ -266,7 +266,7 @@ public class WarehouseDAO {
        return (result.size() == 0) ?  null : result;
    }
 
-    private void regenrateDatabes() {
+    private void regenrateDatabase() {
         Scanner ulaz = null;
         try {
             ulaz = new Scanner(new FileInputStream("database.db.sql"));

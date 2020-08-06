@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS "products" (
 	"name"	TEXT,
 	"price"	INTEGER,
 	"quantity"	INTEGER,
-	"warranty"	INTEGER,
+	"expiration_date"	INTEGER,
 	PRIMARY KEY("product_id")
 );
 CREATE TABLE IF NOT EXISTS "users" (
@@ -30,22 +30,35 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"password"	TEXT,
 	PRIMARY KEY("user_id")
 );
+
+CREATE TABLE IF NOT EXISTS "product_updates" (
+	"product_updates_id"	INTEGER,
+	"product_operation"	TEXT,
+	"product_id"	TEXT,
+	"warehouse_id"	TEXT,
+	PRIMARY KEY("product_updates_id"),
+	FOREIGN KEY("product_id") REFERENCES "products"("product_id"),
+	FOREIGN KEY("warehouse_id") REFERENCES "warehouses"("warehouse_id")
+);
+INSERT INTO "users" VALUES (1,'Mujo','Mujić','mmujic1','mmujic1@etf.unsa.ba','mujo123');
+INSERT INTO "users" VALUES (2,'Faris','Mehmedović','fmehmedovi1','fmehmedovi1@etf.unsa.ba','faris123');
+
 INSERT INTO "warehouses" VALUES (1,'FarisWH','Tuzla',1);
-INSERT INTO "warehouses" VALUES (2,'MuxWare','Trebinje',2);
-INSERT INTO "warehouses" VALUES (3,'SareWare','Tučepi',3);
+INSERT INTO "warehouses" VALUES (2,'Ware','Trebinje',2);
+
+INSERT INTO "products" VALUES (1,'Cigle',10,5,50);
+INSERT INTO "products" VALUES (2,'Šibice',1,20,32);
+INSERT INTO "products" VALUES (3,'Palete',200,2,12);
+INSERT INTO "products" VALUES (4,'Lopate',30,15,14);
+
 INSERT INTO "warehouse_products" VALUES (1,1);
 INSERT INTO "warehouse_products" VALUES (1,2);
 INSERT INTO "warehouse_products" VALUES (2,3);
 INSERT INTO "warehouse_products" VALUES (2,4);
-INSERT INTO "warehouse_products" VALUES (3,5);
-INSERT INTO "warehouse_products" VALUES (3,6);
-INSERT INTO "products" VALUES (1,'Cigle',10,5);
-INSERT INTO "products" VALUES (2,'Šibice',1,20);
-INSERT INTO "products" VALUES (3,'Palete',200,2);
-INSERT INTO "products" VALUES (4,'Lopate',30,15);
-INSERT INTO "products" VALUES (5,'Pijesak',12,100);
-INSERT INTO "products" VALUES (6,'Mandoline',300,2);
-INSERT INTO "users" VALUES (1,'Faris','Mehmedović','fmehmedovi1','fmehmedovi1@etf.unsa.ba','faris123');
-INSERT INTO "users" VALUES (2,'Mujo','Mujić','mmujic1','mmujic1@etf.unsa.ba','mujo123');
-INSERT INTO "users" VALUES (3,'Sara','Sarić','ssaric1','ssaric1@etf.unsa.ba','sara123');
+
+INSERT INTO "product_updates" VALUES (1, '+Cigle: 5(10 BAM), 2020-19-05 03:19:59',1,1);
+INSERT INTO "product_updates" VALUES (2, '+Šibice: 1(20 BAM), 2020-19-05 03:29:00',2,1);
+INSERT INTO "product_updates" VALUES (3, '+Palete: 200(2 BAM), 2020-19-05 03:29:01',3,2);
+INSERT INTO "product_updates" VALUES (4, '+Lopate: 30(15 BAM), 2020-19-05 03:29:02',4,2);
+
 COMMIT;

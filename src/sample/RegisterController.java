@@ -135,7 +135,7 @@ public class RegisterController {
     }
 
     public void cancelAction(ActionEvent actionEvent){
-        userModel.getWarehouseDAO().removeInstance();
+        userModel.disconnect();
         Stage stage = (Stage) fldFirstName.getScene().getWindow();
         stage.close();
     }

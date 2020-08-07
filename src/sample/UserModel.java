@@ -50,10 +50,6 @@ public class UserModel {
         warehouseDAO.addUser(user);
     }
 
-    public void deleteUser(User user){
-        this.users.remove(user.getUsername());
-    }
-
     public Warehouse getUserWarehouse(){
         return warehouseDAO.getWarehouse(currentUser.getId());
     }

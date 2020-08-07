@@ -79,7 +79,7 @@ public class ProductModel {
             String text = "";
             FileWriter fileWriter = new FileWriter(file);
             for(Product p : getProducts())
-                text += "::" + p.getName().toLowerCase() + ":" + p.getPrice() + ":" + p.getAmount() + "::\n";
+                text += "::" + p.getName().toLowerCase() + ":" + p.getPrice() + ":" + p.getAmount() + "::" + "\n";
             fileWriter.write(text);
             fileWriter.close();
         } catch (IOException e) {

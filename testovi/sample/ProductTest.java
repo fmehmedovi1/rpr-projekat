@@ -6,7 +6,6 @@ class ProductTest {
     User user = new User(1, "Sead", "Salihovic", "sejo", "sejo@hotmail.com", "sejo123");
     Warehouse warehouse = new Warehouse(1, "Hoffenheim warehouse", "Hoffenheim", user);
     Product lopte;
-
     {
         try {
             lopte = new Product(5, "lopte", "40", 40, "36", null);
@@ -74,7 +73,6 @@ class ProductTest {
         } catch (WrongProductDataException e) {
             e.printStackTrace();
         }
-
     }
 
 }

@@ -178,11 +178,6 @@ public class WarehouseDAO {
         return result;
     }
 
-    private User getUserFromResultSet(ResultSet rs) throws SQLException {
-        return new User(rs.getInt(1), rs.getString(2), rs.getString(3),
-                rs.getString(4), rs.getString(5), rs.getString(6));
-    }
-
     private User getUser(int id){
         try {
             getUserStm.setInt(1, id);

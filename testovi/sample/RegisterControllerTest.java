@@ -26,6 +26,8 @@ class RegisterControllerTest {
     @Start
     public void start (Stage stage) throws Exception {
         model = new UserModel();
+        model.regenerate();
+        model.putData();
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation");
         LogController controller = new LogController(model);
@@ -44,7 +46,6 @@ class RegisterControllerTest {
         dbfile.delete();
 
         model = new UserModel();
-        model.regenerate();
         model.putData();
 
         robot.clickOn("#lblNewAcc") ;
@@ -89,7 +90,6 @@ class RegisterControllerTest {
 
         for (int i = 0; i < 100; i++) {
             try {
-                // thread to sleep for 1000 milliseconds
                 Thread.sleep(50);
             } catch (Exception e) {
                 System.out.println(e);

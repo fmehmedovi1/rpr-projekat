@@ -39,9 +39,6 @@ class HomepageControllerTest {
 
     @Test
     void otherUsersAction(FxRobot robot) {
-        File dbfile = new File("database.db");
-        dbfile.delete();
-
         model = new UserModel();
         model.regenerate();
         model.putData();
@@ -58,13 +55,6 @@ class HomepageControllerTest {
 
     @Test
     void saveAsBinary(FxRobot robot) {
-        File dbfile = new File("database.db");
-        dbfile.delete();
-
-        model = new UserModel();
-        model.regenerate();
-        model.putData();
-
         robot.clickOn("#fldUsername").write("korisnik1");
         robot.clickOn("#fldPassword").write("sifra123");
         robot.clickOn("#btnLogin");
@@ -91,13 +81,6 @@ class HomepageControllerTest {
 
     @Test
     void saveAsXml(FxRobot robot) {
-        File dbfile = new File("database.db");
-        dbfile.delete();
-
-        model = new UserModel();
-        model.regenerate();
-        model.putData();
-
         robot.clickOn("#fldUsername").write("korisnik1");
         robot.clickOn("#fldPassword").write("sifra123");
         robot.clickOn("#btnLogin");

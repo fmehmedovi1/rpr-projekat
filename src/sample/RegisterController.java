@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,8 +14,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
-
 
 public class RegisterController {
     private UserModel userModel;
@@ -31,16 +30,6 @@ public class RegisterController {
     public RegisterController(UserModel model, Locale currentLanguage) {
         this.userModel = model;
         this.currentLanguage = currentLanguage;
-    }
-
-    @FXML
-    public void initialize() {
-        checkFieldData(fldFirstName);
-        checkFieldData(fldLastName);
-        checkFieldData(fldUsername);
-        checkFieldData(fldEMail);
-        checkFieldData(fldPassword);
-        checkPasswordData(fldRePassword, fldPassword);
     }
 
     public void registerAction(ActionEvent actionEvent) throws IOException {
@@ -60,9 +49,13 @@ public class RegisterController {
             return;
         }
 
+        checkPasswordData(fldPassword, fldRePassword);
+
         if (!fldPassword.getText().equals(fldRePassword.getText())) return;
 
-        User user = new User(0, fldFirstName.getText(), fldLastName.getText(),
+        Optional<User> lastUser = userModel.getWarehouseDAO().users().stream().max(User::compareTo);
+
+        User user = new User(lastUser.get().getId() + 1, fldFirstName.getText(), fldLastName.getText(),
                 fldUsername.getText(), fldEMail.getText(), fldPassword.getText());
 
         userModel.getUsers().put(fldUsername.getText(), user);
@@ -71,24 +64,11 @@ public class RegisterController {
         loadView();
     }
 
-    private void checkFieldData(TextField textField){
-        textField.textProperty().addListener((obs, oldName, newName) -> {
-            if (!newName.isEmpty()) rightInfo(textField);
-            else wrongInfo(textField);
-        });
-    }
-
     private void checkPasswordData(PasswordField passwordField1, PasswordField passwordField2){
-        passwordField1.textProperty().addListener((obs, oldName, newName) -> {
-            if (!newName.isEmpty() && passwordField1.getText().equals(passwordField2.getText())) {
-                rightInfo(passwordField1);
+        passwordField2.textProperty().addListener((obs, oldName, newName) -> {
+            if (!newName.isEmpty() && passwordField1.getText().equals(passwordField2.getText()))
                 rightInfo(passwordField2);
-            }
-            else
-            {
-                wrongInfo(passwordField1);
-                wrongInfo(passwordField2);
-            }
+            else wrongInfo(passwordField2);
         });
     }
 
@@ -153,13 +133,11 @@ public class RegisterController {
 
         try {
             URL url = new URL("https://www." + text);
-            rightInfo(fldEMail);
             return true;
         } catch (MalformedURLException e) {
-                wrongInfo(fldEMail);
-                return false;
-            }
+            return false;
         }
+    }
 }
 
 

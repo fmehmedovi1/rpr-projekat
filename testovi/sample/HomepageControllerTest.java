@@ -22,10 +22,6 @@ class HomepageControllerTest {
 
     @Start
     public void start (Stage stage) throws Exception {
-        File dbfile = new File("database.db");
-        dbfile.delete();
-
-
         model = new UserModel();
         model.regenerate();
         model.putData();

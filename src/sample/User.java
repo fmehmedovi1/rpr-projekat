@@ -1,6 +1,6 @@
 package sample;
 
-public class User {
+public class User implements Comparable<User> {
     private int id;
     private String firstName, lastName, username, email, password;
 
@@ -59,5 +59,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        if (o == null) return -1;
+        if (getId() > o.getId()) return 1;
+        if (getId() == o.getId()) return 0;
+        return -1;
+
     }
 }

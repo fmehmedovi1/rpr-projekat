@@ -25,9 +25,10 @@ public class ProductModel {
     }
 
     public void putData(){
-        for(Product p : warehouseDAO.products(warehouse)) {
-            products.add(p);
-        }
+        if (warehouseDAO.products(warehouse) != null)
+                for(Product p : warehouseDAO.products(warehouse)) {
+                    products.add(p);
+                }
         currentProduct.setValue(null);
     }
 

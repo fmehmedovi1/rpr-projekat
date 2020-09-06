@@ -6,15 +6,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-
-import java.io.File;
 import java.sql.*;
 import java.util.ResourceBundle;
 
@@ -42,9 +39,6 @@ class RegisterControllerTest {
 
     @Test
     void registerAction(FxRobot robot) {
-        File dbfile = new File("database.db");
-        dbfile.delete();
-
         model = new UserModel();
         model.putData();
 

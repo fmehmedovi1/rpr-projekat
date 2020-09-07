@@ -39,9 +39,6 @@ class RegisterControllerTest {
 
     @Test
     void registerAction(FxRobot robot) {
-        model = new UserModel();
-        model.putData();
-
         robot.clickOn("#lblNewAcc") ;
         robot.clickOn("#btnRegister");
         dealWithDialog(robot);

@@ -66,7 +66,7 @@ public class HomepageController implements ProductOperations {
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setTitle("My Products");
-        stage.setScene(new Scene(root, 450, 500));
+        stage.setScene(new Scene(root, 500, 500));
         stage.show();
 
         stage.setOnHiding(windowEvent -> {

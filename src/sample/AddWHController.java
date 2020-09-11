@@ -47,7 +47,7 @@ public class AddWHController {
                 ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
                 userModel.getWarehouseDAO().addWarehouse(fldName.getText(), fldAddress.getText(), userModel.getCurrentUser().getId());
                 HomepageController controller = new HomepageController(userModel, currentLanguage);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), resourceBundle);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homepage.fxml"), resourceBundle);
                 loader.setController(controller);
                 Parent root = null;
                 try {

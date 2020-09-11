@@ -76,7 +76,7 @@ public class LogController {
 
                 ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
                 HomepageController controller = new HomepageController(model, currentLanguage);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), resourceBundle);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homepage.fxml"), resourceBundle);
                 loader.setController(controller);
                 Parent root = loader.load();
                 Stage stage = new Stage();

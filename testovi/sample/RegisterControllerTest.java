@@ -23,7 +23,6 @@ class RegisterControllerTest {
     @Start
     public void start (Stage stage) throws Exception {
         model = new UserModel();
-        model.regenerate();
         model.putData();
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation");
@@ -79,18 +78,19 @@ class RegisterControllerTest {
         robot.clickOn("#fldAddress").write("Liverpool");
         robot.clickOn("#btnAdd");
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i <= 100; i++) {
             try {
-                Thread.sleep(50);
+                Thread.sleep(60);
             } catch (Exception e) {
                 System.out.println(e);
             }
         }
+
+        robot.clickOn("#btnExit");
     }
 
     @Test
     void registeredInDatabase(FxRobot robot) {
-        model.disconnect();
         Connection conn;
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:database.db");

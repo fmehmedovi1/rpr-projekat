@@ -15,7 +15,6 @@ import org.testfx.framework.junit5.Start;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-
 @ExtendWith(ApplicationExtension.class)
 class RegisterControllerTest {
     UserModel model;

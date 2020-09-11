@@ -1,7 +1,7 @@
 package sample;
 
 public interface ProductOperations {
-    public void addGrossValue();
-    public void addBestValue();
-    public void addWorstValue();
+     void addGrossValue();
+     void addBestValue();
+     void addWorstValue();
 }

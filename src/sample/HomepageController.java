@@ -53,9 +53,6 @@ public class HomepageController implements ProductOperations {
         menuItem4.setGraphic(new ImageView("icons/xmlFileIcon.jpg"));
 
         setUpdatesOnScreen();
-        addGrossValue();
-        addBestValue();
-        addWorstValue();
     }
 
     public void actionProducts(ActionEvent actionEvent) throws IOException {
@@ -71,10 +68,7 @@ public class HomepageController implements ProductOperations {
 
         stage.setOnHiding(windowEvent -> {
             lblNumber.setText(String.valueOf(productModel.getProducts().size()));
-            addGrossValue();
             setUpdatesOnScreen();
-            addBestValue();
-            addWorstValue();
         });
     }
 
@@ -85,11 +79,12 @@ public class HomepageController implements ProductOperations {
     }
 
     public void actionAbout(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/about.fxml"));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", currentLanguage);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/about.fxml"), resourceBundle);
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setTitle("About");
-        stage.setScene(new Scene(root, 385, 275));
+        stage.setScene(new Scene(root, 390, 275));
         stage.show();
     }
 
@@ -177,5 +172,10 @@ public class HomepageController implements ProductOperations {
     private void setUpdatesOnScreen(){
         if (productModel.getUpdates() == null) listView.setItems(null);
         else putUpdatesInList(productModel.getUpdates());
+
+        addGrossValue();
+        addBestValue();
+        addWorstValue();
     }
+
 }

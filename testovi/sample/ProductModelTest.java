@@ -12,9 +12,6 @@ class ProductModelTest {
 
     @Test
     void writeFile() {
-        File dbfile = new File("database.db");
-        dbfile.delete();
-
         model = new UserModel();
         model.regenerate();
         model.putData();

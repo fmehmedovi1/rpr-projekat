@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 public class ProductModel {
     private ObservableList<Product> products = FXCollections.observableArrayList();
@@ -40,7 +41,9 @@ public class ProductModel {
         this.products = products;
     }
 
-    public void addProduct(Product product){
+    public void addProduct(Product product) throws WrongProductDataException {
+        Optional<Product> lastProduct = products.stream().max(Product::compareTo);
+        product.setId(lastProduct.get().getId() + 1);
         warehouseDAO.addUpdatesOnProduct(updateOnProduct(product, "+"), product.getId(), warehouse.getId());
         products.add(product);
         warehouseDAO.addProductsWarehouse(product.getWarehouse().getId(), product);

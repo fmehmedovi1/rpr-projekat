@@ -80,21 +80,24 @@ public class ProductController {
 
     public void addAction(ActionEvent actionEvent) throws WrongProductDataException {
         if (!checkFields()) throw new WrongProductDataException("Wrong info about product");
-
         model.addProduct(new Product(1, fldName.getText(), fldPrice.getText(), (int) sliderAmount.getValue(),
                 fldExpiration.getText(), warehouse));
-        tableView.getSelectionModel().selectLast();
+        tableView.setItems(model.getProducts());
     }
 
     public void alterAction(ActionEvent actionEvent){
         if (!checkFields()) return;
         model.alterProduct(model.getCurrentProduct());
+        tableView.setItems(model.getProducts());
         tableView.getSelectionModel().select(model.getCurrentProduct());
+
     }
 
     public void removeAction(ActionEvent actionEvent){
-        if (!checkFields()) return;
-        model.removeProduct(model.getCurrentProduct());
+        if (tableView.getSelectionModel().getSelectedItem() == null) return;
+        Product p = tableView.getSelectionModel().getSelectedItem();
+        model.removeProduct(tableView.getSelectionModel().getSelectedItem());
+        tableView.setItems(model.getProducts());
         tableView.getSelectionModel().selectLast();
     }
 
@@ -114,5 +117,4 @@ public class ProductController {
     private boolean checkFields(){
         return !(fldName.getText().equals("") || fldExpiration.getText().equals("") || !fldExpiration.getText().matches(".*\\d.*"));
     }
-
 }

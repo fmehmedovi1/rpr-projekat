@@ -51,7 +51,6 @@ public class HomepageController implements ProductOperations {
         menuItem2.setGraphic(new ImageView("icons/xmlFileIcon.jpg"));
         menuItem3.setGraphic(new ImageView("icons/binaryFileIcon.png"));
         menuItem4.setGraphic(new ImageView("icons/xmlFileIcon.jpg"));
-
         setUpdatesOnScreen();
     }
 
@@ -177,5 +176,4 @@ public class HomepageController implements ProductOperations {
         addBestValue();
         addWorstValue();
     }
-
 }

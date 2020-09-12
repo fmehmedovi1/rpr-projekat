@@ -57,7 +57,6 @@ public class UserModel {
     public WarehouseDAO getWarehouseDAO(){return warehouseDAO;}
 
     public void regenerate() {
-
         Connection conn = warehouseDAO.getConn();
         try {
             PreparedStatement deleteWarehouseProducts = conn.prepareStatement("drop table warehouse_products");
@@ -70,7 +69,6 @@ public class UserModel {
             deleteProducts.executeUpdate();
             PreparedStatement deleteUsers = conn.prepareStatement("drop table users");
             deleteUsers.executeUpdate();
-
 
             Scanner ulaz = new Scanner(new FileInputStream("database.db.sql"));
             StringBuilder upit = new StringBuilder();
@@ -90,5 +88,4 @@ public class UserModel {
             e.printStackTrace();
         }
     }
-
 }

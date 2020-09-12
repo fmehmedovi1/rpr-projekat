@@ -29,7 +29,6 @@ public class LogController {
 
     @FXML
     public void initialize() {
-
         if (currentLanguage == null) setRadioButtons(true, false);
          else {
             if (currentLanguage.getCountry().equals("EN")) setRadioButtons(true, false);

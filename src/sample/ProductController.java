@@ -4,15 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
 public class ProductController {
 
@@ -23,7 +19,8 @@ public class ProductController {
     public MenuBar menuBar;
     private ProductModel model;
     private Warehouse warehouse;
-    public Label labelCounter;
+    public Label labelCounter, labelExpiration;
+    public ComboBox<ProductStatus> choiceExpiration;
 
     public ProductController(ProductModel productModel, Warehouse warehouse){
         this.model = productModel;
@@ -90,7 +87,6 @@ public class ProductController {
         model.alterProduct(model.getCurrentProduct());
         tableView.setItems(model.getProducts());
         tableView.getSelectionModel().select(model.getCurrentProduct());
-
     }
 
     public void removeAction(ActionEvent actionEvent){

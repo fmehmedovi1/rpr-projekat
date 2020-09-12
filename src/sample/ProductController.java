@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -9,6 +11,7 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import java.util.ArrayList;
 
 public class ProductController {
 
@@ -20,7 +23,7 @@ public class ProductController {
     private ProductModel model;
     private Warehouse warehouse;
     public Label labelCounter, labelExpiration;
-    public ComboBox<ProductStatus> choiceExpiration;
+    public ChoiceBox<ProductStatus> choiceExpiration;
 
     public ProductController(ProductModel productModel, Warehouse warehouse){
         this.model = productModel;
@@ -29,6 +32,12 @@ public class ProductController {
 
     @FXML
     public void initialize() {
+        ArrayList<ProductStatus> productStatuses = new ArrayList<>();
+        productStatuses.add(ProductStatus.VALID);
+        productStatuses.add(ProductStatus.EXPIRED);
+        ObservableList<ProductStatus> productStatusObservableList = FXCollections.observableArrayList(productStatuses);
+
+        choiceExpiration.setItems(productStatusObservableList);
         tableView.setItems(model.getProducts());
         colName.setCellValueFactory(new PropertyValueFactory("Name"));
         colPrice.setCellValueFactory(new PropertyValueFactory("Price"));
@@ -40,6 +49,7 @@ public class ProductController {
             if (model.getCurrentProduct() != null) {
                 try {
                     model.getCurrentProduct().setAmount((int)sliderAmount.getValue());
+                    model.getCurrentProduct().setProductStatus(choiceExpiration.getValue());
                 } catch (WrongProductDataException e) {
                     e.printStackTrace();
                 }
@@ -73,12 +83,17 @@ public class ProductController {
         sliderAmount.valueProperty().addListener(((obs, oldValue, newValue) -> {
                 if (oldValue != null) labelCounter.setText(String.valueOf(newValue.intValue()));
         }));
+
+        choiceExpiration.valueProperty().addListener(((obs, oldValue, newValue) -> {
+            if (newValue == ProductStatus.VALID) labelExpiration.setText("V");
+            if (newValue == ProductStatus.EXPIRED) labelExpiration.setText("E");
+        }));
     }
 
     public void addAction(ActionEvent actionEvent) throws WrongProductDataException {
         if (!checkFields()) throw new WrongProductDataException("Wrong info about product");
         model.addProduct(new Product(1, fldName.getText(), fldPrice.getText(), (int) sliderAmount.getValue(),
-                fldExpiration.getText(), warehouse));
+                fldExpiration.getText(), warehouse, choiceExpiration.getValue()));
         tableView.setItems(model.getProducts());
     }
 

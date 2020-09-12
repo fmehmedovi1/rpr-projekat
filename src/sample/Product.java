@@ -8,9 +8,11 @@ public class Product implements Comparable<Product> {
     private SimpleStringProperty name, price, expirationDate;
     private SimpleIntegerProperty  amount;
     private Warehouse warehouse;
+    private ProductStatus productStatus;
+
 
     public Product(int id, String name, String price, int amount, String expirationDate, Warehouse warehouse) throws WrongProductDataException {
-        if (id == 0 || name.equals("") || amount == 0 ||expirationDate.equals(""))
+        if (id == 0 || name.equals("") || amount == 0 || expirationDate.equals(""))
             throw new WrongProductDataException("Wrong info about product");
         this.id = id;
         this.name = new SimpleStringProperty(name);
@@ -18,6 +20,20 @@ public class Product implements Comparable<Product> {
         this.amount = new SimpleIntegerProperty(amount);
         this.expirationDate = new SimpleStringProperty(expirationDate);
         this.warehouse = warehouse;
+        this.productStatus = ProductStatus.VALID;
+    }
+
+
+    public Product(int id, String name, String price, int amount, String expirationDate, Warehouse warehouse, ProductStatus productStatus) throws WrongProductDataException {
+        if (id == 0 || name.equals("") || amount == 0 || expirationDate.equals(""))
+            throw new WrongProductDataException("Wrong info about product");
+        this.id = id;
+        this.name = new SimpleStringProperty(name);
+        this.price = new SimpleStringProperty(price);
+        this.amount = new SimpleIntegerProperty(amount);
+        this.expirationDate = new SimpleStringProperty(expirationDate);
+        this.warehouse = warehouse;
+        this.productStatus = productStatus;
     }
 
     public int getId() {
@@ -86,6 +102,14 @@ public class Product implements Comparable<Product> {
 
     public void setWarehouse(Warehouse warehouse) {
         this.warehouse = warehouse;
+    }
+
+    public ProductStatus getProductStatus() {
+        return productStatus;
+    }
+
+    public void setProductStatus(ProductStatus productStatus) {
+        this.productStatus = productStatus;
     }
 
     @Override

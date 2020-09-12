@@ -35,9 +35,9 @@ public class WarehouseDAO {
             warehouseIdStm = conn.prepareStatement("SELECT MAX(warehouse_id)+1 FROM warehouses");
             getUpdatesOnProductStm = conn.prepareStatement("SELECT product_operation FROM product_updates WHERE warehouse_id = ?");
 
-            addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?,?)");
+            addProductStm = conn.prepareStatement("INSERT INTO products VALUES(?,?,?,?,?,?)");
             deleteProductStm = conn.prepareStatement("DELETE FROM products WHERE product_id = ?");
-            updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=?, expiration_date=? WHERE product_id=?");
+            updateProductStm = conn.prepareStatement("UPDATE products SET name=?, price=?, quantity=?, expiration_date=?, status=? WHERE product_id=?");
             productIdStm = conn.prepareStatement("SELECT MAX(product_id)+1 FROM products");
             productUpdatesIdStm = conn.prepareStatement("SELECT MAX(product_updates_id)+1 FROM product_updates");
             userIdStm = conn.prepareStatement("SELECT MAX(user_id)+1 FROM users");
@@ -99,6 +99,7 @@ public class WarehouseDAO {
             addProductStm.setInt(3, Integer.parseInt(product.getPrice()));
             addProductStm.setInt(4, product.getAmount());
             addProductStm.setInt(5, Integer.parseInt(product.getExpirationDate()));
+            addProductStm.setString(6, product.getProductStatus().toString());
             addProductStm.executeUpdate();
             return id;
         } catch (SQLException e) {
@@ -153,7 +154,8 @@ public class WarehouseDAO {
             ResultSet rs = getProductsStm.executeQuery();
             while (rs.next()) {
                 Product product = new Product(rs.getInt(1), rs.getString(2),
-                        String.valueOf(rs.getInt(3)), rs.getInt(4), String.valueOf(rs.getInt(5)), warehouse);
+                        String.valueOf(rs.getInt(3)), rs.getInt(4),
+                        String.valueOf(rs.getInt(5)), warehouse, rs.getString(6));
                 result.add(product);
             }
         } catch (SQLException | WrongProductDataException e) {
@@ -231,7 +233,9 @@ public class WarehouseDAO {
             updateProductStm.setInt(2, Integer.parseInt(product.getPrice()));
             updateProductStm.setInt(3, product.getAmount());
             updateProductStm.setInt(4, Integer.parseInt(product.getExpirationDate()));
-            updateProductStm.setInt(5, product.getId());
+            updateProductStm.setString(5, product.getProductStatus().toString());
+            updateProductStm.setInt(6, product.getId());
+
             updateProductStm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

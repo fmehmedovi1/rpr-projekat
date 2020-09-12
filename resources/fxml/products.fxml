@@ -82,11 +82,6 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Label fx:id="labelExpiration" alignment="CENTER" layoutX="435.0" layoutY="386.0" prefHeight="20.0" prefWidth="37.0" style="-fx-background-color: #3498db;" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
       <ChoiceBox fx:id="choiceExpiration" layoutX="317.0" layoutY="383.0" prefHeight="25.0" prefWidth="95.0" />
    </children>
 </AnchorPane>

@@ -22,7 +22,7 @@ public class ProductController {
     public MenuBar menuBar;
     private ProductModel model;
     private Warehouse warehouse;
-    public Label labelCounter, labelExpiration;
+    public Label labelCounter;
     public ChoiceBox<ProductStatus> choiceExpiration;
 
     public ProductController(ProductModel productModel, Warehouse warehouse){
@@ -38,6 +38,7 @@ public class ProductController {
         ObservableList<ProductStatus> productStatusObservableList = FXCollections.observableArrayList(productStatuses);
 
         choiceExpiration.setItems(productStatusObservableList);
+        choiceExpiration.getSelectionModel().selectFirst();
         tableView.setItems(model.getProducts());
         colName.setCellValueFactory(new PropertyValueFactory("Name"));
         colPrice.setCellValueFactory(new PropertyValueFactory("Price"));
@@ -77,28 +78,26 @@ public class ProductController {
                 sliderAmount.valueProperty().bindBidirectional(newProduct.amountProperty());
                 labelCounter.setText(String.valueOf((int) sliderAmount.getValue()));
                 fldExpiration.textProperty().bindBidirectional(newProduct.expirationDateProperty());
+                choiceExpiration.setValue(newProduct.getProductStatus());
             }
         }));
 
         sliderAmount.valueProperty().addListener(((obs, oldValue, newValue) -> {
                 if (oldValue != null) labelCounter.setText(String.valueOf(newValue.intValue()));
         }));
-
-        choiceExpiration.valueProperty().addListener(((obs, oldValue, newValue) -> {
-            if (newValue == ProductStatus.VALID) labelExpiration.setText("V");
-            if (newValue == ProductStatus.EXPIRED) labelExpiration.setText("E");
-        }));
     }
 
     public void addAction(ActionEvent actionEvent) throws WrongProductDataException {
         if (!checkFields()) throw new WrongProductDataException("Wrong info about product");
         model.addProduct(new Product(1, fldName.getText(), fldPrice.getText(), (int) sliderAmount.getValue(),
-                fldExpiration.getText(), warehouse, choiceExpiration.getValue()));
+                fldExpiration.getText(), warehouse, choiceExpiration.getValue().name()));
+
         tableView.setItems(model.getProducts());
     }
 
     public void alterAction(ActionEvent actionEvent){
         if (!checkFields()) return;
+        model.getCurrentProduct().setProductStatus(choiceExpiration.getValue());
         model.alterProduct(model.getCurrentProduct());
         tableView.setItems(model.getProducts());
         tableView.getSelectionModel().select(model.getCurrentProduct());

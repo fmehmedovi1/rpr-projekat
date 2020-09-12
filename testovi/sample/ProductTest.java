@@ -8,7 +8,7 @@ class ProductTest {
     Product lopte;
     {
         try {
-            lopte = new Product(5, "lopte", "40", 40, "36", null);
+            lopte = new Product(5, "lopte", "40", 40, "36", null, "VALID");
         } catch (WrongProductDataException e) {
             e.printStackTrace();
         }
@@ -18,7 +18,7 @@ class ProductTest {
     void testToString() {
         Product cunjevi = null;
         try {
-            cunjevi = new Product(1, "cunjevi", "5", 50, "12", warehouse);
+            cunjevi = new Product(1, "cunjevi", "5", 50, "12", warehouse, "VALID");
         } catch (WrongProductDataException e) {
             e.printStackTrace();
         }
@@ -29,7 +29,7 @@ class ProductTest {
     void getTotalValue() {
         Product umjetnaTrava = null;
         try {
-            umjetnaTrava = new Product(1, "umjetnaTrava", "40", 1000, "24", warehouse);
+            umjetnaTrava = new Product(1, "umjetnaTrava", "40", 1000, "24", warehouse, "VALID");
         } catch (WrongProductDataException e) {
             e.printStackTrace();
         }
@@ -39,8 +39,8 @@ class ProductTest {
     @org.junit.jupiter.api.Test
     void compareTo() {
         try {
-            Product product1 = new Product(1, "dresovi", "10", 5, "24", warehouse),
-                    product2 = new Product(1, "kopačke", "40", 20, "24", warehouse);
+            Product product1 = new Product(1, "dresovi", "10", 5, "24", warehouse, "VALID"),
+                    product2 = new Product(1, "kopačke", "40", 20, "24", warehouse, "VALID");
             assertEquals(-1, product1.compareTo(product2));
         } catch (WrongProductDataException e) {
             e.printStackTrace();
@@ -67,7 +67,7 @@ class ProductTest {
     @org.junit.jupiter.api.Test
     void constructor() {
         try {
-            Product product1 = new Product(1, "dresovi", "10", 5, "24", warehouse);
+            Product product1 = new Product(1, "dresovi", "10", 5, "24", warehouse, "VALID");
             product1.setId(0);
             assertThrows(WrongProductDataException.class, () -> product1.setId(0), "Wrong info about product");
         } catch (WrongProductDataException e) {

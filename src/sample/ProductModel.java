@@ -26,8 +26,9 @@ public class ProductModel {
     }
 
     public void putData(){
-        if (warehouseDAO.products(warehouse) != null)
-                for(Product p : warehouseDAO.products(warehouse)) {
+        ArrayList<Product> productArrayList = warehouseDAO.products(warehouse);
+        if (productArrayList != null)
+                for(Product p : productArrayList) {
                     products.add(p);
                 }
         currentProduct.setValue(null);

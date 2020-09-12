@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS "products" (
 	"price"	INTEGER,
 	"quantity"	INTEGER,
 	"expiration_date"	INTEGER,
+	"status"	TEXT,
 	PRIMARY KEY("product_id")
 );
 CREATE TABLE IF NOT EXISTS "users" (
@@ -46,10 +47,10 @@ INSERT INTO "users" VALUES (2,'Faris','Mehmedović','fmehmedovi1','fmehmedovi1@e
 INSERT INTO "warehouses" VALUES (1,'FarisWH','Tuzla',1);
 INSERT INTO "warehouses" VALUES (2,'Ware','Trebinje',2);
 
-INSERT INTO "products" VALUES (1,'Cigle',10,5,50);
-INSERT INTO "products" VALUES (2,'Šibice',1,20,32);
-INSERT INTO "products" VALUES (3,'Palete',200,2,12);
-INSERT INTO "products" VALUES (4,'Lopate',30,15,14);
+INSERT INTO "products" VALUES (1,'Cigle',10,5,50,'VALID');
+INSERT INTO "products" VALUES (2,'Šibice',1,20,32,'VALID');
+INSERT INTO "products" VALUES (3,'Palete',200,2,12,'VALID');
+INSERT INTO "products" VALUES (4,'Lopate',30,15,14,'VALID');
 
 INSERT INTO "warehouse_products" VALUES (1,1);
 INSERT INTO "warehouse_products" VALUES (1,2);

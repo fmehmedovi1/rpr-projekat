@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -79,17 +80,12 @@ public class LogController {
                 loader.setController(controller);
                 Parent root = loader.load();
                 Stage stage = new Stage();
-                if (currentLanguage.getLanguage() == "en") stage.setTitle("Home page");
-                else stage.setTitle("Pocetna stranica");
+                stage.initStyle(StageStyle.UNDECORATED);
                 stage.setScene(new Scene(root, 590, 550));
                 stage.show();
 
                 Stage stage2 = (Stage) fldUsername.getScene().getWindow();
                 stage2.close();
-
-                stage.setOnHiding(windowEvent -> {
-                    model.disconnect();
-                });
             }
             else {
                 warningAlert();
@@ -122,17 +118,12 @@ public class LogController {
         loader.setController(controller);
         Parent root = loader.load();
         Stage stage = new Stage();
-        if (currentLanguage.getLanguage() == "en") stage.setTitle("Register form");
-        else stage.setTitle("Forma za registraciju");
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root, 350, 400));
         stage.show();
 
         Stage stage2 = (Stage) fldUsername.getScene().getWindow();
         stage2.close();
-
-        stage.setOnHiding(windowEvent -> {
-            model.disconnect();
-        });
     }
 
     private void setRadioButtons(boolean value1, boolean value2){

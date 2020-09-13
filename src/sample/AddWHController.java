@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -54,16 +55,14 @@ public class AddWHController {
                     e.printStackTrace();
                 }
                 Stage stage = new Stage();
-                stage.setTitle("Home Page");
+                stage.initStyle(StageStyle.UNDECORATED);
                 stage.setScene(new Scene(root, 590, 550));
+
                 stage.show();
 
                 Stage stage2 = (Stage) fldName.getScene().getWindow();
                 stage2.close();
 
-                stage.setOnHiding(windowEvent -> {
-                    userModel.disconnect();
-                });
             }
         }));
     }

@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS "product_updates" (
 INSERT INTO "users" VALUES (1,'Korisnik','Korisnić','korisnik1','korisnik@hotmail.com','sifra123');
 INSERT INTO "users" VALUES (2,'Faris','Mehmedović','fmehmedovi1','fmehmedovi1@etf.unsa.ba','faris123');
 
-INSERT INTO "warehouses" VALUES (1,'FarisWH','Tuzla',1);
+INSERT INTO "warehouses" VALUES (1,'Rajlovac WH','Sarajevo',1);
 INSERT INTO "warehouses" VALUES (2,'Ware','Trebinje',2);
 
 INSERT INTO "products" VALUES (1,'Cigle',10,5,50,'VALID');

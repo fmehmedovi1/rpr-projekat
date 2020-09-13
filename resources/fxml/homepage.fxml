@@ -22,17 +22,17 @@
                   <Font name="System Bold Italic" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="41.0" layoutY="172.0" text="%WelcometoMyWH" textAlignment="CENTER" textFill="#fffefe">
+            <Label layoutX="48.0" layoutY="172.0" text="%WelcometoMyWH" textAlignment="CENTER" textFill="#fffefe">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="50.0" layoutY="192.0" text="%Hereyouwillfind" textAlignment="CENTER" textFill="#f8f8f8">
+            <Label layoutX="56.0" layoutY="192.0" text="%Hereyouwillfind" textAlignment="CENTER" textFill="#f8f8f8">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="31.0" layoutY="212.0" text="%warehouseinformation" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="35.0" layoutY="212.0" text="%warehouseinformation" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>

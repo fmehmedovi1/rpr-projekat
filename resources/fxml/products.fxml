@@ -15,12 +15,12 @@
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #2c3e50;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="btnAdd" layoutX="88.0" layoutY="440.0" mnemonicParsing="false" onAction="#addAction" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #22313f;" text="%Add" textFill="#ebebeb">
+      <Button fx:id="btnAdd" layoutX="46.0" layoutY="439.0" mnemonicParsing="false" onAction="#addAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #22313f;" text="%Add" textFill="#ebebeb">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnRemove" layoutX="250.0" layoutY="440.0" mnemonicParsing="false" onAction="#removeAction" style="-fx-background-color: #22313f;" text="%Remove" textFill="#fcfcfc">
+      <Button fx:id="btnRemove" layoutX="260.0" layoutY="439.0" mnemonicParsing="false" onAction="#removeAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #22313f;" text="%Remove" textFill="#fcfcfc">
          <font>
             <Font size="14.0" />
          </font>
@@ -67,7 +67,7 @@
       </Label>
       <TextField fx:id="fldExpiration" layoutX="183.0" layoutY="383.0" prefHeight="25.0" prefWidth="95.0" />
       <TextField fx:id="fldPrice" layoutX="183.0" layoutY="296.0" prefHeight="25.0" prefWidth="230.0" />
-      <Button fx:id="btnAlter" layoutX="171.0" layoutY="440.0" mnemonicParsing="false" onAction="#alterAction" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #22313f;" text="%Alter" textFill="#ebebeb">
+      <Button fx:id="btnAlter" layoutX="152.0" layoutY="439.0" mnemonicParsing="false" onAction="#alterAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #22313f;" text="%Alter" textFill="#ebebeb">
          <font>
             <Font size="14.0" />
          </font>
@@ -77,7 +77,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="exitBtn" layoutX="347.0" layoutY="440.0" mnemonicParsing="false" onAction="#closeAction" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #22313f;" text="%Exit" textFill="#fcfcfc">
+      <Button fx:id="exitBtn" layoutX="364.0" layoutY="439.0" mnemonicParsing="false" onAction="#closeAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #22313f;" text="%Exit" textFill="#fcfcfc">
          <font>
             <Font size="14.0" />
          </font>

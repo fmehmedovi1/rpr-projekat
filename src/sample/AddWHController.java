@@ -57,12 +57,10 @@ public class AddWHController {
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED);
                 stage.setScene(new Scene(root, 590, 550));
-
                 stage.show();
 
                 Stage stage2 = (Stage) fldName.getScene().getWindow();
                 stage2.close();
-
             }
         }));
     }

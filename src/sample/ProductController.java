@@ -105,7 +105,6 @@ public class ProductController {
 
     public void removeAction(ActionEvent actionEvent){
         if (tableView.getSelectionModel().getSelectedItem() == null) return;
-        Product p = tableView.getSelectionModel().getSelectedItem();
         model.removeProduct(tableView.getSelectionModel().getSelectedItem());
         tableView.setItems(model.getProducts());
         tableView.getSelectionModel().selectLast();

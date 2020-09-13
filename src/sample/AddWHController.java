@@ -33,12 +33,10 @@ public class AddWHController {
     }
 
     public void addWarehouse(ActionEvent actionEvent) {
-
         for(Warehouse w : userModel.getWarehouseDAO().warehouses()) if (w.getName().equals(fldName.getText())){
             warningAlert("Warehouse with that names already exists");
             return;
         }
-
         progressBar.setVisible(true);
         updateProgressBar();
 

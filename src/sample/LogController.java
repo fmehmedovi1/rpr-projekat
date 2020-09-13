@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -130,6 +129,10 @@ public class LogController {
 
         Stage stage2 = (Stage) fldUsername.getScene().getWindow();
         stage2.close();
+
+        stage.setOnHiding(windowEvent -> {
+            model.disconnect();
+        });
     }
 
     private void setRadioButtons(boolean value1, boolean value2){

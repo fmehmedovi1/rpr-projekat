@@ -43,8 +43,10 @@ public class ProductModel {
     }
 
     public void addProduct(Product product) throws WrongProductDataException {
-        Optional<Product> lastProduct = products.stream().max(Product::compareTo);
-        product.setId(lastProduct.get().getId() + 1);
+        if (products.size() != 0) {
+            Optional<Product> lastProduct = products.stream().max(Product::compareTo);
+            product.setId(lastProduct.get().getId() + 1);
+        }
         warehouseDAO.addUpdatesOnProduct(updateOnProduct(product, "+"), product.getId(), warehouse.getId());
         products.add(product);
         warehouseDAO.addProductsWarehouse(product.getWarehouse().getId(), product);

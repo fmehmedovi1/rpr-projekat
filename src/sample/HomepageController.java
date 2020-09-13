@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import net.sf.jasperreports.engine.JRException;
 
 import java.beans.XMLDecoder;
@@ -61,7 +62,7 @@ public class HomepageController implements ProductOperations {
         loader.setController(controller);
         Parent root = loader.load();
         Stage stage = new Stage();
-        stage.setTitle("My Products");
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root, 500, 500));
         stage.show();
 
@@ -143,21 +144,30 @@ public class HomepageController implements ProductOperations {
 
     @Override
     public void addGrossValue(){
-        if (productModel.getProducts().size() == 0) return;
+        if (productModel.getProducts().size() == 0) {
+            lblValue.setText("0");
+            return;
+        }
         int sum = productModel.getProducts().stream().mapToInt(Product::getTotalValue).sum();
         lblValue.setText(String.valueOf(sum));
     }
 
     @Override
     public void addWorstValue() {
-        if (productModel.getProducts().size() == 0) return;
+        if (productModel.getProducts().size() == 0) {
+            lblWorst.setText("0");
+            return;
+        }
         Optional<Product> min = productModel.getProducts().stream().min(Product::compareTo);
         lblWorst.setText(String.valueOf(min.get().getTotalValue()));
     }
 
     @Override
     public void addBestValue() {
-        if (productModel.getProducts().size() == 0) return;
+        if (productModel.getProducts().size() == 0) {
+            lblBest.setText("0");
+            return;
+        }
         Optional<Product> max = productModel.getProducts().stream().max(Product::compareTo);
         lblBest.setText(String.valueOf(max.get().getTotalValue()));
     }

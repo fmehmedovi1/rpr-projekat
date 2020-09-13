@@ -62,6 +62,10 @@ public class AddWHController {
 
                 Stage stage2 = (Stage) fldName.getScene().getWindow();
                 stage2.close();
+
+                stage.setOnHiding(windowEvent -> {
+                    userModel.disconnect();
+                });
             }
         }));
     }

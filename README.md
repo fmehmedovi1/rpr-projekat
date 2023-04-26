@@ -15,5 +15,5 @@ korisnika. Korisniku je omogućeno da mijenja brojno stanje proizvoda, da ih ure
 Izborom opcije Find about other users unutar Home page-a, moguće je vidjeti ostale korisnike drugih skladišta (izvještaj) s ciljem ostvarivanja poslovne komunikacije. Omogućene su opcije da
 korisnik može spasiti trenutnu listu ažuriranja proizvoda sa klikom na Save updates dugme (binarna ili XML datoteka), kao i pregledati spašena ažuriranja klikom na tipku Load updates
 (binarna ili XML datoteka).
-Pri loginu je moguće birati jezik aplikacije (npr. bosanski i engleski). Shodno tome da se radi o demo verziji aplikacije, korisniku se preporučuje ukoliko ne želi da kreira novi profl, da koristi
+Pri loginu je moguće birati jezik aplikacije (npr. bosanski i engleski). Shodno tome da se radi o demo verziji aplikacije, korisniku se preporučuje ukoliko ne želi da kreira novi profil, da koristi
 gotovi profil sa korisničkim imenom (username) “korisnik1” i lozinkom (password) “sifra123”. </div>

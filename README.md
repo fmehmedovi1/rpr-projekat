@@ -17,6 +17,3 @@ korisnik može spasiti trenutnu listu ažuriranja proizvoda sa klikom na Save up
 (binarna ili XML datoteka).
 Pri loginu je moguće birati jezik aplikacije (npr. bosanski i engleski). Shodno tome da se radi o demo verziji aplikacije, korisniku se preporučuje ukoliko ne želi da kreira novi profl, da koristi
 gotovi profil sa korisničkim imenom (username) “korisnik1” i lozinkom (password) “sifra123”. </div>
-
-## Dokumentacija
-[Link za pristup dokumentaciji](https://drive.google.com/file/d/18yGNCORE7vebc4O_BKi4HPo1bGPfS2yA/view?usp=sharing)
